@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :admins
+  devise_for :users
+
+  root :to => "users#top"
+
   get 'admins/index'
   get 'users/top'
   get 'users/mypage'
@@ -18,7 +23,6 @@ Rails.application.routes.draw do
   get 'illustrations/update'
   get 'illustrations/destroy'
   get 'illustrations/index'
-  devise_for :admins
-  devise_for :users
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
