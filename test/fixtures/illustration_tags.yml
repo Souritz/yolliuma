@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  illustration_id: 1
+  tag_list_id: 1
+
+two:
+  illustration_id: 1
+  tag_list_id: 1

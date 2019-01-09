@@ -1,0 +1,2 @@
+class AgeLimit < ApplicationRecord
+end

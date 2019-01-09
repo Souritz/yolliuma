@@ -1,0 +1,2 @@
+class Correction < ApplicationRecord
+end

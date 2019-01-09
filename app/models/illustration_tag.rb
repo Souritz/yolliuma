@@ -1,0 +1,2 @@
+class IllustrationTag < ApplicationRecord
+end
