@@ -1,3 +1,6 @@
+# yolliuma
+2019年1月に開発に着手した、ポートフォリオです。
+
 # README
 
 This README would normally document whatever steps are necessary to get the
