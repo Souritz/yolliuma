@@ -3,26 +3,14 @@ Rails.application.routes.draw do
   devise_for :users
 
   root :to => "users#top"
+  get 'users/:id/mypage' => "users#mypage", as: "users_mypage"
 
-  get 'admins/index'
-  get 'users/top'
-  get 'users/mypage'
-  get 'users/index'
-  get 'users/show'
-  get 'users/edit'
-  get 'users/update'
-  get 'users/destroy'
-  get 'messages/new'
-  get 'messages/index'
-  get 'corrections/new'
-  get 'corrections/create'
-  get 'illustrations/new'
-  get 'illustrations/create'
-  get 'illustrations/show'
-  get 'illustrations/edit'
-  get 'illustrations/update'
-  get 'illustrations/destroy'
-  get 'illustrations/index'
+  resources :users, only:[:index, :show, :edit, :update, :destroy]
+  resources :admins, only:[:index]
+  resources :messages, only:[:new, :index]
+  resources :corrections, only:[:new, :create]
+  resources :illustrations, only:[:new, :create, :show, :edit, :update, :destroy, :index]
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
