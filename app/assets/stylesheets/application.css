@@ -13,3 +13,75 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: Lato, "Noto Sans JP", "游ゴシック Medium", "游ゴシック体",
+   "Yu Gothic Medium", YuGothic, "ヒラギノ角ゴ ProN","Hiragino Kaku Gothic ProN",
+    "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  margin: 0;
+  background-color: #FFFF00;
+
+  /* 仮設定 */
+  height: 1000px;
+  overflow-y: scroll;
+  /* overflow-x: none; */
+}
+
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 60px 0;
+}
+
+/* headerの装飾 */
+header {
+  color: #fff;
+}
+header ul {
+  list-style: none;
+  margin: 0;
+}
+header .container {
+  padding: 0;
+}
+.header-bg {
+  height: 80px;
+  background-color: royalblue;
+  border-bottom: 1px solid black;
+}
+.header-link {
+  color: inherit;
+  text-decoration: none;
+  line-height: 80px;
+  font-size: 23px;
+  padding: 20px 10px;
+}
+.header-link:hover {
+  color: yellow;
+}
+
+/* Top画面の装飾 */
+.logo {
+  height: 200px;
+  background: url(img/yolliuma-logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: center;
+  margin: 30px;
+}
+.top-text {
+  font-size: 23px;
+  font-style: normal;
+  text-align: center;
+  margin: 0;
+  padding-bottom: 10px;
+}
+.top-button {
+  text-align: center;
+}
+.top-button input {
+  padding: 5px;
+  margin: 10px;
+}

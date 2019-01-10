@@ -11,9 +11,10 @@
 
   <body>
     <!-- ヘッダーの表示内容です -->
-    <header>
-      <div">
-        <div class="logo"></div>
+    <header class="header-bg">
+
+      <div class="container">
+        <!-- <div class="logo"></div> -->
         <nav>
           <ul class="header-nav">
 
@@ -42,14 +43,14 @@
             <!-- 未ログイン状態のヘッダー表示 -->
             <% else %>
               <li class="header-list">
-                <%= link_to "新規登録", shops_path, class: "header-link" %>
+                <%= link_to "新規登録", new_user_registration_path, class: "header-link" %>
               </li>
             <% end %>
 
           </ul>
         </nav>
+      </div><!-- containerクラスの終わり -->
 
-      </div>
     </header>
 
     <!-- フラッシュメッセージ -->
@@ -60,9 +61,9 @@
     </div>
 
     <!-- フッターの表示内容です -->
-    <footer>
+    <!-- <footer>
       <p>&copy; 2019 yolliuma.Inc. All Rights Reserved.</p>
-    </footer>
+    </footer> -->
     <%= yield %>
   </body>
 </html>
