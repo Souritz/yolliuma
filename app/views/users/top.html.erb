@@ -1,9 +1,15 @@
 <div class="container">
-  <div class="logo">
+
+  <!-- ロゴ -->
+  <div>
+    <div class="logo">
   </div>
+
   <h1 class="top-text">イラストを高めあえるサイト</h1>
-  <div class="top-button">
-    <input type="button" value="新規登録">
-    <input type="button" value="ログイン">
+
+  <div class="link-button">
+    <%= link_to "始めてみる", new_user_registration_path, class: "btn btn-primary top-button" %>
+    <%= link_to "ログイン", new_user_session_path, class: "btn btn-default top-button" %>
   </div>
-</div>
+
+</div><!-- containerクラスの終わり -->

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- 文字コード指定 -->
+    <meta charset="utf-8">
+    <!-- レスポンシブ対応 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Yolliuma</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -21,15 +25,20 @@
             <!-- User ログイン状態のヘッダー表示 -->
             <% if user_signed_in? %>
               <li class="header-list">
-                <%= link_to "イラスト投稿", "#", class: "header-link" %>
+                <%= link_to "イラスト投稿", new_illustration_path, class: "header-link" %>
               </li>
-              <li class="header-list header-link">
+                <li>
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-btn" %>
+                </li>
                 <%= current_user.name %>
                 <ul class="sub">
-                  <li><%= link_to "マイページ", "#", class: "header-btn" %></li>
-                  <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-btn" %></li>
+                  <li>
+                    <%= link_to "マイページ", users_mypage_path(current_user), class: "header-btn" %>
+                  </li>
+                  <li>
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-btn" %>
+                  </li>
                 </ul>
-              </li>
 
             <!-- Admin ログイン状態のヘッダー表示 -->
             <% elsif admin_signed_in? %>

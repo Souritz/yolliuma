@@ -1,2 +1,22 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="container">
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h1 class="heading-text">ユーザー情報編集</h1>
+    </div>
+
+    <!-- ユーザー情報編集フォーム -->
+    <div class="panel-body">
+
+      <div class="form-position">
+        <label class="form-text">タイトル</label><br>
+        <input type="form" class="form-size" placeholder="タイトルを入力してください">
+      </div>
+
+      <!-- 編集完了・マイページに戻るボタン -->
+      <div class="link-button">
+        <a href="#" class="btn btn-success submit-button">編集完了</a>
+        <%= link_to "マイページに戻る", users_mypage_path(current_user), class: "btn btn-default cancel-button" %>
+      </div>
+    </div>
+  </div>
+</div>

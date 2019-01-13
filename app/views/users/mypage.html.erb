@@ -1,2 +1,52 @@
-<h1>Users#mypage</h1>
-<p>Find me in app/views/users/mypage.html.erb</p>
+<div class="container">
+
+  <!-- マイページタブメニュー -->
+  <section class="mypage-tabmenu">
+    <ul>
+      <li>自分のイラスト</li>
+      <li>お気に入り</li>
+      <li>コメント</li>
+      <li>添削</li>
+    </ul>
+  </section>
+
+  <!-- タブの内容一覧 -->
+  <section class="mypage-tabcontents">
+    <div>
+      <p>イラスト1</p>
+      <p>イラストタイトル</p>
+      <span>アイコン</span>
+      <span>たいち</span>
+    </div>
+    <div>
+      <p>イラスト2</p>
+      <p>イラストタイトル</p>
+      <span>アイコン</span>
+      <span>たいち</span>
+    </div>
+    <div>
+      <p>イラスト3</p>
+      <p>イラストタイトル</p>
+      <span>アイコン</span>
+      <span>たいち</span>
+    </div>
+    <div>
+      <p>イラスト4</p>
+      <p>イラストタイトル</p>
+      <span>アイコン</span>
+      <span>たいち</span>
+    </div>
+  </section>
+
+  <!-- 私の情報 -->
+  <section class="my-information">
+    <div>
+      <h1>私の情報</h1>
+      <p>たいちのユーザーイメージ</p>
+      <p><%= current_user.name %></p>
+      <p>たいちです。イラストが上手になりたいです。</p>
+      <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "btn btn-success" %>
+    </div>
+  </section>
+
+</div>

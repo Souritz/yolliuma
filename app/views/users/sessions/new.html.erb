@@ -1,0 +1,39 @@
+<div class="container">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1 class="heading-text">ログイン</h1>
+      <!-- <h1 class="panel-title">ログイン</h1> -->
+    </div>
+    <div class="panel-body">
+      <section>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+        <div class="field form-position">
+          <%= f.label :メールアドレス, class: "form-text" %><br>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力してください", class: "form-size" %>
+        </div>
+
+        <div class="field form-position">
+          <%= f.label :パスワード, class: "form-text" %><br>
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワードを入力してください", class: "form-size" %>
+        </div>
+
+        <% if devise_mapping.rememberable? -%>
+        <div class="field">
+          <% f.check_box :remember_me %>
+          <% f.label :remember_me %>
+        </div>
+        <% end -%>
+
+        <div class="actions link-button">
+          <%= f.submit "ログイン", class: "btn btn-default session-button" %>
+        </div>
+        <% end %>
+
+        <% render "users/shared/links" %>
+      </section>
+    </div>
+  </div><!-- panelクラスの終わり -->
+
+</div><!-- containerクラスの終わり -->

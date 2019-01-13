@@ -1,5 +1,6 @@
 class IllustrationsController < ApplicationController
   def new
+    @illustration = Illustration.new
   end
 
   def create

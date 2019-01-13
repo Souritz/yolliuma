@@ -1,2 +1,76 @@
-<h1>Illustrations#show</h1>
-<p>Find me in app/views/illustrations/show.html.erb</p>
+<div class="container">
+  <div>
+
+    <!-- イラスト情報 -->
+    <article class="illust-definition">
+
+      <!-- イラスト -->
+      <figure>
+        <div class="illustration">
+          イラスト
+        </div>
+      </figure>
+
+      <!-- 編集ボタン -->
+      <input type="button" value="編集" class="edit-button">
+
+      <!-- 投稿日時等の情報 -->
+      <p class="post-date">2019/1/1(火) 7:20</p>
+      <span class="view-count">閲覧数：1000</span>
+      <p class="like-illust">このイラストをお気に入りにする★</p>
+
+      <!-- イラストについての説明 -->
+      <div class="illust-description">
+        <h1>タイトル名</h1>
+        <p>イラストメッセージ</p>
+        <strong>評価してほしいポイント</strong>
+        <div>
+          <p>
+            イノシシの骨格をきちんと描けてるか、評価してほしいです！
+          </p>
+        </div>
+
+        <!-- タグ -->
+        <span>#正月</span>
+        <span>#あけおめ</span>
+        <span>#猪</span>
+        <span>#2019年</span>
+
+      </div>
+    </article>
+
+    <!-- 添削内容・コメント表示 -->
+    <section class="correction-contents">
+      <!-- 添削 -->
+      <div class="correction">
+        <h1>コメント1</h1>
+        <span>ユーザー：山下</span>
+        <p>こうするといいですよ</p>
+        <div>イラスト添削後</div>
+        <div>イラスト添削前</div>
+      </div>
+
+      <!-- コメント -->
+      <div class="comment">
+        <h1>コメント2</h1>
+        <span>ユーザー：ゆきち</span>
+        <p>いいですね</p>
+      </div>
+    </section>
+
+    <!-- 投稿者情報 -->
+    <aside class="user-information">
+      <h1>投稿者情報</h1>
+      <div>投稿者サムネイル</div>
+      <p>名前</p>
+      <p>紹介</p>
+    </aside>
+
+
+    <!-- 画面の一番上へ戻るボタン -->
+    <div>
+      <%= link_to "上へ", "#", class: "back-button" %>
+    </div>
+
+  </div>
+</div>

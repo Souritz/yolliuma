@@ -1,2 +1,46 @@
-<h1>Illustrations#new</h1>
-<p>Find me in app/views/illustrations/new.html.erb</p>
+<div class="container">
+
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h1 class="heading-text">イラスト投稿</h1>
+    </div>
+    <!-- イラスト投稿フォーム -->
+    <div class="panel-body">
+
+      <!-- 画像選択フォーム -->
+      <div class="form-position">
+        <label>ファイルを選択</label>
+        <label>サムネイル画像をここに表示</label>
+      </div>
+
+      <!-- テキスト入力フォーム -->
+      <div class="form-position">
+        <label class="form-text">タイトル</label><br>
+        <input type="form" class="form-size" placeholder="タイトルを入力してください">
+      </div>
+
+      <div class="form-position">
+        <label class="form-text">メッセージ</label><br>
+        <input type="form" class="form-size" placeholder="メッセージを入力してください">
+      </div>
+
+      <div class="form-position">
+        <label class="form-text">タグ</label><br>
+        <input type="form" class="form-size" placeholder="タグを入力してください">
+      </div>
+
+      <div class="form-position">
+        <label class="form-text">評価してほしいポイント</label><br>
+        <input type="textarea" class="form-size" placeholder="評価してほしいポイントを入力してください">
+      </div>
+
+      <!-- イラスト投稿・マイページに戻るボタン -->
+      <div class="link-button">
+        <a href="#" class="btn btn-warning submit-button">イラスト投稿</a>
+        <%= link_to "マイページに戻る", users_mypage_path(current_user), class: "btn btn-default cancel-button" %>
+      </div>
+
+    </div>
+  </div><!-- panelクラスの終わり -->
+
+</div><!-- containerクラスの終わり -->
