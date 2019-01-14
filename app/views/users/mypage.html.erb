@@ -2,40 +2,34 @@
 
   <!-- マイページタブメニュー -->
   <section class="mypage-tabmenu">
-    <ul>
-      <li>自分のイラスト</li>
+    <h1 class="heading-text">マイページ</h1>
+    <ul class="tab-menu clearfix">
+      <li class="active">自分のイラスト</li>
       <li>お気に入り</li>
       <li>コメント</li>
-      <li>添削</li>
+      <li>添削内容</li>
     </ul>
   </section>
 
   <!-- タブの内容一覧 -->
   <section class="mypage-tabcontents">
-    <div>
-      <p>イラスト1</p>
-      <p>イラストタイトル</p>
-      <span>アイコン</span>
-      <span>たいち</span>
-    </div>
-    <div>
-      <p>イラスト2</p>
-      <p>イラストタイトル</p>
-      <span>アイコン</span>
-      <span>たいち</span>
-    </div>
-    <div>
-      <p>イラスト3</p>
-      <p>イラストタイトル</p>
-      <span>アイコン</span>
-      <span>たいち</span>
-    </div>
-    <div>
-      <p>イラスト4</p>
-      <p>イラストタイトル</p>
-      <span>アイコン</span>
-      <span>たいち</span>
-    </div>
+    <!-- タブメニューの内容を表示 -->
+    <div class="tab-menu-contents">
+      <section class="tab-menu-show">
+
+        <% @illustrations.each do |illustration| %>
+          <!-- 自分のイラストを一覧表示 -->
+          <div>
+            <p><%= attachment_image_tag illustration, :illust_image, :fill, 50, 50, fallback: "img/no_image.png", size: "50x50" %></p>
+            <p><%= illustration.illust_title %></p>
+            <span><%= attachment_image_tag illustration.user, :user_image, :fill, 30, 30, fallback: "img/no_image.png", size: "30x30" %></span>
+            <span><%= illustration.user.name %></span>
+          </div><!-- 自分のイラスト一覧表示 -->
+        <% end %>
+
+      </section><!-- tab-menu-showクラスの最後 -->
+    </div><!-- tab-menu-contentsクラスの最後 -->
+
   </section>
 
   <!-- あなたの情報 -->
@@ -51,7 +45,6 @@
           <p><%= "自己紹介：" + current_user.introduction_text %></p>
           <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "btn btn-success" %>
         </div>
-
   </section>
     </div>
   </div>

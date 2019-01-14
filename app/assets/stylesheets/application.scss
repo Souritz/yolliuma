@@ -30,6 +30,12 @@ body {
   margin: 0 auto;
   padding: 50px 0;
 }
+//float解除
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
 
 // ヘッダーテキスト
 .heading-text {
@@ -252,6 +258,37 @@ li a:hover {
   float: left;
   box-sizing: border-box;
   padding: 10px;
+}
+
+///マイページのタブメニュー
+////メニューリストを囲む要素の装飾
+.tab-menu {
+  border-bottom: 2px solid royalblue;
+}
+////メニューリストの装飾
+.tab-menu li {
+  float: left;
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: 1px solid royalblue;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  background-color: white;
+  cursor: pointer;
+  list-style: none;
+  transition: .5s;
+}
+////アクティブなメニューリストの装飾
+.tab-menu li.active {
+  color: white;
+  background-color: royalblue;
+  cursor: auto;
+}
+.tab-menu-contents section {
+  display: none;
+}
+.tab-menu-contents section.tab-menu-show {
+  display: block;
 }
 
 // イラスト投稿画面の装飾
