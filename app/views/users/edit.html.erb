@@ -7,16 +7,39 @@
     <!-- ユーザー情報編集フォーム -->
     <div class="panel-body">
 
-      <div class="form-position">
-        <label class="form-text">タイトル</label><br>
-        <input type="form" class="form-size" placeholder="タイトルを入力してください">
-      </div>
+      <%= form_for(@user) do |f| %>
 
-      <!-- 編集完了・マイページに戻るボタン -->
-      <div class="link-button">
-        <a href="#" class="btn btn-success submit-button">編集完了</a>
-        <%= link_to "マイページに戻る", users_mypage_path(current_user), class: "btn btn-default cancel-button" %>
-      </div>
+        <div class="form-position">
+          <label class="form-text">ユーザー名</label><br>
+          <%= f.text_field :name, class: "form-size", placeholder: "ユーザー名を入力してください" %>
+        </div>
+
+        <div class="form-position">
+          <label class="form-text">メールアドレス</label><br>
+          <%= f.text_field :email, class: "form-size", placeholder: "メールアドレスを入力してください" %>
+        </div>
+
+        <div class="form-position">
+          <label class="form-text">イラスト歴</label><br>
+          <%= f.text_field :history_year, class: "form-size-history", placeholder: "年" %>
+          <%= f.text_field :history_month, class: "form-size-history", placeholder: "月" %>
+        </div>
+
+        <div class="form-position">
+          <label class="form-text">自己紹介</label><br>
+          <%= f.text_field :introduction_text, class: "form-size", placeholder: "自己紹介文を入力してください" %>
+        </div>
+
+        <!-- 編集完了・マイページに戻るボタン -->
+        <div class="link-button">
+          <%= f.submit "編集完了", class: "btn btn-success submit-button" %>
+
+          <%= link_to "マイページに戻る", users_mypage_path(current_user), class: "btn btn-default cancel-button" %>
+        </div>
+
+      <% end %>
+
     </div>
-  </div>
-</div>
+  </div><!-- panelクラスの終わり -->
+
+</div><!-- containerクラスの終わり -->
