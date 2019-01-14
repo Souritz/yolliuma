@@ -30,7 +30,7 @@ class IllustrationsController < ApplicationController
   end
 
   def index
-    @illustrations = Illustration.all
+    @illustrations = Illustration.all.search(params[:search])
   end
 
   private
