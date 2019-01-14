@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_09_083805) do
+ActiveRecord::Schema.define(version: 2019_01_14_082131) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2019_01_09_083805) do
   end
 
   create_table "illustrations", force: :cascade do |t|
-    t.string "illust_image"
+    t.string "illust_image_id"
     t.string "illust_title"
     t.string "illust_introduction"
     t.text "evaluation_point"
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 2019_01_09_083805) do
     t.integer "history_year"
     t.integer "history_month"
     t.string "introduction_text"
-    t.string "user_image"
+    t.string "user_image_id"
     t.integer "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
