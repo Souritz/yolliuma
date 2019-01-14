@@ -14,7 +14,7 @@
           <label class="form-text">投稿するイラスト</label><br>
 
           <!-- サムネイル画像 -->
-          <%= attachment_image_tag @llustration, :illust_image, :fill, 300, 300, fallback: "img/no_image.png", class: "illust-thumbnail preview" %>
+          <%= attachment_image_tag @llustration, :illust_image, :fill, 300, 300, fallback: "img/no_image.png", class: "illust-thumbnail" %>
 
           <!-- ファイルを選択 -->
           <%= f.attachment_field :illust_image, class: "file" %>
@@ -24,13 +24,11 @@
         <!-- テキスト入力フォーム -->
         <div class="form-position">
           <label class="form-text">タイトル</label><br>
-          <!-- <input type="form" class="form-size" placeholder="タイトルを入力してください"> -->
           <%= f.text_field :illust_title, class: "form-size", placeholder: "タイトルを入力してください" %>
         </div>
 
         <div class="form-position">
           <label class="form-text">メッセージ</label><br>
-          <!-- <input type="form" class="form-size" placeholder="メッセージを入力してください"> -->
           <%= f.text_field :illust_introduction, class: "form-size", placeholder: "メッセージを入力してください" %>
         </div>
 

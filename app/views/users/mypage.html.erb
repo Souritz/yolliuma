@@ -38,15 +38,15 @@
     </div>
   </section>
 
-  <!-- 私の情報 -->
+  <!-- あなたの情報 -->
   <section class="my-information">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h1 class="heading-text">私の情報</h1>
+        <h1 class="heading-text">あなたの情報</h1>
       </div>
       <div class="panel-body">
         <div>
-          <p><%= current_user.name + "のユーザーイメージ" %></p>
+          <p><%= attachment_image_tag @user, :user_image, :fill, 100, 100, fallback: "img/no_image.png", size: "100x100"  %></p>
           <p><%= "ユーザー名：" + current_user.name %></p>
           <p><%= "自己紹介：" + current_user.introduction_text %></p>
           <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "btn btn-success" %>

@@ -20,6 +20,7 @@ class IllustrationsController < ApplicationController
   end
 
   def edit
+    @illustration = Illustration.find(params[:id])
   end
 
   def update
@@ -33,7 +34,7 @@ class IllustrationsController < ApplicationController
 
   private
   def illustration_params
-    params.require(:illustration).permit(:llust_image, :illust_title, :illust_introduction, :evaluation_point)
+    params.require(:illustration).permit(:illust_image, :illust_title, :illust_introduction, :evaluation_point)
   end
 
   def tag_list_params

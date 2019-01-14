@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   end
 
   def mypage
+    @user = User.find(params[:id])
+    @illustrations = @user.illustrations
   end
 
   def index
