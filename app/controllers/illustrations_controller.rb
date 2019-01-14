@@ -1,17 +1,22 @@
 class IllustrationsController < ApplicationController
   def new
     @illustration = Illustration.new
+    @tag_list = TagList.new
   end
 
   def create
     @illustration = Illustration.new(illustration_params)
+    @illustration.user_id = current_user.id
     @illustration.save
-    redirect_to illustration_path(illustration.id)
+    @tag_list = TagList.new(tag_list_params)
+    @tag_list.save
+    redirect_to illustration_path(@illustration.id)
   end
 
   def show
     @illustration = Illustration.find(params[:id])
     @correction = Correction.new
+    @corrections = Correction.all
   end
 
   def edit
@@ -29,5 +34,9 @@ class IllustrationsController < ApplicationController
   private
   def illustration_params
     params.require(:illustration).permit(:llust_image, :illust_title, :illust_introduction, :evaluation_point)
+  end
+
+  def tag_list_params
+    params.require(:tag_list).permit(:tag_name)
   end
 end

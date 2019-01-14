@@ -11,8 +11,14 @@
 
         <!-- 画像選択フォーム -->
         <div class="form-position">
-          <label>ファイルを選択</label>
-          <label>サムネイル画像をここに表示</label>
+          <label class="form-text">投稿するイラスト</label><br>
+
+          <!-- サムネイル画像 -->
+          <%= attachment_image_tag @llustration, :illust_image, :fill, 300, 300, fallback: "img/no_image.png", class: "illust-thumbnail preview" %>
+
+          <!-- ファイルを選択 -->
+          <%= f.attachment_field :illust_image, class: "file" %>
+
         </div>
 
         <!-- テキスト入力フォーム -->
@@ -28,20 +34,21 @@
           <%= f.text_field :illust_introduction, class: "form-size", placeholder: "メッセージを入力してください" %>
         </div>
 
-        <div class="form-position">
-          <label class="form-text">タグ</label><br>
-          <input type="form" class="form-size" placeholder="タグを入力してください">
-        </div>
+        <%= fields_for(@tag_list) do |t| %>
+          <div class="form-position">
+            <label class="form-text">タグ</label><br>
+            <%= t.text_area :tag_name, class: "form-size", placeholder: "タグを入力してください" %>
+            <!-- <input type="form" class="form-size" placeholder="タグを入力してください"> -->
+          </div>
+        <% end %>
 
         <div class="form-position">
           <label class="form-text">評価してほしいポイント</label><br>
-          <!-- <input type="textarea" class="form-size" placeholder="評価してほしいポイントを入力してください"> -->
           <%= f.text_area :evaluation_point, class: "form-size", placeholder: "評価してほしいポイントを入力してください" %>
         </div>
 
         <!-- イラスト投稿・マイページに戻るボタン -->
         <div class="link-button">
-          <!-- <a href="#" class="btn btn-warning submit-button">イラスト投稿</a> -->
           <%= f.submit "イラスト投稿", class: "btn btn-warning submit-button" %>
 
           <%= link_to "マイページに戻る", users_mypage_path(current_user), class: "btn btn-default cancel-button" %>

@@ -56,14 +56,11 @@ body {
   text-align: left;
 }
 
+/// ボタン系
 // ボタン(横並びボタンの中央揃え)
 .link-button {
   text-align: center;
 }
-// .edit-button {
-//   margin: 10px;
-//   float: right;
-// }
 // ボタン(投稿・編集画面)
 .submit-button {
   margin-top: 10px;
@@ -74,30 +71,16 @@ body {
   margin-top: 10px;
   border-radius: 16px;
 }
-
-
-/* 投稿日表示 */
-.post-date {
-  clear: both;
-  float: right;
-  padding: 5px;
-  border-left: 1px solid gray;
+// ファイル選択ボタン
+.file {
+  margin: 0 auto;
 }
-
-/* 閲覧数表示 */
-.view-count {
-  float: right;
-  padding: 5px;
-  border-left: 1px solid gray;
-}
-
-/* お気に入りボタン表示 */
+// お気に入りボタン表示
 .like-illust {
   float: right;
   padding: 5px;
 }
-
-/* 画面の一番上へ戻るボタン */
+// 画面の一番上へ戻るボタン
 .back-button {
 	position: fixed;
 	left: 20px;
@@ -116,6 +99,30 @@ body {
 	color: black;
 	text-decoration: none;
 }
+
+
+/* 投稿日表示 */
+.post-date {
+  clear: both;
+  float: right;
+  padding: 5px;
+  border-left: 1px solid gray;
+}
+
+/* 閲覧数表示 */
+.view-count {
+  float: right;
+  padding: 5px;
+  border-left: 1px solid gray;
+}
+
+/* 画像系 */
+.illust-thumbnail {
+  max-height: 300px;
+  width: 300px;
+  margin-bottom: 10px;
+}
+
 
 
 /* headerの装飾 */
@@ -242,7 +249,6 @@ li a:hover {
 }
 .my-information {
   width: 270px;
-  background-color: lightgray;
   float: left;
   box-sizing: border-box;
   padding: 10px;

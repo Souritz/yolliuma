@@ -40,13 +40,20 @@
 
   <!-- 私の情報 -->
   <section class="my-information">
-    <div>
-      <h1>私の情報</h1>
-      <p>たいちのユーザーイメージ</p>
-      <p><%= current_user.name %></p>
-      <p>たいちです。イラストが上手になりたいです。</p>
-      <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "btn btn-success" %>
-    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1 class="heading-text">私の情報</h1>
+      </div>
+      <div class="panel-body">
+        <div>
+          <p><%= current_user.name + "のユーザーイメージ" %></p>
+          <p><%= "ユーザー名：" + current_user.name %></p>
+          <p><%= "自己紹介：" + current_user.introduction_text %></p>
+          <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "btn btn-success" %>
+        </div>
+
   </section>
+    </div>
+  </div>
 
 </div>
