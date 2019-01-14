@@ -1,2 +1,30 @@
-<h1>Illustrations#index</h1>
-<p>Find me in app/views/illustrations/index.html.erb</p>
+<div class="container">
+
+  <!-- イラスト一覧・検索ボックス -->
+  <section class="mypage-tabmenu">
+    <h1 class="heading-text">イラスト一覧</h1>
+    <input type="search" style="width: 400px;">
+  </section>
+
+  <!-- イラスト一覧表示 -->
+  <section class="">
+    <div>
+
+      <% @illustrations.each do |illustration| %>
+        <!-- イラストを一覧表示 -->
+        <div>
+          <p><%= attachment_image_tag illustration, :illust_image, :fill, 50, 50, fallback: "img/no_image.png", size: "50x50" %></p>
+          <p><%= illustration.illust_title %></p>
+          <span><%= attachment_image_tag illustration.user, :user_image, :fill, 30, 30, fallback: "img/no_image.png", size: "30x30" %></span>
+          <span><%= illustration.user.name %></span>
+        </div><!-- イラスト一覧表示 -->
+      <% end %>
+
+    </div>
+
+  </section>
+
+    </div>
+  </div>
+
+</div>

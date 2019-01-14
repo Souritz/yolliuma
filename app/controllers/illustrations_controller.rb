@@ -30,6 +30,7 @@ class IllustrationsController < ApplicationController
   end
 
   def index
+    @illustrations = Illustration.all
   end
 
   private

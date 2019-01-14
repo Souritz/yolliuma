@@ -27,18 +27,24 @@
               <li class="header-list">
                 <%= link_to "イラスト投稿", new_illustration_path, class: "header-link" %>
               </li>
+              <li class="header-list">
+                <%= link_to "イラスト一覧", illustrations_path, class: "header-link" %>
+              </li>
+              <li class="header-list">
+                <%= link_to "ユーザー一覧", users_path, class: "header-link" %>
+              </li>
+              <li>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-btn" %>
+              </li>
+              <%= current_user.name %>
+              <ul class="sub">
+                <li>
+                  <%= link_to "マイページ", users_mypage_path(current_user), class: "header-btn" %>
+                </li>
                 <li>
                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-btn" %>
                 </li>
-                <%= current_user.name %>
-                <ul class="sub">
-                  <li>
-                    <%= link_to "マイページ", users_mypage_path(current_user), class: "header-btn" %>
-                  </li>
-                  <li>
-                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-btn" %>
-                  </li>
-                </ul>
+              </ul>
 
             <!-- Admin ログイン状態のヘッダー表示 -->
             <% elsif admin_signed_in? %>
