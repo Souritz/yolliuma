@@ -9,7 +9,7 @@
       <%= text_field_tag :search, params[:search], placeholder: "検索したいユーザーのユーザー名を入力", class: "" %>
       <%= submit_tag "探す", name: "nil", class: "" %>
     <% end %>
-    
+
   </section>
 
   <!-- ユーザー一覧表示 -->
@@ -29,7 +29,7 @@
           <tbody>
             <tr>
               <td><%= attachment_image_tag user, :user_image, :fill, 50, 50, fallback: "img/no_image.png", size: "50x50" %></td>
-              <td><%= user.name %></td>
+              <td><%= link_to user.name, user_path(user.id) %></td>
               <td><%= user.introduction_text %></td>
             </tr>
           </tbody>

@@ -20,7 +20,7 @@
         <!-- イラストを一覧表示 -->
         <div>
           <p><%= attachment_image_tag illustration, :illust_image, :fill, 50, 50, fallback: "img/no_image.png", size: "50x50" %></p>
-          <p><%= illustration.illust_title %></p>
+          <p><%= link_to illustration.illust_title, illustration_path(illustration.id) %></p>
           <span><%= attachment_image_tag illustration.user, :user_image, :fill, 30, 30, fallback: "img/no_image.png", size: "30x30" %></span>
           <span><%= illustration.user.name %></span>
         </div><!-- イラスト一覧表示 -->

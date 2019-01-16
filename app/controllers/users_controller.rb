@@ -12,6 +12,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @illustrations = @user.illustrations
   end
 
   def edit
