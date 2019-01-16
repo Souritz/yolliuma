@@ -12,4 +12,16 @@ class Illustration < ApplicationRecord
 
   # refile gemで画像投稿可能にするための記述
   attachment :illust_image
+
+  # イラストを検索するための記述
+  def self.search(search)
+    if search
+      # 文字列を含むイラストタイトルを取得
+      Illustration.where(['illust_title LIKE ?', "%#{search}%"])
+    else
+      # 検索に引っかからない場合、イラストを全て表示する
+      Illustration.all
+    end
+    
+  end
 end

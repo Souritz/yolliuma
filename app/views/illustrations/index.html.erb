@@ -3,7 +3,13 @@
   <!-- イラスト一覧・検索ボックス -->
   <section class="mypage-tabmenu">
     <h1 class="heading-text">イラスト一覧</h1>
-    <input type="search" style="width: 400px;">
+
+    <!-- 検索ボックス -->
+    <%= form_tag(illustrations_path, method: "get", class: "") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "検索したいイラストのタイトルを入力", class: "" %>
+      <%= submit_tag "探す", name: "nil", class: "" %>
+    <% end %>
+
   </section>
 
   <!-- イラスト一覧表示 -->
