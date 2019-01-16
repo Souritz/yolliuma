@@ -1,0 +1,345 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+body {
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: Lato, "Noto Sans JP", "游ゴシック Medium", "游ゴシック体",
+   "Yu Gothic Medium", YuGothic, "ヒラギノ角ゴ ProN","Hiragino Kaku Gothic ProN",
+    "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  margin: 0;
+  background-color: #efefef;
+}
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+//float解除
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+// ヘッダーテキスト
+.heading-text {
+  font-size: 24px;
+  font-style: normal;
+  margin: 0;
+}
+
+// フォーム系
+.form-size {
+  width: 400px;
+}
+.form-size-history {
+  width: 200px;
+}
+.form-position {
+  text-align: center;
+}
+.form-position:not(:last-child) {
+  margin-bottom: 20px;
+}
+.form-text {
+  width: 400px;
+  text-align: left;
+}
+
+/// ボタン系
+// ボタン(横並びボタンの中央揃え)
+.link-button {
+  text-align: center;
+}
+// ボタン(投稿・編集画面)
+.submit-button {
+  margin-top: 10px;
+  margin-right: 15px;
+  border-radius: 16px;
+}
+.cancel-button {
+  margin-top: 10px;
+  border-radius: 16px;
+}
+// ファイル選択ボタン
+.file {
+  margin: 0 auto;
+}
+// お気に入りボタン表示
+.like-illust {
+  float: right;
+  padding: 5px;
+}
+// 画面の一番上へ戻るボタン
+.back-button {
+	position: fixed;
+	left: 20px;
+	top: 90px;
+	z-index: 10000;
+	background-color: #2D2D2D;
+	color: white;
+	line-height: 64px;
+	height: 64px;
+	width: 64px;
+	text-align: center;
+	border-radius: 50%;
+}
+.back-button:hover {
+	background-color: white;
+	color: black;
+	text-decoration: none;
+}
+
+
+/* 投稿日表示 */
+.post-date {
+  clear: both;
+  float: right;
+  padding: 5px;
+  border-left: 1px solid gray;
+}
+
+/* 閲覧数表示 */
+.view-count {
+  float: right;
+  padding: 5px;
+  border-left: 1px solid gray;
+}
+
+/* 画像系 */
+.illust-thumbnail {
+  max-height: 300px;
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+
+
+/* headerの装飾 */
+header {
+  color: black;
+}
+header ul {
+  list-style: none;
+  margin: 0;
+}
+header .container {
+  padding: 0;
+}
+.header-bg {
+  height: 80px;
+  background-color: white;
+  border-bottom: 1px solid #BBB;
+}
+.header-list {
+  width: 200px;
+  padding: 0 10px;
+  /* margin-left: auto; */
+  text-align: center;
+  float: left;
+}
+.header-link {
+  color: inherit;
+  text-decoration: none;
+  line-height: 80px;
+  font-size: 20px;
+  padding: 20px 10px;
+}
+.header-link:hover {
+  color: royalblue;
+}
+
+/* ヘッダーのドロップダウンリスト */
+/* ul {
+    list-style-type: none;
+}
+ul.menu li {
+    float: left;
+    position: relative;
+    display: block;
+}
+ul.sub {
+	width: 100%;
+    display: none;
+    text-align: center;
+    position: absolute;
+    right: 0px;
+	background: white;
+}
+ul.sub li {
+	width: 100%;
+}
+ul.sub li a {
+	font-size: 16px;
+    display: inline;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    color: #1B395B;
+    text-decoration: none;
+}
+li a:hover {
+    z-index: 10000;
+    border-bottom: 2px solid #9C9C9C;
+} */
+
+/* Top画面の装飾 */
+.logo {
+  height: 300px;
+  background: url(img/yolliuma-logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.top-text {
+  font-size: 24px;
+  font-style: normal;
+  text-align: center;
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+.top-button {
+  margin-top: 10px;
+  border-radius: 16px;
+}
+.top-button:not(:last-child) {
+  margin-right: 15px;
+}
+
+/* 新規登録画面の装飾 */
+.registration-button {
+  margin-top: 10px;
+  border-radius: 16px;
+  width: 400px;
+}
+
+// ログイン画面の装飾
+.session-button {
+  margin-top: 10px;
+  border-radius: 16px;
+  width: 400px;
+}
+
+/* マイページ画面の装飾 */
+.mypage-tabmenu {
+  width: 100%;
+  height: 100px;
+  background-color: lightgray;
+  margin-bottom: 30px;
+}
+.mypage-tabcontents {
+  width: 700px;
+  background-color: lightgray;
+  float: left;
+  margin-right: 30px;
+}
+.my-information {
+  width: 270px;
+  float: left;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+///マイページのタブメニュー
+////メニューリストを囲む要素の装飾
+.tab-menu {
+  border-bottom: 2px solid royalblue;
+}
+////メニューリストの装飾
+.tab-menu li {
+  float: left;
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: 1px solid royalblue;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  background-color: white;
+  cursor: pointer;
+  list-style: none;
+  transition: .5s;
+}
+////アクティブなメニューリストの装飾
+.tab-menu li.active {
+  color: white;
+  background-color: royalblue;
+  cursor: auto;
+}
+.tab-menu-contents section {
+  display: none;
+}
+.tab-menu-contents section.tab-menu-show {
+  display: block;
+}
+
+// イラスト投稿画面の装飾
+
+
+/* イラスト詳細画面の装飾 */
+.illust-definition {
+  width: 700px;
+  background-color: lightgray;
+  float: left;
+  margin-right: 30px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  padding: 10px;
+  border-bottom: 1px solid gray;
+}
+.illust-definition p {
+  margin: 0;
+}
+.illustration {
+  margin: 0 auto;
+  min-width: 100px;
+  max-width: 600px;
+  min-height: 100px;
+  max-height: 600px;
+  background-color: black;
+  color: white;
+}
+.illust-description {
+  clear: both;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.correction-contents {
+  width: 700px;
+  float: left;
+}
+.correction-contents p {
+  margin: 0;
+}
+.correction.comment {
+  margin: 5px;
+  padding: 5px;
+  width: 600px;
+}
+
+.user-information {
+  width: 270px;
+  background-color: lightgray;
+  float: left;
+  box-sizing: border-box;
+  padding: 10px;
+}

@@ -1,2 +1,22 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+
+  <h1 class="heading-text"><%= @user.name %></h1>
+  <!-- ユーザー情報表示 -->
+  <div>
+    <p>イラスト歴</p>
+    <p>
+      <%= @user.history_year.to_s + "年" + @user.history_month.to_s + "ヶ月" %>
+    </p>
+  </div>
+
+  <!-- ユーザーのイラストを一覧表示 -->
+  <div>
+    <h2>ユーザーイラスト一覧</h2>
+    <% @illustrations.each do |illustration| %>
+      <div>
+        <p><%= attachment_image_tag illustration, :illust_image, :fill, 50, 50, fallback: "img/no_image.png", size: "50x50" %></p>
+      </div>
+    <% end %>
+  </div>
+
+</div>

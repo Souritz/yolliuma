@@ -1,2 +1,52 @@
-<h1>Users#mypage</h1>
-<p>Find me in app/views/users/mypage.html.erb</p>
+<div class="container">
+
+  <!-- マイページタブメニュー -->
+  <section class="mypage-tabmenu">
+    <h1 class="heading-text">マイページ</h1>
+    <ul class="tab-menu clearfix">
+      <li class="active">自分のイラスト</li>
+      <li>お気に入り</li>
+      <li>コメント</li>
+      <li>添削内容</li>
+    </ul>
+  </section>
+
+  <!-- タブの内容一覧 -->
+  <section class="mypage-tabcontents">
+    <!-- タブメニューの内容を表示 -->
+    <div class="tab-menu-contents">
+      <section class="tab-menu-show">
+
+        <% @illustrations.each do |illustration| %>
+          <!-- 自分のイラストを一覧表示 -->
+          <div>
+            <p><%= attachment_image_tag illustration, :illust_image, :fill, 50, 50, fallback: "img/no_image.png", size: "50x50" %></p>
+            <p><%= illustration.illust_title %></p>
+            <span><%= attachment_image_tag illustration.user, :user_image, :fill, 30, 30, fallback: "img/no_image.png", size: "30x30" %></span>
+            <span><%= illustration.user.name %></span>
+          </div><!-- 自分のイラスト一覧表示 -->
+        <% end %>
+
+      </section><!-- tab-menu-showクラスの最後 -->
+    </div><!-- tab-menu-contentsクラスの最後 -->
+
+  </section>
+
+  <!-- 自身のユーザー情報表示 -->
+  <section class="my-information">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1 class="heading-text">あなたの情報</h1>
+      </div>
+      <div class="panel-body">
+        <div>
+          <p><%= attachment_image_tag @user, :user_image, :fill, 100, 100, fallback: "img/no_image.png", size: "100x100"  %></p>
+          <p><%= "ユーザー名：" + current_user.name %></p>
+          <p><%= "自己紹介：" + current_user.introduction_text %></p>
+          <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "btn btn-success" %>
+        </div>
+  </section>
+    </div>
+  </div>
+
+</div>

@@ -4,6 +4,7 @@ class Admin < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # 各モデル間のアソシエーション
   has_many :users, dependent: :destroy
   has_many :illustrations, dependent: :destroy
 end

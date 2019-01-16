@@ -10,7 +10,33 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+//= require bootstrap-sprockets
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+//ヘッダーのドロップダウンリスト
+// $(function(){
+//     $('.menu li').hover(function(){
+//         $("ul:not(:animated)", this).slideDown();
+//     }, function(){
+//         $("ul.sub",this).slideUp();
+//     });
+// });
+
+// マイページのタブメニュー
+$(function() {
+  // 要素(タブ)クリック時に処理させる
+  $('.tab-menu li').click(function() {
+    // クリックされた要素の順番を取得
+    var index = $('.tab-menu li').index(this);
+    // 以前に選択していた要素のactiveクラスを削除
+    $('.tab-menu li').removeClass('active');
+    // 新しくクリックした要素へactiveクラスを追加
+    $('this').addClass('active');
+    // 以前に選択していた要素を非表示・新しくクリックした要素のコンテンツを表示
+    $('.tab-menu-contents section').removeClass('tab-menu-show').eq(index).addClass('tab-menu-show');
+  });
+});

@@ -1,2 +1,60 @@
-<h1>Illustrations#edit</h1>
-<p>Find me in app/views/illustrations/edit.html.erb</p>
+<div class="container">
+
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h1 class="heading-text">イラスト編集</h1>
+    </div>
+    <!-- イラスト編集フォーム -->
+    <div class="panel-body">
+
+      <%= form_for(@illustration) do |f| %>
+
+        <!-- 画像選択フォーム -->
+        <div class="form-position">
+          <label class="form-text">編集するイラスト</label><br>
+
+          <!-- サムネイル画像 -->
+          <%= attachment_image_tag @illustration, :illust_image, :fill, 300, 300, class: "illust-thumbnail" %>
+
+          <!-- ファイルを選択 -->
+          <%= f.attachment_field :illust_image, class: "file" %>
+
+        </div>
+
+        <!-- テキスト入力フォーム -->
+        <div class="form-position">
+          <label class="form-text">タイトル</label><br>
+          <%= f.text_field :illust_title, class: "form-size", placeholder: "タイトルを入力してください" %>
+        </div>
+
+        <div class="form-position">
+          <label class="form-text">メッセージ</label><br>
+          <%= f.text_field :illust_introduction, class: "form-size", placeholder: "メッセージを入力してください" %>
+        </div>
+
+        <%= fields_for(@tag_list) do |t| %>
+          <div class="form-position">
+            <label class="form-text">タグ</label><br>
+            <%= t.text_area :tag_name, class: "form-size", placeholder: "タグを入力してください" %>
+            <!-- <input type="form" class="form-size" placeholder="タグを入力してください"> -->
+          </div>
+        <% end %>
+
+        <div class="form-position">
+          <label class="form-text">評価してほしいポイント</label><br>
+          <%= f.text_area :evaluation_point, class: "form-size", placeholder: "評価してほしいポイントを入力してください" %>
+        </div>
+
+        <!-- イラスト投稿・マイページに戻るボタン -->
+        <div class="link-button">
+          <%= f.submit "イラスト編集完了", class: "btn btn-success submit-button" %>
+
+          <%= link_to "マイページに戻る", users_mypage_path(current_user), class: "btn btn-default cancel-button" %>
+        </div>
+
+      <% end %>
+
+    </div>
+  </div><!-- panelクラスの終わり -->
+
+</div><!-- containerクラスの終わり -->
