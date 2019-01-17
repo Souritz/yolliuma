@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'like_users/create'
+  get 'like_users/destroy'
+  get 'like_illustrations/create'
+  get 'like_illustrations/destroy'
 # deviseのパス設定
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',

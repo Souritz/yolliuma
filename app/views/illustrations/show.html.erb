@@ -17,6 +17,12 @@
       <!-- 投稿日時等の情報 -->
       <p class="post-date"><%= @illustration.created_at %></p>
       <span class="view-count">閲覧数：1000</span>
+
+      <!-- イラストへのお気に入り機能 -->
+      <% if @illustration.favorited_by?(current_user) %>
+      
+      <% end %>
+
       <p class="like-illust">このイラストをお気に入りにする★</p>
 
       <!-- イラストについての説明 -->
@@ -83,7 +89,7 @@
           <h2>このイラストに添削またはコメントする</h2>
         </div>
         <div class="panel-body">
-          <%= form_for(@correction, url: corrections_path) do |f| %>
+          <%= form_for([@illustration, @correction], url: corrections_path, html: {method: 'POST'}) do |f| %>
             <!-- 添削したイラストを選択 -->
             <div>
               <label>添削したイラストを選択</label><br>
