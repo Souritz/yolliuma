@@ -17,11 +17,14 @@ Rails.application.routes.draw do
   get 'users/:id/mypage' => "users#mypage", as: "users_mypage"
 
 # その他のパス設定
-  resources :users, only:[:index, :show, :edit, :update, :destroy]
+  resources :users, only:[:index, :show, :edit, :update, :destroy] do
+    resource :messages, only:[:new, :index]
+  end
   resources :admins, only:[:index]
-  resources :messages, only:[:new, :index]
-  resources :corrections, only:[:new, :create]
+
   resources :illustrations, only:[:new, :create, :show, :edit, :update, :destroy, :index]
+  resources :corrections, only:[:new, :create]
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -39,33 +39,71 @@
       </div>
     </article>
 
+    <!-- 投稿者情報 -->
+    <aside class="user-information">
+      <h2>投稿者情報</h2>
+      <p><%= attachment_image_tag @user, :user_image, :fill, 100, 100, fallback: "img/no_image.png", size: "100x100" %></p>
+      <p><%= "ユーザー名：" + @user.name %></p>
+      <p><%= "自己紹介：" + @user.introduction_text %></p>
+    </aside>
+
     <!-- 添削内容・コメント表示 -->
     <section class="correction-contents">
+      <h2>添削一覧</h2>
+
+      <!-- 添削・コメント数 -->
+      <p>添削・コメント数</p>
+      <p><%= @illustration.corrections.count.to_s + "件" %></p>
+
       <!-- 添削 -->
-      <div class="correction">
-        <h1>コメント1</h1>
+      <% correct = 0 %><!-- 添削連番初期値 -->
+      <% @illustration.corrections.each do |correction| %>
+        <h3><%= 添削 + (correct += 1).to_s %></h3>
+        <span><%= correction.user.name %></span>
+      <% end %>
+
+      <!-- <div class="correction">
+        <h3>コメント1</h3>
         <span>ユーザー：山下</span>
         <p>こうするといいですよ</p>
         <div>イラスト添削後</div>
         <div>イラスト添削前</div>
-      </div>
+      </div> -->
 
       <!-- コメント -->
-      <div class="comment">
+      <!-- <div class="comment">
         <h1>コメント2</h1>
         <span>ユーザー：ゆきち</span>
         <p>いいですね</p>
+      </div> -->
+
+      <!-- 添削・コメント投稿フォーム -->
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <h2>このイラストに添削またはコメントする</h2>
+        </div>
+        <div class="panel-body">
+          <%= form_for(@correction, url: corrections_path) do |f| %>
+            <!-- 添削したイラストを選択 -->
+            <div>
+              <label>添削したイラストを選択</label><br>
+              <%= f.attachment_field :corrected_illust, class: "file" %>
+            </div>
+            <!-- コメント入力フォーム -->
+            <div>
+              <label>コメント</label><br>
+              <%= f.text_field :comment, class: "form-size", placeholder: "コメントを入力してください" %>
+            </div>
+            <!-- 添削・コメント投稿 -->
+            <div>
+              <%= f.submit "投稿", class: "btn btn-warning" %>
+            </div>
+            <% end %>
+          </div>
+
       </div>
+
     </section>
-
-    <!-- 投稿者情報 -->
-    <aside class="user-information">
-      <h1>投稿者情報</h1>
-      <div>投稿者サムネイル</div>
-      <p>名前</p>
-      <p>紹介</p>
-    </aside>
-
 
     <!-- 画面の一番上へ戻るボタン -->
     <div>

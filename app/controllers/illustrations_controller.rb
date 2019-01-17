@@ -15,8 +15,9 @@ class IllustrationsController < ApplicationController
 
   def show
     @illustration = Illustration.find(params[:id])
+    @user = @illustration.user
     @correction = Correction.new
-    @corrections = Correction.all
+    @corrections = @illustration.corrections
   end
 
   def edit
@@ -33,6 +34,7 @@ class IllustrationsController < ApplicationController
     @illustrations = Illustration.all.search(params[:search])
   end
 
+  # ストロングパラメーター
   private
   def illustration_params
     params.require(:illustration).permit(:illust_image, :illust_title, :illust_introduction, :evaluation_point)
