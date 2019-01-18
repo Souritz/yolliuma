@@ -3,12 +3,11 @@ class CorrectionsController < ApplicationController
   end
 
   def create
-    illustration = Illustration.find(params[:id])
+    illustration = Illustration.find(params[:illustration_id])
     correction = current_user.corrections.new(correction_params)
     correction.illustration_id = illustration.id
-    correction.user_id = illustration.user.id
     correction.save
-    redirect_to illustrations_path(illustration)
+    redirect_to illustrations_path(illustration.id)
   end
 
   # ストロングパラメーター

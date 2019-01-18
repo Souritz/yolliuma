@@ -24,10 +24,12 @@ Rails.application.routes.draw do
   resources :users, only:[:index, :show, :edit, :update, :destroy] do
     resource :messages, only:[:new, :index]
   end
-  resources :admins, only:[:index]
+  resources :admin, only:[:index]
 
-  resources :illustrations, only:[:new, :create, :show, :edit, :update, :destroy, :index]
-  resources :corrections, only:[:new, :create]
+  # 一つのイラストに複数の添削内容がつくためネスト
+  resources :illustrations, only:[:new, :create, :show, :edit, :update, :destroy, :index] do
+    resources :corrections, only:[:create, :destroy]
+  end
 
 
 

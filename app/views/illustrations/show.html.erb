@@ -20,7 +20,19 @@
 
       <!-- イラストへのお気に入り機能 -->
       <% if @illustration.favorited_by?(current_user) %>
-      
+        <li>
+          <%= link_to like_illustrations_destroy_path(@illustration), method: :delete do %>
+            <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+            <%= @illustration.like_illustrations.count %> いいね
+          <% end %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to like_illustrations_create_path(@illustration), method: :post do %>
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <%= @illustration.like_illustrations.count %> いいね
+          <% end %>
+        </li>
       <% end %>
 
       <p class="like-illust">このイラストをお気に入りにする★</p>
@@ -64,8 +76,10 @@
       <!-- 添削 -->
       <% correct = 0 %><!-- 添削連番初期値 -->
       <% @illustration.corrections.each do |correction| %>
-        <h3><%= 添削 + (correct += 1).to_s %></h3>
+        <h3><!-- 添削 + (correct += 1).to_s --></h3>
         <span><%= correction.user.name %></span>
+        <p><%= correction.comment %></p>
+        <p><%= attachment_image_tag correction, :corrected_illust, :fill, 100, 100, fallback: "img/no_image.png" %></p>
       <% end %>
 
       <!-- <div class="correction">
@@ -89,7 +103,8 @@
           <h2>このイラストに添削またはコメントする</h2>
         </div>
         <div class="panel-body">
-          <%= form_for([@illustration, @correction], url: corrections_path, html: {method: 'POST'}) do |f| %>
+          <%= form_for [@illustration, @correction] do |f| %>
+          <!-- , url: corrections_path, html: {method: 'POST'}) -->
             <!-- 添削したイラストを選択 -->
             <div>
               <label>添削したイラストを選択</label><br>

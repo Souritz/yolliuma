@@ -8,7 +8,7 @@ class Illustration < ApplicationRecord
   # イラストのお気に入り機能
   ## 現在のユーザーが、今見ているイラストをお気に入りに追加しているかを判別
   def favorited_by?(user)
-    favorites.where(user_id: user.id).exists?
+    like_illustrations.where(user_id: user.id).exists?
   end
 
   # 入力フォームに全項目入力させるためのvalidation
