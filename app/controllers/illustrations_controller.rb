@@ -10,13 +10,17 @@ class IllustrationsController < ApplicationController
     @illustration.save
     @tag_list = TagList.new(tag_list_params)
     @tag_list.save
-    redirect_to illustration_path(@illustration.id)
+    redirect_to illustration_path(@illustration)
   end
 
   def show
     @illustration = Illustration.find(params[:id])
+    @user = @illustration.user
     @correction = Correction.new
-    @corrections = Correction.all
+    @corrections = @illustration.corrections
+
+    @correct = 0 # 添削毎につける連番の初期値
+    @comment = 0 # コメント毎につける連番の初期値
   end
 
   def edit
@@ -33,6 +37,7 @@ class IllustrationsController < ApplicationController
     @illustrations = Illustration.all.search(params[:search])
   end
 
+  # ストロングパラメーター
   private
   def illustration_params
     params.require(:illustration).permit(:illust_image, :illust_title, :illust_introduction, :evaluation_point)

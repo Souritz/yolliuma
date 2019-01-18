@@ -17,6 +17,24 @@
       <!-- 投稿日時等の情報 -->
       <p class="post-date"><%= @illustration.created_at %></p>
       <span class="view-count">閲覧数：1000</span>
+
+      <!-- イラストへのお気に入り機能 -->
+      <% if @illustration.favorited_by?(current_user) %>
+        <li>
+          <%= link_to like_illustrations_destroy_path(@illustration), method: :delete do %>
+            <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+            <%= @illustration.like_illustrations.count %> いいね
+          <% end %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to like_illustrations_create_path(@illustration), method: :post do %>
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <%= @illustration.like_illustrations.count %> いいね
+          <% end %>
+        </li>
+      <% end %>
+
       <p class="like-illust">このイラストをお気に入りにする★</p>
 
       <!-- イラストについての説明 -->
@@ -39,33 +57,79 @@
       </div>
     </article>
 
+    <!-- 投稿者情報 -->
+    <aside class="user-information">
+      <h2>投稿者情報</h2>
+      <p><%= attachment_image_tag @user, :user_image, :fill, 100, 100, fallback: "img/no_image.png", size: "100x100" %></p>
+      <p><%= "ユーザー名：" + @user.name %></p>
+      <p><%= "自己紹介：" + @user.introduction_text %></p>
+    </aside>
+
     <!-- 添削内容・コメント表示 -->
     <section class="correction-contents">
-      <!-- 添削 -->
-      <div class="correction">
-        <h1>コメント1</h1>
+      <h2>添削一覧</h2>
+
+      <!-- 添削・コメント数 -->
+      <p>添削・コメント数</p>
+      <p><%= @illustration.corrections.count.to_s + "件" %></p>
+
+      <!-- 添削・コメント表示 -->
+      <% @illustration.corrections.each do |correction| %>
+        <% if correction.corrected_illust.present? %>
+          <h3><%= "添削" + (@correct += 1).to_s %></h3>
+          <span><%= correction.user.name %></span>
+          <p><%= correction.comment %></p>
+          <p><%= attachment_image_tag correction, :corrected_illust, :fill, 100, 100 %></p>
+        <% else %>
+          <h3><%= "コメント" + (@comment += 1).to_s %></h3>
+          <span><%= correction.user.name %></span>
+          <p><%= correction.comment %></p>
+        <% end %>
+      <% end %>
+
+      <!-- <div class="correction">
+        <h3>コメント1</h3>
         <span>ユーザー：山下</span>
         <p>こうするといいですよ</p>
         <div>イラスト添削後</div>
         <div>イラスト添削前</div>
-      </div>
+      </div> -->
 
       <!-- コメント -->
-      <div class="comment">
+      <!-- <div class="comment">
         <h1>コメント2</h1>
         <span>ユーザー：ゆきち</span>
         <p>いいですね</p>
+      </div> -->
+
+      <!-- 添削・コメント投稿フォーム -->
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <h2>このイラストに添削またはコメントする</h2>
+        </div>
+        <div class="panel-body">
+          <%= form_for [@illustration, @correction] do |f| %>
+          <!-- , url: corrections_path, html: {method: 'POST'}) -->
+            <!-- 添削したイラストを選択 -->
+            <div>
+              <label>添削したイラストを選択</label><br>
+              <%= f.attachment_field :corrected_illust, class: "file" %>
+            </div>
+            <!-- コメント入力フォーム -->
+            <div>
+              <label>コメント</label><br>
+              <%= f.text_field :comment, class: "form-size", placeholder: "コメントを入力してください" %>
+            </div>
+            <!-- 添削・コメント投稿 -->
+            <div>
+              <%= f.submit "投稿", class: "btn btn-warning" %>
+            </div>
+            <% end %>
+          </div>
+
       </div>
+
     </section>
-
-    <!-- 投稿者情報 -->
-    <aside class="user-information">
-      <h1>投稿者情報</h1>
-      <div>投稿者サムネイル</div>
-      <p>名前</p>
-      <p>紹介</p>
-    </aside>
-
 
     <!-- 画面の一番上へ戻るボタン -->
     <div>

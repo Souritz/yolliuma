@@ -22,8 +22,12 @@
 
         <div class="field form-position">
           <%= f.label :イラスト歴, class: "form-text" %><br>
-          <%= f.text_field :history_year, autofocus: true, autocomplete: "history_year", placeholder: "年", class: "form-size-history" %>
-          <%= f.text_field :history_month, autofocus: true, autocomplete: "history_month", placeholder: "ヶ月", class: "form-size-history" %>
+          <%= f.label :年, class: "form-text-history" %>
+          <%= f.label :ヶ月, class: "form-text-history" %><br>
+          <%= f.text_field :history_year, autofocus: true, autocomplete: "history_year", placeholder: "イラスト歴(年)", class: "form-size-history" %>
+          <%= f.text_field :history_month, autofocus: true, autocomplete: "history_month", placeholder: "イラスト歴(月)", class: "form-size-history" %>
+          <!-- イラスト歴は、セレクトボックスから選択できるようにする予定 -->
+          <% f.select :history_month, [*("0".."11")], autofocus: true, autocomplete: "history_month", placeholder: "イラスト歴(月)", class: "form-size-history" %>
         </div>
 
         <div class="field form-position">

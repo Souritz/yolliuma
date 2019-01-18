@@ -5,6 +5,12 @@ class Illustration < ApplicationRecord
   belongs_to :admin, optional: true
   belongs_to :user
 
+  # イラストのお気に入り機能
+  ## 現在のユーザーが、今見ているイラストをお気に入りに追加しているかを判別
+  def favorited_by?(user)
+    like_illustrations.where(user_id: user.id).exists?
+  end
+
   # 入力フォームに全項目入力させるためのvalidation
   validates :illust_title, presence: true
   validates :illust_introduction, presence: true
@@ -22,6 +28,6 @@ class Illustration < ApplicationRecord
       # 検索に引っかからない場合、イラストを全て表示する
       Illustration.all
     end
-    
+
   end
 end

@@ -16,7 +16,7 @@
           <!-- サムネイル画像 -->
           <%= attachment_image_tag @llustration, :illust_image, :fill, 300, 300, fallback: "img/no_image.png", class: "illust-thumbnail" %>
 
-          <!-- ファイルを選択 -->
+          <!-- イラストを選択 -->
           <%= f.attachment_field :illust_image, class: "file" %>
 
         </div>
