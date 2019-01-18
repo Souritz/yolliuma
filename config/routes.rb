@@ -21,14 +21,17 @@ Rails.application.routes.draw do
   get 'users/:id/mypage' => "users#mypage", as: "users_mypage"
 
 # その他のパス設定
-  resources :users, only:[:index, :show, :edit, :update, :destroy] do
-    resource :messages, only:[:new, :index]
+  # 一人のユーザーに複数のメッセージ・お気に入りがつくためネスト
+  resources :users, only: [:index, :show, :edit, :update, :destroy] do
+    resource :like_users, only: [:create, :destroy]
+    resources :messages, only: [:new, :index]
   end
-  resources :admin, only:[:index]
+  resources :admin, only: [:index]
 
-  # 一つのイラストに複数の添削内容がつくためネスト
-  resources :illustrations, only:[:new, :create, :show, :edit, :update, :destroy, :index] do
-    resources :corrections, only:[:create, :destroy]
+  # 一つのイラストに複数の添削内容・お気に入りがつくためネスト
+  resources :illustrations, only: [:new, :create, :show, :edit, :update, :destroy, :index] do
+    resource :like_illustrations, only: [:create, :destroy]
+    resources :corrections, only: [:create, :destroy]
   end
 
 
