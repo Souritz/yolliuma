@@ -7,7 +7,7 @@ class CorrectionsController < ApplicationController
     correction = current_user.corrections.new(correction_params)
     correction.illustration_id = illustration.id
     correction.save
-    redirect_to illustrations_path(illustration.id)
+    redirect_to illustration_path(illustration)
   end
 
   # ストロングパラメーター

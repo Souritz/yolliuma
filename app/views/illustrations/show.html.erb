@@ -73,13 +73,18 @@
       <p>添削・コメント数</p>
       <p><%= @illustration.corrections.count.to_s + "件" %></p>
 
-      <!-- 添削 -->
-      <% correct = 0 %><!-- 添削連番初期値 -->
+      <!-- 添削・コメント表示 -->
       <% @illustration.corrections.each do |correction| %>
-        <h3><!-- 添削 + (correct += 1).to_s --></h3>
-        <span><%= correction.user.name %></span>
-        <p><%= correction.comment %></p>
-        <p><%= attachment_image_tag correction, :corrected_illust, :fill, 100, 100, fallback: "img/no_image.png" %></p>
+        <% if correction.corrected_illust.present? %>
+          <h3><%= "添削" + (@correct += 1).to_s %></h3>
+          <span><%= correction.user.name %></span>
+          <p><%= correction.comment %></p>
+          <p><%= attachment_image_tag correction, :corrected_illust, :fill, 100, 100 %></p>
+        <% else %>
+          <h3><%= "コメント" + (@comment += 1).to_s %></h3>
+          <span><%= correction.user.name %></span>
+          <p><%= correction.comment %></p>
+        <% end %>
       <% end %>
 
       <!-- <div class="correction">

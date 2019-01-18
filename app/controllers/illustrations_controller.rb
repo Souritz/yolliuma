@@ -10,7 +10,7 @@ class IllustrationsController < ApplicationController
     @illustration.save
     @tag_list = TagList.new(tag_list_params)
     @tag_list.save
-    redirect_to illustration_path(@illustration.id)
+    redirect_to illustration_path(@illustration)
   end
 
   def show
@@ -18,6 +18,9 @@ class IllustrationsController < ApplicationController
     @user = @illustration.user
     @correction = Correction.new
     @corrections = @illustration.corrections
+
+    @correct = 0 # 添削毎につける連番の初期値
+    @comment = 0 # コメント毎につける連番の初期値
   end
 
   def edit
