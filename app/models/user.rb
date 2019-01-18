@@ -12,6 +12,12 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   belongs_to :admin, optional: true
 
+  # ユーザーのお気に入り機能
+  ## 現在のユーザーが、今見ているユーザーをお気に入りに追加しているかを判別
+  def user_favorited_by?(user)
+    like_users.where(user_id: user.id).exists?
+  end
+
   # refile gemで画像投稿可能にするための記述
   attachment :user_image
 

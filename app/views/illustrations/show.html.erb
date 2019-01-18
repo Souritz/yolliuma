@@ -19,7 +19,7 @@
       <span class="view-count">閲覧数：1000</span>
 
       <!-- イラストへのお気に入り機能 -->
-      <% if @illustration.favorited_by?(current_user) %>
+      <% if @illustration.illust_favorited_by?(current_user) %>
         <li>
           <%= link_to illustration_like_illustrations_path(@illustration), method: :delete do %>
             <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
