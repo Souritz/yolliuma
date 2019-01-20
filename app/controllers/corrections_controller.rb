@@ -1,6 +1,4 @@
 class CorrectionsController < ApplicationController
-  def new
-  end
 
   def create
     illustration = Illustration.find(params[:illustration_id])

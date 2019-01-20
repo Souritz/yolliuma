@@ -42,7 +42,11 @@
         <div>
           <p><%= attachment_image_tag @user, :user_image, :fill, 100, 100, fallback: "img/no_image.png", size: "100x100"  %></p>
           <p><%= "ユーザー名：" + current_user.name %></p>
-          <p><%= "自己紹介：" + current_user.introduction_text %></p>
+          <% if current_user.introduction_text.present? %>
+            <p><%= "自己紹介：" + current_user.introduction_text %></p>
+          <% else %>
+            <p><%= "自己紹介： 自己紹介文が設定されていません"  %></p>
+          <% end %>
           <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "btn btn-success" %>
         </div>
   </section>

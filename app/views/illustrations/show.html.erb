@@ -11,8 +11,11 @@
         </div>
       </figure>
 
-      <!-- 編集ボタン -->
-      <%= link_to "編集", edit_illustration_path, class: "btn btn-success" %>
+      <!-- 編集ボタン(イラスト投稿者がcurrent_userと同一人物の場合に表示) -->
+      <% if @illustration.user_id == current_user.id %>
+        <%= link_to "編集", edit_illustration_path, class: "btn btn-success" %>
+      <% else %>
+      <% end %>
 
       <!-- 投稿日時等の情報 -->
       <p class="post-date"><%= @illustration.created_at %></p>
@@ -77,28 +80,23 @@
           <h3><%= "添削" + (@correct += 1).to_s %></h3>
           <span><%= correction.user.name %></span>
           <p><%= correction.comment %></p>
-          <p><%= attachment_image_tag correction, :corrected_illust, :fill, 100, 100 %></p>
+          <p>
+            <%= attachment_image_tag correction, :corrected_illust, :fill, 100, 100 %>
+          </p>
+          <p>
+            <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
+          </p>
         <% else %>
           <h3><%= "コメント" + (@comment += 1).to_s %></h3>
           <span><%= correction.user.name %></span>
-          <p><%= correction.comment %></p>
+          <p>
+            <%= correction.comment %>
+          </p>
+          <p>
+            <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
+          </p>
         <% end %>
       <% end %>
-
-      <!-- <div class="correction">
-        <h3>コメント1</h3>
-        <span>ユーザー：山下</span>
-        <p>こうするといいですよ</p>
-        <div>イラスト添削後</div>
-        <div>イラスト添削前</div>
-      </div> -->
-
-      <!-- コメント -->
-      <!-- <div class="comment">
-        <h1>コメント2</h1>
-        <span>ユーザー：ゆきち</span>
-        <p>いいですね</p>
-      </div> -->
 
       <!-- 添削・コメント投稿フォーム -->
       <div class="panel panel-warning">
