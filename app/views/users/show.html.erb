@@ -3,15 +3,33 @@
   <h1 class="heading-text"><%= @user.name %></h1>
   <!-- ユーザー情報表示 -->
   <div>
+
     <div>
       <p>イラスト歴</p>
       <p>
         <%= @user.history_year.to_s + "年" + @user.history_month.to_s + "ヶ月" %>
       </p>
     </div>
+
     <div>
-      
+    <!-- ユーザーへのお気に入り機能 -->
+    <% if @user.user_favorited_by?(current_user) %>
+      <li>
+        <%= link_to user_like_users_path(@user), method: :delete do %>
+          <i class="fa fa-heart" aria-hidden="true" style="color: red;" </i>
+          <%= @user.like_users.count %>いいね
+          <% end %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to user_like_users_path(@user), method: :post do %>
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+          <%= @user.like_users.count %>いいね
+          <% end %>
+      </li>
+    <% end %>
     </div>
+
   </div>
 
   <!-- ユーザーのイラストを一覧表示 -->
