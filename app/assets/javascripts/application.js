@@ -40,3 +40,14 @@ $(function() {
     $('.tab-menu-contents section').removeClass('tab-menu-show').eq(index).addClass('tab-menu-show');
   });
 });
+
+// お気に入り機能 Ajaxによる非同期通信(ページ全体ではなくお気に入り機能だけ更新させる)
+$(function() {
+  $(document).on("ajax:success", ".like", function(e) {
+    if ($('#' + e.detail[0]).hasClass('fa-heart')){
+      $('#' + e.detail[0]).removeClass('fa-heart').addClass('fa-heart-o');
+    } else {
+      $('#' + e.detail[0]).removeClass('fa-heart-o').addClass('fa-heart');
+    }
+  })
+})
