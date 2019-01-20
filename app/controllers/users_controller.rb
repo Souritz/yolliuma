@@ -27,9 +27,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = current_user
-    user.destroy
-    redirect_to root_path
   end
 
   private
