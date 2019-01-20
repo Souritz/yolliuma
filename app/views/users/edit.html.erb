@@ -42,6 +42,11 @@
           <%= f.text_field :introduction_text, class: "form-size", placeholder: "自己紹介文を入力してください" %>
         </div>
 
+        <!-- 退会ボタン -->
+        <div class="link-button">
+          <%= link_to "退会", user_path(@user), method: :delete, "data-confirm" => "本当に退会しますか？(再度当サイトを利用するためには、新規会員登録が必要となります)", class: "btn btn-danger danger-button" %>
+        </div>
+
         <!-- 編集完了・マイページに戻るボタン -->
         <div class="link-button">
           <%= f.submit "編集完了", class: "btn btn-success submit-button" %>
