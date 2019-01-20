@@ -31,6 +31,9 @@ class IllustrationsController < ApplicationController
   end
 
   def destroy
+    illustration = Illustration.find(params[:id])
+    illustration.destroy
+    redirect_to illustrations_path
   end
 
   def index
