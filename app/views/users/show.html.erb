@@ -5,10 +5,24 @@
   <div>
 
     <div>
+      <% if @user.introduction_text.present? %>
+        <p><%= "自己紹介：" + @user.introduction_text %></p>
+      <% else %>
+        <p><%= "自己紹介： 自己紹介文が設定されていません"  %></p>
+      <% end %>
       <p>イラスト歴</p>
-      <p>
-        <%= @user.history_year.to_s + "年" + @user.history_month.to_s + "ヶ月" %>
-      </p>
+        <!-- アカウント作成から現在までの日数を計算 -->
+        <% today = Time.zone.now %><!-- 本日の日時 -->
+        <% @user.created_at.strftime('%Y%m-%d  %H:%M') %><!-- タイムゾーン通りかの確認用に記述した -->
+        <% duration_seconds = today - @user.created_at %><!-- アカウント登録時からの日数 -->
+        <% day_seconds = 60 * 60 * 24 %><!-- 1日の秒数 -->
+        <% account_duration = duration_seconds / day_seconds %>
+        <% account_duration.ceil %><!-- 小数点以下を切り上げ -->
+        <!-- ユーザーのイラスト年数・月を日数に変換 -->
+        <% year_to_day = (@user.history_year * 365) %><!-- 年数を日数に変換 -->
+        <% month_to_day = (@user.history_month * 30) %><!-- 月を日数に変換 -->
+        <% illust_history = year_to_day + month_to_day %>
+        <p><%= "描きはじめてから約" + (account_duration.ceil + illust_history).to_s + "日" + "(約" + ((account_duration.ceil + illust_history)/365).floor.to_s + "年)" %></p>
     </div>
 
     <div>
