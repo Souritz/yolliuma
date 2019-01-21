@@ -14,8 +14,8 @@ class User < ApplicationRecord
 
   # ユーザーのお気に入り機能
   ## 現在のユーザーが、今見ているユーザーをお気に入りに追加しているかを判別
-  def user_favorited_by?(user)
-    like_users.where(user_id: user.id).exists?
+  def user_liked_by?(user)
+    like_users.where(my_user_id: user.id).exists?
   end
 
   # refile gemで画像投稿可能にするための記述
