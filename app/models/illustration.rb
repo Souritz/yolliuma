@@ -2,6 +2,8 @@ class Illustration < ApplicationRecord
   # 各モデル間のアソシエーション
   has_many :like_illustrations, dependent: :destroy
   has_many :corrections, dependent: :destroy
+  has_many :tag_lists, dependent: :destroy
+  # has_many :illustration_tags, dependent: :destroy
   belongs_to :admin, optional: true
   belongs_to :user
 
@@ -28,6 +30,6 @@ class Illustration < ApplicationRecord
       # 検索に引っかからない場合、イラストを全て表示する
       Illustration.all
     end
-
   end
+
 end
