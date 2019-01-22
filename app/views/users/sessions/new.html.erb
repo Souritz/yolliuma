@@ -10,8 +10,8 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
         <div class="field form-position">
-          <%= f.label :メールアドレス, class: "form-text" %><br>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力してください", class: "form-size" %>
+          <%= f.label :メールアドレスを入力してください, class: "form-text" %><br>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "例：yolliuma@yolliuma.com", class: "form-size" %>
         </div>
 
         <div class="field form-position">
