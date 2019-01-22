@@ -49,7 +49,19 @@
           <%= @illustration.evaluation_point %>
         </div>
 
-        <!-- タグ -->
+        <!-- 入力したタグの表示 -->
+        <div>
+          <% if @illustration.tag_lists.present? %>
+            <% @illustration.tag_lists.each do |tag_list| %>
+              <p><%= tag_list.tag_name %></p>
+            <% end %>
+          <% else %>
+            <p>タグが設定されていません</p>
+          <% end %>
+
+
+        </div>
+
         <span>#正月</span>
         <span>#あけおめ</span>
         <span>#猪</span>

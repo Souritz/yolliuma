@@ -32,17 +32,16 @@
           <%= f.text_field :illust_introduction, class: "form-size", placeholder: "メッセージを入力してください" %>
         </div>
 
-        <%= fields_for(@tag_list) do |t| %>
+        <%= fields_for(@tag_list) do |l| %>
           <div class="form-position">
             <label class="form-text">タグ</label><br>
-            <%= t.text_area :tag_name, class: "form-size", placeholder: "タグを入力してください" %>
-            <!-- <input type="form" class="form-size" placeholder="タグを入力してください"> -->
+            <%= l.text_area :tag_name, rows: 3, class: "form-size", placeholder: "タグ名を入力してください(,で区切って、複数入力できます)" %>
           </div>
         <% end %>
 
         <div class="form-position">
           <label class="form-text">評価してほしいポイント</label><br>
-          <%= f.text_area :evaluation_point, class: "form-size", placeholder: "評価してほしいポイントを入力してください" %>
+          <%= f.text_area :evaluation_point, rows: 3, class: "form-size", placeholder: "評価してほしいポイントを入力してください" %>
         </div>
 
         <!-- イラスト投稿・マイページに戻るボタン -->

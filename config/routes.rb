@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :illustrations, only: [:new, :create, :show, :edit, :update, :destroy, :index] do
     resource :like_illustrations, only: [:create, :destroy]
     resources :corrections, only: [:create, :destroy, :show]
+    resources :tag_lists, only: [:create, :destroy]
   end
 
 
