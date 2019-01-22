@@ -11,7 +11,7 @@
 
         <!-- 画像選択フォーム -->
         <div class="form-position">
-          <label class="form-text">編集するイラスト</label><br>
+          <label class="form-text">編集後のイラストを選択してください</label><br>
 
           <!-- サムネイル画像 -->
           <%= attachment_image_tag @illustration, :illust_image, :fill, 300, 300, class: "illust-thumbnail" %>
@@ -23,26 +23,25 @@
 
         <!-- テキスト入力フォーム -->
         <div class="form-position">
-          <label class="form-text">タイトル</label><br>
-          <%= f.text_field :illust_title, class: "form-size", placeholder: "タイトルを入力してください" %>
+          <label class="form-text">イラストのタイトルを入力してください</label><br>
+          <%= f.text_field :illust_title, class: "form-size", placeholder: "イラストのタイトルを入力" %>
         </div>
 
         <div class="form-position">
-          <label class="form-text">メッセージ</label><br>
-          <%= f.text_field :illust_introduction, class: "form-size", placeholder: "メッセージを入力してください" %>
+          <label class="form-text">イラストのメッセージを入力してください</label><br>
+          <%= f.text_field :illust_introduction, class: "form-size", placeholder: "イラストのキャプションや思いを入力" %>
         </div>
 
-        <%= fields_for(@tag_list) do |t| %>
+        <%= fields_for(@tag_list) do |l| %>
           <div class="form-position">
-            <label class="form-text">タグ</label><br>
-            <%= t.text_area :tag_name, class: "form-size", placeholder: "タグを入力してください" %>
-            <!-- <input type="form" class="form-size" placeholder="タグを入力してください"> -->
+            <label class="form-text">イラストタグを入力してください(検索に使用します)</label><br>
+            <%= l.text_area :tag_name, rows: 3, class: "form-area-size", placeholder: "例：人, original(カンマ「,」で区切って、複数入力できます)" %>
           </div>
         <% end %>
 
         <div class="form-position">
-          <label class="form-text">評価してほしいポイント</label><br>
-          <%= f.text_area :evaluation_point, class: "form-size", placeholder: "評価してほしいポイントを入力してください" %>
+          <label class="form-text">評価してほしいポイントを入力してください</label><br>
+          <%= f.text_area :evaluation_point, rows: 3, class: "form-area-size", placeholder: "例：統一感のとれた彩色になっているかを評価してください！" %>
         </div>
 
         <!-- イラスト投稿・マイページに戻るボタン -->
@@ -50,8 +49,14 @@
           <%= f.submit "イラスト編集完了", class: "btn btn-success submit-button" %>
 
           <%= link_to "マイページに戻る", users_mypage_path(current_user), class: "btn btn-default cancel-button" %>
+        </div>
 
-          <%= link_to "このイラストを削除する", illustration_path(@illustration), method: :delete, "data-confirm" => "このイラストを削除しますか？", class: "btn btn-danger danger-button" %>
+        <!-- イラスト削除ボタン -->
+        <div class="illust-delete">
+          <label class="illust-delete-text">このイラストを削除するには、下のボタンをクリックしてください。</label>
+          <div class="illust-delete-button">
+            <%= link_to "このイラストを削除する", illustration_path(@illustration), method: :delete, "data-confirm" => "このイラストを削除しますか？", class: "btn btn-danger danger-button" %>
+          </div>
         </div>
 
       <% end %>

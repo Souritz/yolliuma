@@ -1,3 +1,14 @@
 // Place all the styles related to the illustrations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// イラスト編集画面の装飾
+.illust-delete {
+  border-top: 1px solid #BBB;
+  margin-top: 50px;
+  padding-top: 25px;
+  text-align: center;
+}
+.illust-delete-text {
+  text-align: center;
+}
