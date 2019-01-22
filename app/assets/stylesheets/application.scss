@@ -69,6 +69,12 @@ body {
   text-align: left;
 }
 
+// panel(bootstrapのクラス)
+.panel-body {
+  padding-top: 25px;
+  padding-bottom: 35px;
+}
+
 /// ボタン系
 // ボタン(横並びボタンの中央揃え)
 .link-button {
@@ -84,6 +90,11 @@ body {
   margin-top: 10px;
   border-radius: 16px;
 }
+// ボタン(削除系)
+.danger-button {
+  margin-top: 10px;
+  border-radius: 0;
+}
 // ファイル選択ボタン
 .file {
   margin: 0 auto;
@@ -96,7 +107,12 @@ body {
 .fa-heart {
   color: red;
 }
-
+// 新規登録・ログイン画面の幅広ボタン
+.wide-button {
+  margin-top: 10px;
+  border-radius: 16px;
+  width: 400px;
+}
 // 画面の一番上へ戻るボタン
 .back-button {
 	position: fixed;
@@ -242,20 +258,6 @@ li a:hover {
 }
 .top-button:not(:last-child) {
   margin-right: 15px;
-}
-
-/* 新規登録画面の装飾 */
-.registration-button {
-  margin-top: 10px;
-  border-radius: 16px;
-  width: 400px;
-}
-
-// ログイン画面の装飾
-.session-button {
-  margin-top: 10px;
-  border-radius: 16px;
-  width: 400px;
 }
 
 /* マイページ画面の装飾 */

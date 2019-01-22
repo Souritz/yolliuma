@@ -15,8 +15,8 @@
         </div>
 
         <div class="field form-position">
-          <%= f.label :パスワード, class: "form-text" %><br>
-          <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワードを入力してください", class: "form-size" %>
+          <%= f.label :パスワードを入力してください, class: "form-text" %><br>
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "ご登録時のパスワードを入力", class: "form-size" %>
         </div>
 
         <% if devise_mapping.rememberable? -%>
@@ -27,7 +27,7 @@
         <% end -%>
 
         <div class="actions link-button">
-          <%= f.submit "ログイン", class: "btn btn-default session-button" %>
+          <%= f.submit "ログイン", class: "btn btn-default wide-button" %>
         </div>
         <% end %>
 
