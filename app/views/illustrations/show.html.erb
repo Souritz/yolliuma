@@ -43,29 +43,30 @@
         <h1><%= @illustration.illust_title %></h1>
 
         <p>イラストメッセージ</p>
-        <%= @illustration.illust_introduction %>
+        <div>
+          <p><%= @illustration.illust_introduction %></p>
+        </div>
+
         <p><strong>評価してほしいポイント</strong></p>
         <div>
-          <%= @illustration.evaluation_point %>
+          <p><%= @illustration.evaluation_point %></p>
         </div>
 
         <!-- 入力したタグの表示 -->
         <div>
-          <% if @illustration.tag_lists.present? %>
-            <% @illustration.tag_lists.each do |tag_list| %>
-              <p><%= tag_list.tag_name %></p>
-            <% end %>
-          <% else %>
-            <p>タグが設定されていません</p>
-          <% end %>
-
-
+          <p>イラストタグ</p>
+          <ul>
+            <li>
+              <% if @illustration.tag_lists.present? %>
+                <% @illustration.tag_lists.each do |tag_list| %>
+                  <span class="tag-style"><%= "#" + tag_list.tag_name %></span>
+                <% end %>
+              <% else %>
+                <p>タグが設定されていません</p>
+              <% end %>
+            </li>
+          </ul>
         </div>
-
-        <span>#正月</span>
-        <span>#あけおめ</span>
-        <span>#猪</span>
-        <span>#2019年</span>
 
       </div>
     </article>
