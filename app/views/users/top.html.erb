@@ -5,6 +5,12 @@
     <div class="top-bg"></div>
   </div>
 
+  <!-- 投稿されたイラストをランダム表示 -->
+  <% @illustrations.each do |illustration| %>
+    <%= attachment_image_tag illustration, :illust_image, :fill, 100, 100 %>
+  <% end %>
+
+  <!-- 本文 -->
   <h1 class="top-text">イラストを高めあえるサイト</h1>
 
   <div class="link-button">
