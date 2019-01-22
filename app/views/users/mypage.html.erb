@@ -40,7 +40,7 @@
       </div>
       <div class="panel-body">
         <div>
-          <p><%= attachment_image_tag @user, :user_image, :fill, 100, 100, fallback: "img/no_image.png", size: "100x100"  %></p>
+          <p><%= attachment_image_tag @user, :user_image, :fill, 100, 100, fallback: "img/no_image.png", size: "100x100", class: "icon" %></p>
 
           <p><%= "ユーザー名：" + current_user.name %></p>
 
