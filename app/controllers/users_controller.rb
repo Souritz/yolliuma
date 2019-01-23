@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def top
-    @illustrations = Illustration.where.not(illust_image_id: nil).limit(5)
+    illustrations = Illustration.where.not(illust_image_id: nil)
+    @illustrations = illustrations.limit(5)
   end
 
   def mypage

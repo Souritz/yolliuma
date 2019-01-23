@@ -30,7 +30,12 @@ body {
   margin: 0 auto;
   padding: 50px 0;
 }
-//float解除
+// マイページ・一覧ページ等で、要素の外につける枠
+.border-frame {
+  border: solid 1px #bbbffa;
+}
+
+// float解除
 .clearfix::after {
   content: "";
   display: block;
@@ -38,11 +43,24 @@ body {
 }
 
 // ヘッダーテキスト
+.heading-position {
+  padding: 10px 15px;
+  color: #3b6d8a;
+  border-bottom: solid 1px #bbbffa;
+}
 .heading-text {
   font-size: 24px;
   font-style: normal;
   margin: 0;
 }
+
+// 一覧画面共通の装飾
+.index-box {
+  width: 100%;
+  padding: 25px 15px 35px 15px;
+  background-color: white;
+}
+
 
 // フォーム系
 .form-size {
@@ -176,9 +194,29 @@ body {
   width: 100px;
 }
 
+// 検索フォーム
+.search-area {
+  margin: 0 auto;
+}
+.search-text {
+  margin: 25px 0 10px 20px;
+}
 
+.search-form {
+  padding-bottom: 10px;
+}
+.search-box {
+  width: 400px;
+  height: 34px;
+  margin-left: 20px;
+  padding-left: 5px;
+}
+.search-button {
+  margin-left: 5px;
+  border-radius: 0;
+}
 
-/* headerの装飾 */
+// header
 header {
   color: black;
 }
@@ -210,6 +248,13 @@ header .container {
 }
 .header-link:hover {
   color: royalblue;
+  text-decoration: none;
+}
+
+// マイページ、一覧ページ等のheading要素の装飾
+.heading-menu {
+  width: 100%;
+  background-color: #DDF;
 }
 
 /* ヘッダーのドロップダウンリスト */
@@ -247,12 +292,6 @@ li a:hover {
 } */
 
 /* マイページ画面の装飾 */
-.mypage-tabmenu {
-  width: 100%;
-  height: 100px;
-  background-color: lightgray;
-  margin-bottom: 30px;
-}
 .mypage-tabcontents {
   width: 700px;
   background-color: lightgray;
