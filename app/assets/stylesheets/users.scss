@@ -37,6 +37,21 @@
   margin: 10px 20px;
 }
 
+// マイページ画面の装飾
+/// メニューリストの中身の装飾
+.contents-list {
+  float: left;
+  list-style: none;
+  padding: 10px 15px;
+  margin: 10px 15px;
+  text-align: center;
+}
+.contents-list p {
+  margin-bottom: 3px;
+}
+
+
+
 // ユーザー編集画面の装飾
 .unsubscribe {
   border-top: 1px solid #BBB;

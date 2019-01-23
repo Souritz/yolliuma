@@ -23,12 +23,16 @@
 
         <% @illustrations.each do |illustration| %>
           <!-- 自分のイラストを一覧表示 -->
-          <div>
-            <p><%= attachment_image_tag illustration, :illust_image, :fill, 50, 50, fallback: "img/no_image.png", size: "50x50" %></p>
-            <p><%= illustration.illust_title %></p>
-            <span><%= attachment_image_tag illustration.user, :user_image, :fill, 30, 30, fallback: "img/no_image.png", size: "30x30" %></span>
-            <span><%= illustration.user.name %></span>
-          </div><!-- 自分のイラスト一覧表示 -->
+          <ul class="contents-list">
+            <li>
+              <p><%= attachment_image_tag illustration, :illust_image, :fill, 100, 100, fallback: "img/no_image.png", size: "100x100" %></p>
+              <p><%= link_to illustration.illust_title, illustration_path(illustration.id) %></p>
+              <span><%= attachment_image_tag illustration.user, :user_image, :fill, 30, 30, fallback: "img/no_image.png", size: "30x30" %></span>
+              <span><%= illustration.user.name %></span>
+              <p><%= illustration.like_illustrations.count.to_s + "いいね" %></p>
+              <p><%= "添削数：" + illustration.corrections.where.not(corrected_illust_id: nil).count.to_s %></p>
+            </li>
+          </ul>
         <% end %>
 
       </section><!-- tab-menu-showクラスの最後 -->
@@ -48,19 +52,20 @@
 
           <p><%= "ユーザー名：" + current_user.name %></p>
 
-          <p>イラスト歴</p>
-          <!-- アカウント作成から現在までの日数を計算 -->
-          <% today = Time.zone.now %><!-- 本日の日時 -->
-          <% @user.created_at.strftime('%Y%m-%d  %H:%M') %><!-- タイムゾーン通りかの確認用に記述した -->
-          <% duration_seconds = today - @user.created_at %><!-- アカウント登録時からの日数 -->
-          <% day_seconds = 60 * 60 * 24 %><!-- 1日の秒数 -->
-          <% account_duration = duration_seconds / day_seconds %>
-          <% account_duration.ceil %><!-- 小数点以下を切り上げ -->
-          <!-- ユーザーのイラスト年数・月を日数に変換 -->
-          <% year_to_day = (@user.history_year * 365) %><!-- 年数を日数に変換 -->
-          <% month_to_day = (@user.history_month * 30) %><!-- 月を日数に変換 -->
-          <% illust_history = year_to_day + month_to_day %>
-          <p><%= "描きはじめてから約" + (account_duration.ceil + illust_history).to_s + "日" + "(約" + ((account_duration.ceil + illust_history)/365).floor.to_s + "年)" %></p>
+          <p>
+            <!-- アカウント作成から現在までの日数を計算 -->
+            <% today = Time.zone.now %><!-- 本日の日時 -->
+            <% @user.created_at.strftime('%Y%m-%d  %H:%M') %><!-- タイムゾーン通りかの確認用に記述した -->
+            <% duration_seconds = today - @user.created_at %><!-- アカウント登録時からの日数 -->
+            <% day_seconds = 60 * 60 * 24 %><!-- 1日の秒数 -->
+            <% account_duration = duration_seconds / day_seconds %>
+            <% account_duration.ceil %><!-- 小数点以下を切り上げ -->
+            <!-- ユーザーのイラスト年数・月を日数に変換 -->
+            <% year_to_day = (@user.history_year * 365) %><!-- 年数を日数に変換 -->
+            <% month_to_day = (@user.history_month * 30) %><!-- 月を日数に変換 -->
+            <% illust_history = year_to_day + month_to_day %>
+            <%= "イラスト歴：" + (account_duration.ceil + illust_history).to_s + "日" + "(約" + ((account_duration.ceil + illust_history)/365).floor.to_s + "年)" %>
+          </p>
 
           <% if current_user.introduction_text.present? %>
             <p><%= "自己紹介：" + current_user.introduction_text %></p>
@@ -68,7 +73,9 @@
             <p><%= "自己紹介： 自己紹介文が設定されていません"  %></p>
           <% end %>
 
-          <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "btn btn-success" %>
+          <div class="link-button">
+            <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "btn btn-success edit-button" %>
+          </div>
         </div>
   </section>
     </div>

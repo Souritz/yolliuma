@@ -111,6 +111,11 @@ body {
   margin-top: 10px;
   border-radius: 16px;
 }
+// ボタン(マイページからの編集画面遷移用)
+.edit-button {
+  margin-top: 5px;
+  border-radius: 16px;
+}
 // ボタン(削除系)
 .danger-button {
   margin-top: 10px;
@@ -293,15 +298,17 @@ li a:hover {
 
 /* マイページ画面の装飾 */
 .mypage-tabcontents {
+  box-sizing: border-box;
   width: 700px;
-  background-color: lightgray;
+  padding: 25px 15px 35px 15px;
+  background-color: white;
   float: left;
-  margin-right: 30px;
+  margin: 10px 30px 0 0;
 }
 .my-information {
+  box-sizing: border-box;
   width: 270px;
   float: left;
-  box-sizing: border-box;
   padding: 10px;
 }
 
@@ -323,7 +330,7 @@ li a:hover {
   list-style: none;
   transition: .5s;
 }
-////アクティブなメニューリストの装飾
+//// アクティブなメニューリストの装飾
 .tab-menu li.active {
   color: white;
   background-color: royalblue;
