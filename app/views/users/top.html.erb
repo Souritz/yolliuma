@@ -5,8 +5,17 @@
     <div class="top-bg"></div>
   </div>
 
+  <!-- サイトの紹介 -->
   <h1 class="top-text">イラストを高めあえるサイト</h1>
 
+  <!-- 投稿されたイラストをランダム表示 -->
+  <div class="random-illust-box">
+    <% @illustrations.each do |illustration| %>
+    <%= attachment_image_tag illustration, :illust_image, :fill, 100, 100, class: "random-illust" %>
+    <% end %>
+  </div>
+
+  <!-- リンクボタン -->
   <div class="link-button">
     <%= link_to "始めてみる", new_user_registration_path, class: "btn btn-primary top-button" %>
     <%= link_to "ログイン", new_user_session_path, class: "btn btn-default top-button" %>

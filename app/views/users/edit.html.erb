@@ -11,47 +11,53 @@
       <%= form_for(@user) do |f| %>
 
         <div class="form-position">
-          <label class="form-text">ユーザー画像</label><br>
-          <%= attachment_image_tag @user, :user_image, :fill, 300, 300, fallback: "img/no_image.png", class: "" %>
+          <label class="form-text">ユーザーイメージを選択してください</label><br>
+          <%= attachment_image_tag @user, :user_image, :fill, 300, 300, fallback: "img/no_image.png", class: "user-thumbnail" %>
 
-          <%= f.attachment_field :user_image, placeholder: "ユーザー画像を選択", class: "file" %>
+          <%= f.attachment_field :user_image, placeholder: "ユーザーイメージを選択", class: "file" %>
         </div>
 
         <div class="form-position">
-          <label class="form-text">ユーザー名</label><br>
-          <%= f.text_field :name, class: "form-size", placeholder: "ユーザー名を入力してください" %>
+          <%= f.label :メールアドレスを入力してください, class: "form-text" %><br>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "例：yolliuma@yolliuma.com", class: "form-size" %>
+        </div>
+
+        <div class="field form-position">
+          <%= f.label :ユーザー名を入力してください, class: "form-text" %><br>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "例：ヨリウマ", class: "form-size" %>
         </div>
 
         <div class="form-position">
-          <label class="form-text">メールアドレス</label><br>
-          <%= f.text_field :email, class: "form-size", placeholder: "メールアドレスを入力してください" %>
-        </div>
-
-        <div class="form-position">
-          <label class="form-text">アカウント作成前のイラスト歴</label><br>
+          <%= f.label :アカウント作成前のイラスト歴を入力してください, class: "form-text" %><br>
           <%= f.label :年, class: "form-text-history" %>
           <%= f.label :ヶ月, class: "form-text-history" %><br>
-          <%= f.text_field :history_year, class: "form-size-history", placeholder: "イラスト歴(年)" %>
-          <%= f.text_field :history_month, class: "form-size-history", placeholder: "イラスト歴(月)" %>
-          <!-- イラスト歴は、セレクトボックスから選択できるようにする予定 -->
-          <% f.select :history_month, [*("0".."11")], autofocus: true, autocomplete: "history_month", placeholder: "イラスト歴(月)", class: "form-size-history" %>
+          <%= f.text_field :history_year, autofocus: true, autocomplete: "history_year", placeholder: "例：10", class: "form-size-history" %>
+          <!-- イラスト歴は、セレクトボックスから選択できるようにした -->
+          <%= f.select :history_month, [*("0".."11")], {}, {class: "form-size-history"} %><!-- optionsは第3引数、html_optionsは第4引数のため、第3引数には空ハッシュを渡した -->
+
+          <!-- 下記は、使用していないイラスト年数(月)入力フォーム -->
+          <% f.text_field :history_month, autofocus: true, autocomplete: "history_month", placeholder: "例：1", class: "form-size-history" %>
         </div>
 
         <div class="form-position">
-          <label class="form-text">自己紹介</label><br>
-          <%= f.text_field :introduction_text, class: "form-size", placeholder: "自己紹介文を入力してください" %>
+          <%= f.label :自己紹介文を入力してください, class: "form-text" %><br>
+          <%= f.text_field :introduction_text, class: "form-size", placeholder: "和風のイラストが大好きです。" %>
         </div>
 
-        <!-- 退会ボタン -->
-        <div class="link-button">
-          <%= link_to "退会", user_path(@user), method: :delete, "data-confirm" => "本当に退会しますか？(再度当サイトを利用するためには、新規会員登録が必要となります)", class: "btn btn-danger danger-button" %>
-        </div>
 
         <!-- 編集完了・マイページに戻るボタン -->
         <div class="link-button">
           <%= f.submit "編集完了", class: "btn btn-success submit-button" %>
 
           <%= link_to "マイページに戻る", users_mypage_path(current_user), class: "btn btn-default cancel-button" %>
+        </div>
+
+        <!-- 退会ボタン -->
+        <div class="unsubscribe">
+          <label class="unsubscribe-text">このサイトから退会するには、下のボタンをクリックしてください。</label>
+          <div class="unsubscribe-button">
+            <%= link_to "退会する", user_path(@user), method: :delete, "data-confirm" => "本当に退会しますか？(再度当サイトを利用するためには、新規会員登録が必要となります)", class: "btn btn-danger danger-button" %>
+          </div>
         </div>
 
       <% end %>

@@ -30,7 +30,12 @@ body {
   margin: 0 auto;
   padding: 50px 0;
 }
-//float解除
+// マイページ・一覧ページ等で、要素の外につける枠
+.border-frame {
+  border: solid 1px #bbbffa;
+}
+
+// float解除
 .clearfix::after {
   content: "";
   display: block;
@@ -38,18 +43,36 @@ body {
 }
 
 // ヘッダーテキスト
+.heading-position {
+  padding: 10px 15px;
+  color: #3b6d8a;
+  border-bottom: solid 1px #bbbffa;
+}
 .heading-text {
   font-size: 24px;
   font-style: normal;
   margin: 0;
 }
 
+// 一覧画面共通の装飾
+.index-box {
+  width: 100%;
+  padding: 25px 15px 35px 15px;
+  background-color: white;
+}
+
+
 // フォーム系
 .form-size {
+  width: 400px;
+  height: 27px;
+}
+.form-area-size {
   width: 400px;
 }
 .form-size-history {
   width: 200px;
+  height: 27px;
 }
 .form-position {
   text-align: center;
@@ -67,6 +90,12 @@ body {
   text-align: left;
 }
 
+// panel(bootstrapのクラス)
+.panel-body {
+  padding-top: 25px;
+  padding-bottom: 35px;
+}
+
 /// ボタン系
 // ボタン(横並びボタンの中央揃え)
 .link-button {
@@ -82,6 +111,16 @@ body {
   margin-top: 10px;
   border-radius: 16px;
 }
+// ボタン(マイページからの編集画面遷移用)
+.edit-button {
+  margin-top: 5px;
+  border-radius: 16px;
+}
+// ボタン(削除系)
+.danger-button {
+  margin-top: 10px;
+  border-radius: 0;
+}
 // ファイル選択ボタン
 .file {
   margin: 0 auto;
@@ -93,6 +132,12 @@ body {
 }
 .fa-heart {
   color: red;
+}
+// 新規登録・ログイン画面の幅広ボタン
+.wide-button {
+  margin-top: 10px;
+  border-radius: 16px;
+  width: 400px;
 }
 
 // 画面の一番上へ戻るボタン
@@ -115,6 +160,13 @@ body {
 	text-decoration: none;
 }
 
+// イラストタグの装飾
+.tag-style {
+  background-color: #AAF;
+  padding: 3px;
+  margin: 1px;
+  border-radius: 25%;
+}
 
 /* 投稿日表示 */
 .post-date {
@@ -137,10 +189,43 @@ body {
   width: 300px;
   margin-bottom: 10px;
 }
+.user-thumbnail {
+  max-height: 300px;
+  width: 300px;
+  margin-bottom: 10px;
+}
+.icon {
+  max-height: 100px;
+  width: 100px;
+}
+.user-icon {
+  text-align: center;
+  margin-bottom: 5px;
+}
 
+// 検索フォーム
+.search-area {
+  margin: 0 auto;
+}
+.search-text {
+  margin: 25px 0 10px 20px;
+}
 
+.search-form {
+  padding-bottom: 10px;
+}
+.search-box {
+  width: 400px;
+  height: 34px;
+  margin-left: 20px;
+  padding-left: 5px;
+}
+.search-button {
+  margin-left: 5px;
+  border-radius: 0;
+}
 
-/* headerの装飾 */
+// header
 header {
   color: black;
 }
@@ -172,6 +257,13 @@ header .container {
 }
 .header-link:hover {
   color: royalblue;
+  text-decoration: none;
+}
+
+// マイページ、一覧ページ等のheading要素の装飾
+.heading-menu {
+  width: 100%;
+  background-color: #DDF;
 }
 
 /* ヘッダーのドロップダウンリスト */
@@ -208,65 +300,26 @@ li a:hover {
     border-bottom: 2px solid #9C9C9C;
 } */
 
-/* Top画面の装飾 */
-.logo {
-  height: 300px;
-  background: url(img/yolliuma-logo.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.top-text {
-  font-size: 24px;
-  font-style: normal;
-  text-align: center;
-  margin: 0;
-  padding-bottom: 10px;
-}
-
-.top-button {
-  margin-top: 10px;
-  border-radius: 16px;
-}
-.top-button:not(:last-child) {
-  margin-right: 15px;
-}
-
-/* 新規登録画面の装飾 */
-.registration-button {
-  margin-top: 10px;
-  border-radius: 16px;
-  width: 400px;
-}
-
-// ログイン画面の装飾
-.session-button {
-  margin-top: 10px;
-  border-radius: 16px;
-  width: 400px;
-}
-
 /* マイページ画面の装飾 */
-.mypage-tabmenu {
-  width: 100%;
-  height: 100px;
-  background-color: lightgray;
-  margin-bottom: 30px;
-}
 .mypage-tabcontents {
+  box-sizing: border-box;
   width: 700px;
-  background-color: lightgray;
+  padding: 25px 15px 35px 15px;
+  background-color: white;
   float: left;
-  margin-right: 30px;
+  margin: 10px 30px 0 0;
 }
 .my-information {
+  box-sizing: border-box;
   width: 270px;
   float: left;
-  box-sizing: border-box;
   padding: 10px;
+}
+.my-information-box {
+  text-align: left;
+}
+.my-information-box p {
+  margin-bottom: 5px;
 }
 
 ///マイページのタブメニュー
@@ -287,7 +340,7 @@ li a:hover {
   list-style: none;
   transition: .5s;
 }
-////アクティブなメニューリストの装飾
+//// アクティブなメニューリストの装飾
 .tab-menu li.active {
   color: white;
   background-color: royalblue;
@@ -299,9 +352,6 @@ li a:hover {
 .tab-menu-contents section.tab-menu-show {
   display: block;
 }
-
-// イラスト投稿画面の装飾
-
 
 /* イラスト詳細画面の装飾 */
 .illust-definition {

@@ -28,16 +28,13 @@
             <!-- User ログイン状態のヘッダー表示 -->
             <% if user_signed_in? %>
               <li class="header-list">
-                <%= link_to "イラスト投稿", new_illustration_path, class: "header-link" %>
+                <%= link_to "イラストを投稿", new_illustration_path, class: "header-link" %>
               </li>
               <li class="header-list">
-                <%= link_to "イラスト一覧", illustrations_path, class: "header-link" %>
+                <%= link_to "イラストを探す", illustrations_path, class: "header-link" %>
               </li>
               <li class="header-list">
-                <%= link_to "ユーザー一覧", users_path, class: "header-link" %>
-              </li>
-              <li>
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-btn" %>
+                <%= link_to "ユーザーを探す", users_path, class: "header-link" %>
               </li>
               <%= current_user.name %>
               <ul class="sub">

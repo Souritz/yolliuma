@@ -11,37 +11,39 @@
         <%= devise_error_messages! %>
 
         <div class="field form-position">
-          <%= f.label :メールアドレス, class: "form-text" %><br>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力してください", class: "form-size" %>
+          <%= f.label :メールアドレスを入力してください, class: "form-text" %><br>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "例：yolliuma@yolliuma.com", class: "form-size" %>
         </div>
 
         <div class="field form-position">
-          <%= f.label :ユーザー名, class: "form-text" %><br>
-          <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ユーザー名を入力してください", class: "form-size" %>
+          <%= f.label :ユーザー名を入力してください, class: "form-text" %><br>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "例：ヨリウマ", class: "form-size" %>
         </div>
 
         <div class="field form-position">
-          <%= f.label :イラスト歴, class: "form-text" %><br>
+          <%= f.label :イラスト歴を入力してください, class: "form-text" %><br>
           <%= f.label :年, class: "form-text-history" %>
           <%= f.label :ヶ月, class: "form-text-history" %><br>
-          <%= f.text_field :history_year, autofocus: true, autocomplete: "history_year", placeholder: "イラスト歴(年)", class: "form-size-history" %>
-          <%= f.text_field :history_month, autofocus: true, autocomplete: "history_month", placeholder: "イラスト歴(月)", class: "form-size-history" %>
-          <!-- イラスト歴は、セレクトボックスから選択できるようにする予定 -->
-          <% f.select :history_month, [*("0".."11")], autofocus: true, autocomplete: "history_month", placeholder: "イラスト歴(月)", class: "form-size-history" %>
+          <%= f.text_field :history_year, autofocus: true, autocomplete: "history_year", placeholder: "例：10", class: "form-size-history" %>
+          <!-- イラスト歴は、セレクトボックスから選択できるようにした -->
+          <%= f.select :history_month, [*("0".."11")], {prompt: "例：5"}, {class: "form-size-history"} %><!-- optionsは第3引数、html_optionsは第4引数のため、第3引数には初期表示文字列を設定した -->
+
+          <!-- 下記は、使用していないイラスト年数(月)入力フォーム -->
+          <% f.text_field :history_month, autofocus: true, autocomplete: "history_month", placeholder: "例：1", class: "form-size-history" %>
         </div>
 
         <div class="field form-position">
-          <%= f.label :パスワード, class: "form-text" %><br>
-          <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワードを入力してください(6文字以上)", class: "form-size" %>
+          <%= f.label :パスワードを入力してください, class: "form-text" %><br>
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "半角英数6文字以上", class: "form-size" %>
         </div>
 
         <div class="field form-position">
-          <%= f.label :パスワード確認, class: "form-text" %><br>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワードをもう一度入力してください(6文字以上)", class: "form-size" %>
+          <%= f.label :パスワードをもう一度入力してください, class: "form-text" %><br>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "半角英数6文字以上", class: "form-size" %>
         </div>
 
         <div class="actions link-button">
-          <%= f.submit "登録する", class: "btn btn-primary registration-button" %>
+          <%= f.submit "登録する", class: "btn btn-primary wide-button" %>
         </div>
         <% end %>
 

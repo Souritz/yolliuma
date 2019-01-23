@@ -1,3 +1,62 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// トップ(ルート)画面の装飾
+.logo {
+  height: 300px;
+  background: url(img/yolliuma-logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.top-text {
+  font-size: 24px;
+  font-style: normal;
+  text-align: center;
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+.top-button {
+  margin-top: 10px;
+  border-radius: 16px;
+}
+.top-button:not(:last-child) {
+  margin-right: 15px;
+}
+
+.random-illust-box {
+  text-align: center;
+}
+.random-illust {
+  display: inline-block;
+  margin: 10px 20px;
+}
+
+// マイページ画面の装飾
+/// メニューリストの中身の装飾
+.contents-list {
+  float: left;
+  list-style: none;
+  padding: 10px 15px;
+  margin: 10px 15px;
+  text-align: center;
+}
+.contents-list p {
+  margin-bottom: 3px;
+}
+
+// ユーザー編集画面の装飾
+.unsubscribe {
+  border-top: 1px solid #BBB;
+  margin-top: 50px;
+  padding-top: 25px;
+  text-align: center;
+}
+.unsubscribe-text {
+  text-align: center;
+}

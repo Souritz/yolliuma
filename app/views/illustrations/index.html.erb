@@ -1,36 +1,42 @@
 <div class="container">
 
-  <!-- イラスト一覧・検索ボックス -->
-  <section class="mypage-tabmenu">
-    <h1 class="heading-text">イラスト一覧</h1>
+  <!-- 要素の外側に線をつけるための要素 -->
+  <div class="border-frame">
+    <!-- イラスト一覧・検索ボックス -->
+    <section class="heading-menu">
+      <div class="heading-position">
+        <h1 class="heading-text">イラストを探す</h1>
+      </div>
 
-    <!-- 検索ボックス -->
-    <%= form_tag(illustrations_path, method: "get", class: "") do %>
-      <%= text_field_tag :search, params[:search], placeholder: "検索したいイラストのタイトルを入力", class: "" %>
-      <%= submit_tag "探す", name: "nil", class: "" %>
-    <% end %>
+      <!-- 検索ボックス -->
+      <div class="search-area">
+        <p class="search-text">イラストを検索</p>
+        <%= form_tag(illustrations_path, method: "get", class: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "検索したいイラストのタイトルを入力してください", class: "search-box" %>
+        <%= submit_tag "検索", name: "nil", class: "search-button btn btn-primary" %>
+        <% end %>
+      </div>
+    </section>
 
-  </section>
+    <!-- イラスト一覧表示 -->
+    <section class="index-box clearfix">
+      <div>
 
-  <!-- イラスト一覧表示 -->
-  <section class="">
-    <div>
+        <% @illustrations.each do |illustration| %>
+          <ul class="contents-list">
+            <li>
+              <p><%= attachment_image_tag illustration, :illust_image, :fill, 100, 100, fallback: "img/no_image.png", size: "100x100" %></p>
+              <p><%= link_to illustration.illust_title, illustration_path(illustration.id) %></p>
+              <span><%= attachment_image_tag illustration.user, :user_image, :fill, 30, 30, fallback: "img/no_image.png", size: "30x30" %></span>
+              <span><%= illustration.user.name %></span>
+              <p><%= illustration.like_illustrations.count.to_s + "いいね" %></p>
+              <p><%= "添削数：" + illustration.corrections.where.not(corrected_illust_id: nil).count.to_s %></p>
+            </li>
+          </ul>
+        <% end %>
 
-      <% @illustrations.each do |illustration| %>
-        <!-- イラストを一覧表示 -->
-        <div>
-          <p><%= attachment_image_tag illustration, :illust_image, :fill, 50, 50, fallback: "img/no_image.png", size: "50x50" %></p>
-          <p><%= link_to illustration.illust_title, illustration_path(illustration.id) %></p>
-          <span><%= attachment_image_tag illustration.user, :user_image, :fill, 30, 30, fallback: "img/no_image.png", size: "30x30" %></span>
-          <span><%= illustration.user.name %></span>
-        </div><!-- イラスト一覧表示 -->
-      <% end %>
-
-    </div>
-
-  </section>
-
-    </div>
+      </div>
+    </section>
   </div>
 
 </div>

@@ -1,20 +1,26 @@
 <div class="container">
 
-  <!-- ユーザー一覧・検索ボックス -->
-  <section class="mypage-tabmenu">
-    <h1 class="heading-text">ユーザー一覧</h1>
+  <!-- 要素の外側に線をつけるための要素 -->
+  <div class="border-frame">
+    <!-- ユーザー一覧・検索ボックス -->
+    <section class="heading-menu">
+      <div class="heading-position">
+        <h1 class="heading-text">ユーザーを探す</h1>
+      </div>
 
-    <!-- 検索ボックス -->
-    <%= form_tag(users_path, method: "get", class: "") do %>
-      <%= text_field_tag :search, params[:search], placeholder: "検索したいユーザーのユーザー名を入力", class: "" %>
-      <%= submit_tag "探す", name: "nil", class: "" %>
-    <% end %>
+      <!-- 検索ボックス -->
+      <div class="search-area">
+        <p class="search-text">ユーザーを検索</p>
+        <%= form_tag(users_path, method: "get", class: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "検索したいユーザーの名前を入力してください", class: "search-box" %>
+        <%= submit_tag "検索", name: "nil", class: "search-button btn btn-primary" %>
+        <% end %>
+      </div>
+    </section>
 
-  </section>
-
-  <!-- ユーザー一覧表示 -->
-  <section class="">
-    <div>
+    <!-- ユーザー一覧表示 -->
+    <section class="index-box">
+      <div>
 
         <!-- ユーザーを一覧表示 -->
         <table class="table">
@@ -28,19 +34,27 @@
           <% @users.each do |user| %>
           <tbody>
             <tr>
-              <td><%= attachment_image_tag user, :user_image, :fill, 50, 50, fallback: "img/no_image.png", size: "50x50" %></td>
-              <td><%= link_to user.name, user_path(user.id) %></td>
-              <td><%= user.introduction_text %></td>
+              <td>
+                <%= attachment_image_tag user, :user_image, :fill, 50, 50, fallback: "img/no_image.png", size: "50x50" %>
+              </td>
+              <td>
+                <%= link_to user.name, user_path(user.id) %>
+              </td>
+              <td>
+                <% if user.introduction_text.present? %>
+                <%= user.introduction_text %>
+                <% else %>
+                <%= "自己紹介文が設定されていません" %>
+                <% end %>
+              </td>
             </tr>
           </tbody>
+          <% end %>
         </table>
-      <% end %>
 
-    </div>
+      </div>
 
-  </section>
-
-    </div>
+    </section>
   </div>
 
 </div>
