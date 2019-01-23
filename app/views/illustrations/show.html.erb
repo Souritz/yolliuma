@@ -77,12 +77,16 @@
       <h2>投稿者情報</h2>
       <p><%= attachment_image_tag @user, :user_image, :fill, 100, 100, fallback: "img/no_image.png", size: "100x100" %></p>
       <p><%= "ユーザー名：" + @user.name %></p>
-      <p><%= "自己紹介：" + @user.introduction_text %></p>
+      <% if @user.introduction_text.present? %>
+        <p><%= "自己紹介：" + @user.introduction_text %></p>
+      <% else %>
+        <p><%= "自己紹介：自己紹介文が設定されていません" %></p>
+      <% end %>
     </aside>
 
     <!-- 添削内容・コメント表示 -->
     <section class="correction-contents">
-      <h2>添削一覧</h2>
+      <h2>添削・コメント一覧</h2>
 
       <!-- 添削・コメント数 -->
       <p>添削・コメント数</p>
@@ -115,16 +119,22 @@
       <!-- 添削・コメント投稿フォーム -->
       <div class="panel panel-warning">
         <div class="panel-heading">
-          <h2>このイラストに添削またはコメントする</h2>
+          <% if current_user %>
+            <h2>このイラストにコメントする</h2>
+          <% else %>
+            <h2>このイラストに添削またはコメントする</h2>
+          <% end %>
         </div>
         <div class="panel-body">
           <%= form_for [@illustration, @correction] do |f| %>
           <!-- , url: corrections_path, html: {method: 'POST'}) -->
-            <!-- 添削したイラストを選択 -->
-            <div>
-              <label>添削したイラストを選択</label><br>
-              <%= f.attachment_field :corrected_illust, class: "file" %>
-            </div>
+            <% if !current_user %>
+              <!-- 添削したイラストを選択 -->
+              <div>
+                <label>添削したイラストを選択</label><br>
+                <%= f.attachment_field :corrected_illust, class: "file" %>
+              </div>
+            <% end %>
             <!-- コメント入力フォーム -->
             <div>
               <label>コメント</label><br>
@@ -134,11 +144,10 @@
             <div>
               <%= f.submit "投稿", class: "btn btn-warning" %>
             </div>
-            <% end %>
-          </div>
+          <% end %>
+        </div>
 
       </div>
-
     </section>
 
     <!-- 画面の一番上へ戻るボタン -->

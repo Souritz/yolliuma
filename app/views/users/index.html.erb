@@ -12,7 +12,7 @@
       <div class="search-area">
         <p class="search-text">ユーザーを検索</p>
         <%= form_tag(users_path, method: "get", class: "search-form") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "検索したいユーザー名を入力してください", class: "search-box" %>
+        <%= text_field_tag :search, params[:search], placeholder: "検索したいユーザーの名前を入力してください", class: "search-box" %>
         <%= submit_tag "検索", name: "nil", class: "search-button btn btn-primary" %>
         <% end %>
       </div>

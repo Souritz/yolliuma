@@ -198,6 +198,10 @@ body {
   max-height: 100px;
   width: 100px;
 }
+.user-icon {
+  text-align: center;
+  margin-bottom: 5px;
+}
 
 // 検索フォーム
 .search-area {
@@ -310,6 +314,12 @@ li a:hover {
   width: 270px;
   float: left;
   padding: 10px;
+}
+.my-information-box {
+  text-align: left;
+}
+.my-information-box p {
+  margin-bottom: 5px;
 }
 
 ///マイページのタブメニュー
