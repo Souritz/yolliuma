@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   # 一つのイラストに複数の添削内容・お気に入りがつくためネスト
   resources :illustrations, only: [:new, :create, :show, :edit, :update, :destroy, :index] do
     resource :like_illustrations, only: [:create, :destroy]
-    resources :corrections, only: [:create, :destroy, :show]
+    resources :corrections, only: [:create, :destroy]
     resources :tag_lists, only: [:create, :destroy]
   end
 

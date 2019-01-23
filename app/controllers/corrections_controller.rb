@@ -8,6 +8,12 @@ class CorrectionsController < ApplicationController
     redirect_to illustration_path(illustration)
   end
 
+  def destroy
+    correction = Correction.find(params[:id])
+    correction.destroy
+    redirect_to illustration_path(params[:illustration_id])
+  end
+
   # ストロングパラメーター
   private
   def correction_params

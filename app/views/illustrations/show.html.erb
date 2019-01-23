@@ -101,25 +101,29 @@
           <p>
             <%= attachment_image_tag correction, :corrected_illust, :fill, 100, 100 %>
           </p>
-          <p>
-            <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
-          </p>
+          <% if correction.user == current_user %>
+            <p>
+              <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
+            </p>
+          <% end %>
         <% else %>
           <h3><%= "コメント" + (@comment += 1).to_s %></h3>
           <span><%= correction.user.name %></span>
           <p>
             <%= correction.comment %>
           </p>
-          <p>
-            <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
-          </p>
+          <% if correction.user == current_user %>
+            <p>
+              <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
+            </p>
+          <% end %>
         <% end %>
       <% end %>
 
       <!-- 添削・コメント投稿フォーム -->
       <div class="panel panel-warning">
         <div class="panel-heading">
-          <% if current_user %>
+          <% if @illustration.user == current_user %>
             <h2>このイラストにコメントする</h2>
           <% else %>
             <h2>このイラストに添削またはコメントする</h2>
@@ -128,7 +132,7 @@
         <div class="panel-body">
           <%= form_for [@illustration, @correction] do |f| %>
           <!-- , url: corrections_path, html: {method: 'POST'}) -->
-            <% if !current_user %>
+            <% if @illustration.user != current_user %>
               <!-- 添削したイラストを選択 -->
               <div>
                 <label>添削したイラストを選択</label><br>
