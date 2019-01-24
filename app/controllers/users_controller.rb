@@ -7,6 +7,10 @@ class UsersController < ApplicationController
   def mypage
     @user = User.find(params[:id])
     @illustrations = @user.illustrations
+    @like_users = @user.like_users
+    @like_illustrations = @user.like_illustrations
+    @corrections = @user.corrections.where.not(corrected_illust_id: nil)
+    @comments = @user.corrections.where(corrected_illust_id: nil)
   end
 
   def index
