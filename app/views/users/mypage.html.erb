@@ -50,7 +50,7 @@
                     <%= illustration.user.name %>
                   </span>
                   <p>
-                    <%= illustration.like_illustrations.count.to_s + "いいね" %>
+                    <%= illustration.like_illustrations.count.to_s + "お気に入り" %>
                   </p>
                   <p>
                     <%= "添削数：" + illustration.corrections.where.not(corrected_illust_id: nil).count.to_s %>
