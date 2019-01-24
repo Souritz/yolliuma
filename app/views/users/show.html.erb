@@ -1,59 +1,172 @@
 <div class="container">
 
-  <h1 class="heading-text"><%= @user.name %></h1>
-  <!-- ユーザー情報表示 -->
-  <div>
-
-    <div>
-      <% if @user.introduction_text.present? %>
-        <p><%= "自己紹介：" + @user.introduction_text %></p>
-      <% else %>
-        <p><%= "自己紹介： 自己紹介文が設定されていません"  %></p>
-      <% end %>
-      <p>イラスト歴</p>
-        <!-- アカウント作成から現在までの日数を計算 -->
-        <% today = Time.zone.now %><!-- 本日の日時 -->
-        <% @user.created_at.strftime('%Y%m-%d  %H:%M') %><!-- タイムゾーン通りかの確認用に記述した -->
-        <% duration_seconds = today - @user.created_at %><!-- アカウント登録時からの日数 -->
-        <% day_seconds = 60 * 60 * 24 %><!-- 1日の秒数 -->
-        <% account_duration = duration_seconds / day_seconds %>
-        <% account_duration.ceil %><!-- 小数点以下を切り上げ -->
-        <!-- ユーザーのイラスト年数・月を日数に変換 -->
-        <% year_to_day = (@user.history_year * 365) %><!-- 年数を日数に変換 -->
-        <% month_to_day = (@user.history_month * 30) %><!-- 月を日数に変換 -->
-        <% illust_history = year_to_day + month_to_day %>
-        <p><%= "描きはじめてから約" + (account_duration.ceil + illust_history).to_s + "日" + "(約" + ((account_duration.ceil + illust_history)/365).floor.to_s + "年)" %></p>
-    </div>
-
-    <div>
-    <!-- ユーザーへのお気に入り機能 -->
-    <% if @user.user_liked_by?(current_user) %>
-      <li>
-        <%= link_to user_like_users_path(@user), method: :delete do %>
-          <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-          <%= @user.like_users.count %>いいね
-          <% end %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to user_like_users_path(@user), method: :post do %>
-          <i class="fa fa-heart-o" aria-hidden="true"></i>
-          <%= @user.like_users.count %>いいね
-          <% end %>
-      </li>
-    <% end %>
-    </div>
-
-  </div>
-
-  <!-- ユーザーのイラストを一覧表示 -->
-  <div>
-    <h2>ユーザーイラスト一覧</h2>
-    <% @illustrations.each do |illustration| %>
-      <div>
-        <p><%= attachment_image_tag illustration, :illust_image, :fill, 50, 50, fallback: "img/no_image.png", size: "50x50" %></p>
+  <!-- 要素の外側に線をつけるための要素 -->
+  <div class="border-frame">
+    <!-- マイページタブメニュー -->
+    <section class="heading-menu">
+      <div class="heading-position">
+        <h1 class="heading-text"><%= @user.name %></h1>
       </div>
-    <% end %>
+
+      <ul class="tab-menu clearfix">
+        <li class="active">投稿したイラスト</li>
+        <li>添削・コメント</li>
+      </ul>
+    </section>
   </div>
+
+  <!-- タブの内容一覧 -->
+  <section class="mypage-tabcontents">
+    <!-- タブメニューの内容を表示 -->
+    <div class="tab-menu-contents">
+      <section class="tab-menu-show">
+          <ul>
+            <% if @illustrations.blank? %>
+              <li class="contents-list contents-position-adjust">
+                <h2 class="h2-text text-position">投稿したイラスト</h2>
+              </li>
+              <li class="contents-list contents-position-adjust">
+                <p class="no-contents">まだイラストを投稿していません</p>
+              </li>
+            <% else %>
+              <li class="contents-list contents-position-adjust">
+                <h2 class="h2-text text-position">投稿したイラスト</h2>
+              </li>
+              <!-- 自分のイラストを一覧表示 -->
+              <% @illustrations.each do |illustration| %>
+                <li class="contents-list">
+                  <p>
+                    <%= attachment_image_tag illustration, :illust_image, :fill, 100, 100, fallback: "img/no_image.png", size: "100x100" %>
+                  </p>
+                  <p>
+                    <%= link_to illustration.illust_title, illustration_path(illustration.id) %>
+                  </p>
+                  <span>
+                    <%= attachment_image_tag illustration.user, :user_image, :fill, 30, 30, fallback: "img/no_image.png", size: "30x30" %>
+                  </span>
+                  <span>
+                    <%= illustration.user.name %>
+                  </span>
+                  <p>
+                    <%= illustration.like_illustrations.count.to_s + "いいね" %>
+                  </p>
+                  <p>
+                    <%= "添削数：" + illustration.corrections.where.not(corrected_illust_id: nil).count.to_s %>
+                  </p>
+                  <p>
+                    <%= "コメント数：" + illustration.corrections.where(corrected_illust_id: nil).count.to_s %>
+                  </p>
+              </li>
+              <% end %>
+            <% end %>
+          </ul>
+      </section>
+
+      <section>
+        <ul>
+          <!-- 自分の添削内容を一覧表示 -->
+          <% if @corrections.blank? %>
+            <li class="contents-list contents-position-adjust">
+              <h2 class="h2-text text-position">添削内容</h2>
+              <p class="no-contents">まだ添削を投稿していません</p>
+            </li>
+          <% else %>
+            <li class="contents-list contents-position-adjust">
+              <h2 class="h2-text text-position">添削内容</h2>
+            </li>
+            <% @corrections.each do |correction| %>
+              <li class="contents-list">
+                <p>
+                  <%= attachment_image_tag correction, :corrected_illust, :fill, 100, 100, fallback: "img/no_image.png", size: "100x100" %>
+                </p>
+                <p>
+                  <%= link_to correction.comment, illustration_path(correction.illustration_id) %>
+                </p>
+              </li>
+            <% end %>
+          <% end %>
+
+          <!-- 自分のコメントを一覧表示 -->
+          <% if @comments.blank? %>
+          <li class="contents-list contents-position-adjust">
+            <h2 class="h2-text text-position">コメント</h2>
+            <p class="no-contents">まだコメントを投稿していません</p>
+          </li>
+          <% else %>
+            <li class="contents-list contents-position-adjust">
+              <h2 class="h2-text text-position">コメント</h2>
+            </li>
+            <% @comments.each do |comment| %>
+              <li class="contents-list">
+                  <p>
+                    <%= link_to comment.comment, illustration_path(comment.illustration_id) %>
+                  </p>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ユーザー情報表示 -->
+  <section class="my-information">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="h2-text">ユーザー情報</h2>
+      </div>
+      <div class="panel-body">
+        <div>
+          <div class="my-information-box">
+            <div class="user-icon"><%= attachment_image_tag @user, :user_image, :fill, 100, 100, fallback: "img/no_image.png", size: "100x100", class: "icon" %></div>
+
+            <p><%= "ユーザー名：" + @user.name %></p>
+
+            <p>
+              <!-- アカウント作成から現在までの日数を計算 -->
+              <% today = Time.zone.now %><!-- 本日の日時 -->
+              <% @user.created_at.strftime('%Y%m-%d  %H:%M') %><!-- タイムゾーン通りかの確認用に記述した -->
+              <% duration_seconds = today - @user.created_at %><!-- アカウント登録時からの日数 -->
+              <% day_seconds = 60 * 60 * 24 %><!-- 1日の秒数 -->
+              <% account_duration = duration_seconds / day_seconds %>
+              <% account_duration.ceil %><!-- 小数点以下を切り上げ -->
+              <!-- ユーザーのイラスト年数・月を日数に変換 -->
+              <% year_to_day = (@user.history_year * 365) %><!-- 年数を日数に変換 -->
+              <% month_to_day = (@user.history_month * 30) %><!-- 月を日数に変換 -->
+              <% illust_history = year_to_day + month_to_day %>
+              <%= "イラスト歴：" + (account_duration.ceil + illust_history).to_s + "日" + "(約" + ((account_duration.ceil + illust_history)/365).floor.to_s + "年)" %>
+            </p>
+
+            <% if @user.introduction_text.present? %>
+              <p><%= "自己紹介：" + @user.introduction_text %></p>
+            <% else %>
+              <p><%= "自己紹介： 自己紹介文が設定されていません"  %></p>
+            <% end %>
+          </div>
+
+          <!-- ユーザーへのお気に入り機能 -->
+          <div>
+            <% if @user.user_liked_by?(current_user) %>
+              <li>
+                <%= link_to user_like_users_path(@user), method: :delete do %>
+                  <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                  <%= @user.like_users.count %>いいね
+                  <% end %>
+              </li>
+            <% else %>
+              <% if @user == current_user %>
+                <li>
+                  <%= link_to user_like_users_path(@user), method: :post do %>
+                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    <%= @user.like_users.count %>お気に入り
+                    <% end %>
+                </li>
+              <% end %>
+            <% end %>
+          </div>
+
+        </div>
+  </section>
 
 </div>

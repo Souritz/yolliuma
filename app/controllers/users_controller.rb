@@ -20,6 +20,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @illustrations = @user.illustrations
+    @corrections = @user.corrections.where.not(corrected_illust_id: nil)
+    @comments = @user.corrections.where(corrected_illust_id: nil)    
   end
 
   def edit

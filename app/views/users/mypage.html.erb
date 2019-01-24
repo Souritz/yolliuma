@@ -1,19 +1,21 @@
 <div class="container">
 
-  <!-- マイページタブメニュー -->
-  <section class="heading-menu">
-    <div class="heading-position">
-      <h1 class="heading-text">マイページ</h1>
-    </div>
+  <!-- 要素の外側に線をつけるための要素 -->
+  <div class="border-frame">
+    <!-- マイページタブメニュー -->
+    <section class="heading-menu">
+      <div class="heading-position">
+        <h1 class="heading-text">マイページ</h1>
+      </div>
 
-
-    <ul class="tab-menu clearfix">
-      <li class="active">投稿したイラスト</li>
-      <li>お気に入り</li>
-      <li>添削・コメント</li>
-      <!-- <li>応援メッセージ</li> -->
-    </ul>
-  </section>
+      <ul class="tab-menu clearfix">
+        <li class="active">投稿したイラスト</li>
+        <li>お気に入り</li>
+        <li>添削・コメント</li>
+        <!-- <li>応援メッセージ</li> -->
+      </ul>
+    </section>
+  </div>
 
   <!-- タブの内容一覧 -->
   <section class="mypage-tabcontents">
@@ -186,10 +188,10 @@
             <% else %>
               <p><%= "自己紹介： 自己紹介文が設定されていません"  %></p>
             <% end %>
-            </div>
+          </div>
 
-            <div class="link-button">
-              <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "btn btn-success edit-button" %>
+          <div class="link-button">
+            <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "btn btn-success edit-button" %>
           </div>
         </div>
   </section>

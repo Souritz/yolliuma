@@ -33,7 +33,7 @@
         <li>
           <%= link_to illustration_like_illustrations_path(@illustration), method: :post, class: "like", remote: true do %>
           <i class="fa fa-heart-o" aria-hidden="true" id='<%= @illustration.id %>'></i>
-          <%= @illustration.like_illustrations.count %> いいね
+          <%= @illustration.like_illustrations.count %>お気に入り
           <% end %>
         </li>
         <% end %>
