@@ -113,7 +113,7 @@
                 <li>
                   <%= link_to user_like_users_path(@user), method: :delete do %>
                     <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-                    <%= @user.like_users.count + "お気に入り" %>
+                    <%= @user.like_users.count.to_s + "お気に入り" %>
                     <% end %>
                 </li>
               <% else %>
@@ -121,7 +121,7 @@
                   <li>
                     <%= link_to user_like_users_path(@user), method: :post do %>
                       <i class="fa fa-heart-o" aria-hidden="true"></i>
-                      <%= @user.like_users.count + "お気に入り" %>
+                      <%= @user.like_users.count.to_s + "お気に入り" %>
                       <% end %>
                   </li>
                 <% end %>
@@ -129,81 +129,89 @@
             </div>
 
           </div>
+        </div>
+      </div>
     </section>
 
 
     <!-- 添削内容・コメント表示 -->
-    <section class="correction-contents">
-      <h2>添削・コメント一覧</h2>
+    <section class="clearfix">
+      <div class="correction-contents">
 
-      <!-- 添削・コメント数 -->
-      <p>添削・コメント数</p>
-      <p><%= @illustration.corrections.count.to_s + "件" %></p>
+        <h2>添削・コメント一覧</h2>
 
-      <!-- 添削・コメント表示 -->
-      <% @illustration.corrections.each do |correction| %>
-        <% if correction.corrected_illust.present? %>
-          <h3><%= "添削" + (@correct += 1).to_s %></h3>
-          <span><%= correction.user.name %></span>
-          <p><%= correction.comment %></p>
-          <p>
-            <%= attachment_image_tag correction, :corrected_illust, :fill, 100, 100 %>
-          </p>
-          <% if correction.user == current_user %>
+        <!-- 添削・コメント数 -->
+        <p>添削・コメント数</p>
+        <p><%= @illustration.corrections.count.to_s + "件" %></p>
+
+        <!-- 添削・コメント表示 -->
+        <% @illustration.corrections.each do |correction| %>
+          <% if correction.corrected_illust.present? %>
+            <h3><%= "添削" + (@correct += 1).to_s %></h3>
+            <span><%= correction.user.name %></span>
+            <p><%= correction.comment %></p>
             <p>
-              <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
+              <%= attachment_image_tag correction, :corrected_illust, :fill, 100, 100 %>
             </p>
-          <% end %>
-        <% else %>
-          <h3><%= "コメント" + (@comment += 1).to_s %></h3>
-          <span><%= correction.user.name %></span>
-          <p>
-            <%= correction.comment %>
-          </p>
-          <% if correction.user == current_user %>
+
+            <% if correction.user == current_user %>
+              <p>
+                <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
+              </p>
+            <% end %>
+
+          <% else %>
+            <h3><%= "コメント" + (@comment += 1).to_s %></h3>
+            <span><%= correction.user.name %></span>
             <p>
-              <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
+              <%= correction.comment %>
             </p>
+            <% if correction.user == current_user %>
+              <p>
+                <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
+              </p>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
+      </div>
+    </section>
 
-      <!-- 添削・コメント投稿フォーム -->
+    <!-- 添削・コメント投稿フォーム -->
+    <section class="correction-form">
       <div class="panel panel-warning">
         <div class="panel-heading">
           <% if @illustration.user == current_user %>
-            <h2>このイラストにコメントする</h2>
+          <h2>このイラストにコメントする</h2>
           <% else %>
-            <h2>このイラストに添削またはコメントする</h2>
+          <h2>このイラストに添削またはコメントする</h2>
           <% end %>
         </div>
         <div class="panel-body">
           <%= form_for [@illustration, @correction] do |f| %>
           <!-- , url: corrections_path, html: {method: 'POST'}) -->
-            <% if @illustration.user != current_user %>
-              <!-- 添削したイラストを選択 -->
-              <div>
-                <label>添削したイラストを選択</label><br>
-                <%= f.attachment_field :corrected_illust, class: "file" %>
-              </div>
-            <% end %>
-            <!-- コメント入力フォーム -->
-            <div>
-              <label>コメント</label><br>
-              <%= f.text_field :comment, class: "form-size", placeholder: "コメントを入力してください" %>
-            </div>
-            <!-- 添削・コメント投稿 -->
-            <div>
-              <%= f.submit "投稿", class: "btn btn-warning" %>
-            </div>
+          <% if @illustration.user != current_user %>
+          <!-- 添削したイラストを選択 -->
+          <div>
+            <label>添削したイラストを選択</label><br>
+            <%= f.attachment_field :corrected_illust, class: "file" %>
+          </div>
+          <% end %>
+          <!-- コメント入力フォーム -->
+          <div>
+            <label>コメント</label><br>
+            <%= f.text_field :comment, class: "form-size", placeholder: "コメントを入力してください" %>
+          </div>
+          <!-- 添削・コメント投稿 -->
+          <div>
+            <%= f.submit "投稿", class: "btn btn-warning" %>
+          </div>
           <% end %>
         </div>
-
       </div>
     </section>
 
     <!-- 画面の一番上へ戻るボタン -->
-    <div>
+    <div class="to-top">
       <%= link_to "上へ", "#", class: "back-button" %>
     </div>
 

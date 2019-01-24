@@ -26,6 +26,7 @@
 //     });
 // });
 
+// turbolinksによりページ遷移時にjavascriptが動作しなくなるのを回避
 document.addEventListener("turbolinks:load", function(){
   // マイページのタブメニュー
   $(function() {
@@ -52,4 +53,24 @@ document.addEventListener("turbolinks:load", function(){
       }
     })
   })
+
+  // 上に戻るボタンの挙動を設定
+  $(function() {
+    var to_top = $('.to-top');
+    to_top.hide();
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 50) { // 50pxスクロールで表示
+        to_top.fadeIn();
+      } else {
+        to_top.fadeOut();
+      }
+    });
+    to_top.click(function() {
+      $('body, html').animate({
+        scrollTop: 0
+      }, 300); // 0.3秒でトップへ戻る
+      return false;
+    });
+  });
+
 });

@@ -151,9 +151,10 @@ body {
 
 // 画面の一番上へ戻るボタン
 .back-button {
+  opacity: 0.3;
 	position: fixed;
-	left: 20px;
-	top: 90px;
+	right: 80px;
+	bottom: 50px;
 	z-index: 10000;
 	background-color: #2D2D2D;
 	color: white;
@@ -164,6 +165,7 @@ body {
 	border-radius: 50%;
 }
 .back-button:hover {
+  opacity: 1.0;
 	background-color: white;
 	color: black;
 	text-decoration: none;
@@ -393,49 +395,7 @@ li a:hover {
   height: 80px;
 }
 
-
-// イラスト詳細画面の装飾
-.illust-definition {
-  width: 700px;
-  background-color: lightgray;
-  float: left;
-  margin-right: 30px;
-  margin-bottom: 30px;
-  box-sizing: border-box;
-  padding: 10px;
-  border-bottom: 1px solid gray;
-}
-.illust-definition p {
-  margin: 0;
-}
-.illustration {
-  margin: 0 auto;
-  min-width: 100px;
-  max-width: 600px;
-  min-height: 100px;
-  max-height: 600px;
-  background-color: black;
-  color: white;
-}
-.illust-description {
-  clear: both;
-  width: 500px;
-  margin: 0 auto;
-}
-
-.correction-contents {
-  width: 700px;
-  float: left;
-}
-.correction-contents p {
-  margin: 0;
-}
-.correction.comment {
-  margin: 5px;
-  padding: 5px;
-  width: 600px;
-}
-
+// ユーザー情報表示
 .user-information {
   width: 270px;
   background-color: lightgray;

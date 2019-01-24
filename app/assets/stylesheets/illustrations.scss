@@ -2,6 +2,54 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// イラスト詳細画面の装飾
+.illust-definition {
+  width: 700px;
+  background-color: white;
+  float: left;
+  margin-right: 30px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+.illust-definition p {
+  margin: 0;
+}
+.illustration {
+  margin: 0 auto;
+  text-align: center;
+  min-width: 100px;
+  max-width: 600px;
+  min-height: 100px;
+  max-height: 600px;
+  padding: 10px 0;
+  color: white;
+}
+.illust-description {
+  clear: both;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.correction-contents {
+  padding: 25px 15px 35px 15px;
+  background-color: white;
+  width: 700px;
+  float: left;
+}
+.correction-contents p {
+  margin: 0;
+}
+.correction.comment {
+  margin: 5px;
+  padding: 5px;
+  width: 600px;
+}
+.correction-form {
+  margin-top: 10px;
+  width: 700px;
+}
+
 // イラスト編集画面の装飾
 .illust-delete {
   border-top: 1px solid #BBB;
