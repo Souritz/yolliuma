@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // イラスト詳細画面の装飾
-.illust-definition {
+.illust-area {
   width: 700px;
   background-color: white;
   float: left;
@@ -12,9 +12,13 @@
   box-sizing: border-box;
   padding: 10px;
 }
-.illust-definition p {
+.illust-area p {
   margin: 0;
 }
+.illust-definition {
+  margin: 25px 15px 35px 15px;
+}
+
 .illustration {
   margin: 0 auto;
   text-align: center;
@@ -22,13 +26,89 @@
   max-width: 600px;
   min-height: 100px;
   max-height: 600px;
-  padding: 10px 0;
+  padding-bottom: 10px;
   color: white;
 }
+
+// イラスト説明欄の装飾
 .illust-description {
-  clear: both;
   width: 500px;
   margin: 0 auto;
+}
+
+// 投稿日表示
+.illust-post-date {
+  clear: both;
+  float: left;
+  padding: 3px 10px;
+}
+
+// 閲覧数表示
+.illust-view-count {
+  float: left;
+  padding: 3px 10px;
+  border-left: 1px solid gray;
+}
+
+// イラスト編集画面へのリンク
+.illust-edit-link {
+  float: right;
+  padding: 3px 0;
+}
+
+// イラストお気に入りボタン
+.illust-like {
+  float: right;
+  padding: 3px 0;
+}
+
+// イラストタイトルの装飾
+.illust-description .illust-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 15px 0 10px;
+}
+
+// イラストメッセージの装飾
+.illust-description .illust-introduction {
+  margin-bottom: 10px;
+}
+
+//  評価してほしいポイントの装飾
+.illust-description .evaluation-point-text {
+  margin-bottom: 5px;
+}
+.illust-description .evaluation-point {
+  padding: 3px;
+  background-color: #DDD;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+// イラストタグの装飾
+.illust-description .illust-tag-list {
+  margin-bottom: 2px;
+}
+/// イラストタグがある場合
+.illust-description .illust-tag-exist {
+}
+/// イラストタグ
+.illust-tag {
+  display: block;
+  padding: 3px;
+  background-color: #CCF;
+  margin-left: 5px;
+  margin-top: 3px;
+  float: left;
+}
+.illust-tag:first-line {
+}
+/// イラストタグが無い場合
+.illust-description .illust-tag-none {
+  padding: 3px;
+  background-color: #CCF;
+  margin-top: 3px;
+  margin-left: 5px;
 }
 
 .correction-contents {

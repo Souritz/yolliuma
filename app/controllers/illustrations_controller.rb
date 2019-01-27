@@ -9,7 +9,8 @@ class IllustrationsController < ApplicationController
     illustration.user_id = current_user.id
     illustration.save
     tag_list = illustration.tag_lists.new(tag_list_params)
-    tag_lists = tag_list.tag_name.split(",") # 受け取ったタグをカンマで分割
+    # splitメソッドで、受け取ったタグをカンマで分割    
+    tag_lists = tag_list.tag_name.split(",")
     tag_lists.each do |tag|
       tag_list = TagList.new
       tag_list.illustration_id = illustration.id
