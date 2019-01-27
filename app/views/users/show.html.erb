@@ -155,7 +155,7 @@
                   <% end %>
               </li>
             <% else %>
-              <% if @user == current_user %>
+              <% if @user != current_user %>
                 <li>
                   <%= link_to user_like_users_path(@user), method: :post do %>
                     <i class="fa fa-heart-o" aria-hidden="true"></i>

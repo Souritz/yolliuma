@@ -25,11 +25,18 @@ body {
   margin: 0;
   background-color: #efefef;
 }
+
 .container {
   width: 1000px;
   margin: 0 auto;
   padding: 50px 0;
 }
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
 // マイページ・一覧ページ等で、要素の外につける枠
 .border-frame {
   border: solid 1px #bbbffa;
@@ -169,14 +176,15 @@ body {
 	background-color: white;
 	color: black;
 	text-decoration: none;
+  transition: .2s;
 }
 
 // イラストタグの装飾
 .tag-style {
-  background-color: #AAF;
+  background-color: #CCF;
   padding: 3px;
-  margin: 1px;
-  border-radius: 16px;
+  margin: 2px;
+  border-radius: 0;
 }
 
 /* 投稿日表示 */

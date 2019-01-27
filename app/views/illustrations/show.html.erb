@@ -22,33 +22,39 @@
 
       <!-- イラストへのお気に入り機能 -->
       <% if @illustration.user != current_user %>
-        <% if @illustration.illust_liked_by?(current_user) %>
-        <li>
-          <%= link_to illustration_like_illustrations_path(@illustration), method: :delete, class: "like", remote: true do %>
-          <i class="fa fa-heart" aria-hidden="true" id='<%= @illustration.id %>'></i>
-          <%= @illustration.like_illustrations.count %> いいね
+        <ul>
+          <% if @illustration.illust_liked_by?(current_user) %>
+            <li>
+              <%= link_to illustration_like_illustrations_path(@illustration), method: :delete, class: "like", remote: true do %>
+                <i class="fa fa-heart" aria-hidden="true" id='<%= @illustration.id %>'></i>
+                <%= @illustration.like_illustrations.count.to_s + "お気に入り" %>
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to illustration_like_illustrations_path(@illustration), method: :post, class: "like", remote: true do %>
+                <i class="fa fa-heart-o" aria-hidden="true" id='<%= @illustration.id %>'></i>
+                <%= @illustration.like_illustrations.count.to_s + "お気に入り" %>
+              <% end %>
+            </li>
           <% end %>
-        </li>
-        <% else %>
-        <li>
-          <%= link_to illustration_like_illustrations_path(@illustration), method: :post, class: "like", remote: true do %>
-          <i class="fa fa-heart-o" aria-hidden="true" id='<%= @illustration.id %>'></i>
-          <%= @illustration.like_illustrations.count.to_s + "お気に入り" %>
-          <% end %>
-        </li>
-        <% end %>
+        </ul>
       <% end %>
 
       <!-- イラストについての説明 -->
       <div class="illust-description">
         <h1><%= @illustration.illust_title %></h1>
 
-        <p>イラストメッセージ</p>
+        <div>
+          <p>イラストメッセージ</p>
+        </div>
         <div>
           <p><%= @illustration.illust_introduction %></p>
         </div>
 
-        <p><strong>評価してほしいポイント</strong></p>
+        <div>
+          <p><strong>評価してほしいポイント</strong></p>
+        </div>
         <div>
           <p><%= @illustration.evaluation_point %></p>
         </div>
@@ -60,7 +66,9 @@
             <li>
               <% if @illustration.tag_lists.present? %>
                 <% @illustration.tag_lists.each do |tag_list| %>
-                  <span class="tag-style"><%= "#" + tag_list.tag_name %></span>
+                  <p>
+                    <span class="tag-style"><%= "#" + tag_list.tag_name %></span>
+                  </p>
                 <% end %>
               <% else %>
                 <p>タグが設定されていません</p>
@@ -109,23 +117,25 @@
 
             <!-- ユーザーへのお気に入り機能 -->
             <div>
-              <% if @user.user_liked_by?(current_user) %>
-                <li>
-                  <%= link_to user_like_users_path(@user), method: :delete do %>
-                    <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-                    <%= @user.like_users.count.to_s + "お気に入り" %>
-                    <% end %>
-                </li>
-              <% else %>
-                <% if @user == current_user %>
+              <ul>
+                <% if @user.user_liked_by?(current_user) %>
                   <li>
-                    <%= link_to user_like_users_path(@user), method: :post do %>
-                      <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    <%= link_to user_like_users_path(@user), method: :delete do %>
+                      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
                       <%= @user.like_users.count.to_s + "お気に入り" %>
-                      <% end %>
+                    <% end %>
                   </li>
+                <% else %>
+                  <% if @user != current_user %>
+                    <li>
+                      <%= link_to user_like_users_path(@user), method: :post do %>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        <%= @user.like_users.count.to_s + "お気に入り" %>
+                      <% end %>
+                    </li>
+                  <% end %>
                 <% end %>
-              <% end %>
+              </ul>
             </div>
 
           </div>
@@ -138,39 +148,54 @@
     <section class="clearfix">
       <div class="correction-contents">
 
-        <h2>添削・コメント一覧</h2>
+        <h2 class="h2-text">添削・コメント一覧</h2>
 
         <!-- 添削・コメント数 -->
-        <p>添削・コメント数</p>
-        <p><%= @illustration.corrections.count.to_s + "件" %></p>
+        <p>添削数</p>
+        <p><%= @illustration.corrections.where.not(corrected_illust_id: nil).count.to_s + "件" %></p>
+
+        <p>コメント数</p>
+        <p><%= @illustration.corrections.where(corrected_illust_id: nil).count.to_s + "件" %></p>
 
         <!-- 添削・コメント表示 -->
         <% @illustration.corrections.each do |correction| %>
           <% if correction.corrected_illust.present? %>
-            <h3><%= "添削" + (@correct += 1).to_s %></h3>
-            <span><%= correction.user.name %></span>
-            <p><%= correction.comment %></p>
-            <p>
-              <%= attachment_image_tag correction, :corrected_illust, :fill, 100, 100 %>
-            </p>
+            <div class="correction-box">
+              <h3><%= "添削" + (@correct += 1).to_s %></h3>
 
-            <% if correction.user == current_user %>
-              <p>
-                <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
-              </p>
-            <% end %>
+              <div>
+                <%= attachment_image_tag correction, :corrected_illust, :fill, 200, 200 %>
+              </div>
+              <div>
+                <div><%= attachment_image_tag correction.user, :user_image, :fill, 50, 50 %></div>
+                <p><%= correction.user.name %></p>
+              </div>
+              <div>
+                <p><%= correction.comment %></p>
+              </div>
+              <% if correction.user == current_user %>
+                <div>
+                  <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
+                </div>
+              <% end %>
+            </div>
 
           <% else %>
-            <h3><%= "コメント" + (@comment += 1).to_s %></h3>
-            <span><%= correction.user.name %></span>
-            <p>
-              <%= correction.comment %>
-            </p>
-            <% if correction.user == current_user %>
-              <p>
-                <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
-              </p>
-            <% end %>
+            <div>
+              <h3><%= "コメント" + (@comment += 1).to_s %></h3>
+              <div>
+                <div><%= attachment_image_tag correction.user, :user_image, :fill, 50, 50 %></div>
+                <p><%= correction.user.name %></p>
+              </div>
+              <div>
+                <p><%= correction.comment %></p>
+              </div>
+              <% if correction.user == current_user %>
+                <div>
+                  <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
+                </div>
+              <% end %>
+            </div>
           <% end %>
         <% end %>
       </div>
@@ -181,9 +206,9 @@
       <div class="panel panel-warning">
         <div class="panel-heading">
           <% if @illustration.user == current_user %>
-          <h2>このイラストにコメントする</h2>
+          <h2 class="h2-text">このイラストにコメントする</h2>
           <% else %>
-          <h2>このイラストに添削またはコメントする</h2>
+          <h2 class="h2-text">このイラストに添削またはコメントする</h2>
           <% end %>
         </div>
         <div class="panel-body">
@@ -191,21 +216,25 @@
           <!-- , url: corrections_path, html: {method: 'POST'}) -->
           <% if @illustration.user != current_user %>
           <!-- 添削したイラストを選択 -->
-          <div>
-            <label>添削したイラストを選択</label><br>
+          <div class="form-position">
+            <label class="form-text">添削したイラストを選択してください</label><br>
             <%= f.attachment_field :corrected_illust, class: "file" %>
           </div>
           <% end %>
           <!-- コメント入力フォーム -->
-          <div>
-            <label>コメント</label><br>
-            <%= f.text_field :comment, class: "form-size", placeholder: "コメントを入力してください" %>
+          <div class="form-position">
+            <label class="form-text">コメントを入力してください</label><br>
+            <%= f.text_field :comment, class: "form-size", placeholder: "コメントを入力" %>
           </div>
           <!-- 添削・コメント投稿 -->
-          <div>
-            <%= f.submit "投稿", class: "btn btn-warning" %>
+          <div class="link-button">
+            <%= f.submit "投稿", class: "btn btn-warning submit-button" %>
+
+            <%= link_to "マイページに戻る", users_mypage_path(current_user), class: "btn btn-default cancel-button" %>
           </div>
+
           <% end %>
+
         </div>
       </div>
     </section>
