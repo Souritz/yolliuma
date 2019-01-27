@@ -26,6 +26,41 @@ body {
   background-color: #efefef;
 }
 
+// ヘッダーの装飾
+header {
+  color: black;
+}
+header ul {
+  list-style: none;
+  margin: 0;
+}
+header .container {
+  padding: 0;
+}
+.header-bg {
+  height: 80px;
+  background-color: white;
+  border-bottom: 1px solid #BBB;
+}
+.header-list {
+  width: 200px;
+  padding: 0 10px;
+  /* margin-left: auto; */
+  text-align: center;
+  float: left;
+}
+.header-link {
+  color: inherit;
+  text-decoration: none;
+  line-height: 80px;
+  font-size: 20px;
+  padding: 20px 10px;
+}
+.header-link:hover {
+  color: royalblue;
+  text-decoration: none;
+}
+
 .container {
   width: 1000px;
   margin: 0 auto;
@@ -221,41 +256,6 @@ ul {
   border-radius: 0;
 }
 
-// header
-header {
-  color: black;
-}
-header ul {
-  list-style: none;
-  margin: 0;
-}
-header .container {
-  padding: 0;
-}
-.header-bg {
-  height: 80px;
-  background-color: white;
-  border-bottom: 1px solid #BBB;
-}
-.header-list {
-  width: 200px;
-  padding: 0 10px;
-  /* margin-left: auto; */
-  text-align: center;
-  float: left;
-}
-.header-link {
-  color: inherit;
-  text-decoration: none;
-  line-height: 80px;
-  font-size: 20px;
-  padding: 20px 10px;
-}
-.header-link:hover {
-  color: royalblue;
-  text-decoration: none;
-}
-
 // マイページ、一覧ページ等のheading要素の装飾
 .heading-menu {
   width: 100%;
@@ -387,4 +387,20 @@ li a:hover {
   float: left;
   box-sizing: border-box;
   padding: 10px;
+}
+
+// フッターの装飾
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  height: 35px;
+  line-height: 35px;
+  background-color: white;
+  border-top: 1px solid #BBB;
+  font-size: 12px;
+}
+footer p {
+  margin: 0;
 }
