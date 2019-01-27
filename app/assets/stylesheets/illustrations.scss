@@ -30,51 +30,51 @@
   color: white;
 }
 
-// イラスト説明欄の装飾
+/// イラスト説明欄の装飾
 .illust-description {
   width: 500px;
   margin: 0 auto;
 }
 
-// 投稿日表示
+/// 投稿日表示
 .illust-post-date {
   clear: both;
   float: left;
   padding: 3px 10px;
 }
 
-// 閲覧数表示
+/// 閲覧数表示
 .illust-view-count {
   float: left;
   padding: 3px 10px;
   border-left: 1px solid gray;
 }
 
-// イラスト編集画面へのリンク
+/// イラスト編集画面へのリンク
 .illust-edit-link {
   float: right;
   padding: 3px 0;
 }
 
-// イラストお気に入りボタン
+/// イラストお気に入りボタン
 .illust-like {
   float: right;
   padding: 3px 0;
 }
 
-// イラストタイトルの装飾
+/// イラストタイトルの装飾
 .illust-description .illust-title {
   font-size: 24px;
   font-weight: bold;
   margin: 15px 0 10px;
 }
 
-// イラストメッセージの装飾
+/// イラストメッセージの装飾
 .illust-description .illust-introduction {
   margin-bottom: 10px;
 }
 
-//  評価してほしいポイントの装飾
+///  評価してほしいポイントの装飾
 .illust-description .evaluation-point-text {
   margin-bottom: 5px;
 }
@@ -85,28 +85,28 @@
   margin-bottom: 10px;
 }
 
-// イラストタグの装飾
+/// イラストタグの装飾
 .illust-description .illust-tag-list {
   margin-bottom: 2px;
 }
-/// イラストタグがある場合
+//// イラストタグがある場合
 .illust-description .illust-tag-exist {
 }
-/// イラストタグ
+//// イラストタグ
 .illust-tag {
   display: block;
   padding: 3px;
-  background-color: #CCF;
+  background-color: #DDF;
   margin-left: 5px;
   margin-top: 3px;
   float: left;
 }
 .illust-tag:first-line {
 }
-/// イラストタグが無い場合
+//// イラストタグが無い場合
 .illust-description .illust-tag-none {
   padding: 3px;
-  background-color: #CCF;
+  background-color: #DDF;
   margin-top: 3px;
   margin-left: 5px;
 }
@@ -120,11 +120,87 @@
 .correction-contents p {
   margin: 0;
 }
-.correction.comment {
-  margin: 5px;
-  padding: 5px;
-  width: 600px;
+
+/// 投稿された添削・コメントの数を表示
+.count-box .correction-count {
+  margin: 10px 0 5px;
 }
+.count-box .comment-count {
+  margin: 0 0 10px;
+}
+
+/// 投稿された添削・コメントを表示
+.correction-box {
+  width: 500px;
+  margin: 0 auto;
+}
+
+/// 添削内容を囲む箱の装飾
+.correction {
+  padding: 3px 10px 8px;
+  background-color: #DDF;
+  margin-bottom: 8px;
+}
+.correction:last-child {
+  margin-bottom: 0;
+}
+
+/// コメントを囲む箱の装飾
+.comment {
+  padding: 3px 10px 8px;
+  background-color: #fcf8e3;
+  margin-bottom: 8px;
+}
+.comment:last-child {
+  margin-bottom: 0;
+}
+
+/// 添削・コメントのタイトルと番号
+.correction-comment-title {
+  margin: 5px 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/// 添削したイラスト
+.corrected-illust {
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+/// 添削・コメント投稿者・投稿内容
+.correction-information {
+  display: flex;
+}
+.correction-information.div {
+  flex-direction: row;
+}
+
+.comment-information {
+  display: flex;
+}
+.comment-information.div {
+  flex-direction: row;
+}
+
+//// 添削・コメントしたユーザー画像の装飾
+.corrected-user {
+  margin-right: 10px;
+}
+.corrected-user-icon {
+  max-height: 30px;
+  width: 30px;
+}
+
+.commented-user {
+  margin-right: 10px;
+}
+.commented-user-icon {
+  max-height: 30px;
+  width: 30px;
+}
+
+/// 添削・コメント投稿フォームの装飾
 .correction-form {
   margin-top: 10px;
   width: 700px;

@@ -150,57 +150,68 @@
     <!-- 添削内容・コメント表示 -->
     <section class="clearfix">
       <div class="correction-contents">
+          <h2 class="h2-text">添削・コメント一覧</h2>
 
-        <h2 class="h2-text">添削・コメント一覧</h2>
+          <!-- 添削・コメント数 -->
+          <div class="count-box">
+            <p class="correction-count"><%= "添削数：" + @illustration.corrections.where.not(corrected_illust_id: nil).count.to_s + "件" %></p>
 
-        <!-- 添削・コメント数 -->
-        <p>添削数</p>
-        <p><%= @illustration.corrections.where.not(corrected_illust_id: nil).count.to_s + "件" %></p>
+            <p class="comment-count"><%= "コメント数：" + @illustration.corrections.where(corrected_illust_id: nil).count.to_s + "件" %></p>
+          </div>
 
-        <p>コメント数</p>
-        <p><%= @illustration.corrections.where(corrected_illust_id: nil).count.to_s + "件" %></p>
+          <!-- 添削・コメント表示 -->
+          <div class="correction-box">
+            <% @illustration.corrections.each do |correction| %>
+              <% if correction.corrected_illust.present? %>
+                <div class="correction">
+                  <h3 class="correction-comment-title"><%= "添削" + (@correct += 1).to_s %></h3>
+                  <div class="corrected-illust">
+                    <%= attachment_image_tag correction, :corrected_illust, :fill, 200, 200 %>
+                  </div>
 
-        <!-- 添削・コメント表示 -->
-        <% @illustration.corrections.each do |correction| %>
-          <% if correction.corrected_illust.present? %>
-            <div class="correction-box">
-              <h3><%= "添削" + (@correct += 1).to_s %></h3>
+                  <div class="correction-information">
+                    <div class="corrected-user">
+                      <div><%= attachment_image_tag correction.user, :user_image, :fill, 50, 50, fallback: "img/no_image.png", class: "corrected-user-icon" %></div>
+                    </div>
+                    <div class="corrected-commented-contents">
+                      <p><%= correction.user.name %></p>
+                      <p><%= correction.comment %></p>
+                      <p><%= correction.created_at.strftime('%Y年 %m月 %d日 %H:%M') %></p>
+                    </div>
+                  </div>
 
-              <div>
-                <%= attachment_image_tag correction, :corrected_illust, :fill, 200, 200 %>
-              </div>
-              <div>
-                <div><%= attachment_image_tag correction.user, :user_image, :fill, 50, 50 %></div>
-                <p><%= correction.user.name %></p>
-              </div>
-              <div>
-                <p><%= correction.comment %></p>
-              </div>
-              <% if correction.user == current_user %>
-                <div>
-                  <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
+                  <% if correction.user == current_user %>
+                    <div>
+                      <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
+                    </div>
+                  <% end %>
+                </div>
+
+              <% else %>
+                <div class="comment">
+                  <h3 class="correction-comment-title"><%= "コメント" + (@comment += 1).to_s %></h3>
+
+                  <div class="comment-information">
+                    <div class="commented-user">
+                      <div><%= attachment_image_tag correction.user, :user_image, :fill, 50, 50, fallback: "img/no_image.png", class: "commented-user-icon" %></div>
+                    </div>
+                    <div class="corrected-commented-contents">
+                      <p><%= correction.user.name %></p>
+                      <p><%= correction.comment %></p>
+                      <p><%= correction.created_at.strftime('%Y年 %m月 %d日 %H:%M') %></p>
+                    </div>
+                  </div>
+
+                  <% if correction.user == current_user %>
+                    <div>
+                      <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
+                    </div>
+                  <% end %>
                 </div>
               <% end %>
-            </div>
+            <% end %>
+          </div>
 
-          <% else %>
-            <div>
-              <h3><%= "コメント" + (@comment += 1).to_s %></h3>
-              <div>
-                <div><%= attachment_image_tag correction.user, :user_image, :fill, 50, 50 %></div>
-                <p><%= correction.user.name %></p>
-              </div>
-              <div>
-                <p><%= correction.comment %></p>
-              </div>
-              <% if correction.user == current_user %>
-                <div>
-                  <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
-                </div>
-              <% end %>
-            </div>
-          <% end %>
-        <% end %>
       </div>
     </section>
 
