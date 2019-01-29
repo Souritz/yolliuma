@@ -27,32 +27,35 @@ body {
 }
 
 // ヘッダーの装飾
-header {
+header.header-bg {
   color: black;
+  height: 80px;
+  background-color: white;
+  border-bottom: 1px solid #BBB;
+}
+header .container {
+  padding: 0;
 }
 header ul {
   list-style: none;
   margin: 0;
 }
-header .container {
-  padding: 0;
-}
-.header-bg {
-  height: 80px;
-  background-color: white;
-  border-bottom: 1px solid #BBB;
-}
 .header-list {
   width: 200px;
   padding: 0 10px;
-  /* margin-left: auto; */
+  height: 50px;
   text-align: center;
   float: left;
+  margin-top: 15px;
+  border-left: 1px solid #DDD;
+}
+.header-list:last-child {
+  border-right: 1px solid #DDD;
 }
 .header-link {
   color: inherit;
   text-decoration: none;
-  line-height: 80px;
+  line-height: 50px;
   font-size: 20px;
   padding: 20px 10px;
 }
@@ -71,6 +74,11 @@ ul {
   list-style: none;
   padding: 0;
 }
+ul.sub li {
+  width: 100%;
+}
+
+
 
 // マイページ・一覧ページ等で、要素の外につける枠
 .border-frame {

@@ -57,7 +57,7 @@ document.addEventListener("turbolinks:load", function(){
   // 上に戻るボタンの挙動を設定
   $(function() {
     var to_top = $('.to-top');
-    to_top.hide();
+    to_top.hide(); //上に戻るボタンを非表示
     $(window).scroll(function () {
       if ($(this).scrollTop() > 50) { // 50pxスクロールで表示
         to_top.fadeIn();
@@ -70,6 +70,22 @@ document.addEventListener("turbolinks:load", function(){
         scrollTop: 0
       }, 300); // 0.3秒でトップへ戻る
       return false;
+    });
+  });
+
+  // footerの挙動を設定
+  $(function() {
+    var footer = $('.footer'); // footerを非表示
+    footer.hide();
+    $(window).scroll(function () {
+      var doch = $(document).innerHeight(); // ページ全体の高さ
+      var winh = $(window).innerHeight(); // ウィンドウの高さ
+      var bottom = doch - winh; // ＝ページの最下部位置
+      if (bottom <= $(window).scrollTop()) {
+        footer.fadeIn();
+      } else {
+        footer.fadeOut();
+      }
     });
   });
 
