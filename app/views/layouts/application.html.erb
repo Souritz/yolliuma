@@ -17,13 +17,13 @@
   </head>
 
   <body>
-    <!-- ヘッダーの表示内容です -->
+    <!-- ヘッダーの表示内容 -->
     <header class="header-bg">
 
       <div class="container">
         <!-- <div class="logo"></div> -->
         <nav>
-          <ul class="header-nav">
+          <ul class="header-nav clearfix">
 
             <!-- User ログイン状態のヘッダー表示 -->
             <% if user_signed_in? %>
@@ -36,14 +36,19 @@
               <li class="header-list">
                 <%= link_to "ユーザーを探す", users_path, class: "header-link" %>
               </li>
-              <%= current_user.name %>
-              <ul class="sub">
-                <li>
-                  <%= link_to "マイページ", users_mypage_path(current_user), class: "header-btn" %>
-                </li>
-                <li>
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-btn" %>
-                </li>
+              <li class="header-list header-link">
+                <%= current_user.name %>
+                <ul class="sub">
+                  <li>
+                    <%= link_to "マイページ", users_mypage_path(current_user), class: "header-btn" %>
+                  </li>
+                  <li>
+                    <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "header-btn" %>
+                  </li>
+                  <li>
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-btn" %>
+                  </li>
+              </li>
               </ul>
 
             <!-- Admin ログイン状態のヘッダー表示 -->
@@ -60,6 +65,9 @@
               <li class="header-list">
                 <%= link_to "新規登録", new_user_registration_path, class: "header-link" %>
               </li>
+              <li class="header-list">
+                <%= link_to "ログイン", new_user_session_path, class: "header-link" %>
+              </li>
             <% end %>
 
           </ul>
@@ -75,10 +83,10 @@
       <% end %>
     </div>
 
-    <!-- フッターの表示内容です -->
-    <!-- <footer>
-      <p>&copy; 2019 yolliuma.Inc. All Rights Reserved.</p>
-    </footer> -->
     <%= yield %>
+    <!-- フッターの表示内容 -->
+    <footer class="footer">
+      <p>&copy; 2019 yolliuma.Inc. All Rights Reserved.</p>
+    </footer>
   </body>
 </html>

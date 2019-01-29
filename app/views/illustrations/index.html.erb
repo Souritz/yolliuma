@@ -29,14 +29,20 @@
               <p><%= link_to illustration.illust_title, illustration_path(illustration.id) %></p>
               <span><%= attachment_image_tag illustration.user, :user_image, :fill, 30, 30, fallback: "img/no_image.png", size: "30x30" %></span>
               <span><%= illustration.user.name %></span>
-              <p><%= illustration.like_illustrations.count.to_s + "いいね" %></p>
+              <p><%= illustration.like_illustrations.count.to_s + "お気に入り" %></p>
               <p><%= "添削数：" + illustration.corrections.where.not(corrected_illust_id: nil).count.to_s %></p>
+              <p><%= "コメント数：" + illustration.corrections.where(corrected_illust_id: nil).count.to_s %></p>
             </li>
           </ul>
         <% end %>
 
       </div>
     </section>
+  </div>
+
+  <!-- 画面の一番上へ戻るボタン -->
+  <div class="to-top">
+    <%= link_to "上へ", "#", class: "back-button" %>
   </div>
 
 </div>

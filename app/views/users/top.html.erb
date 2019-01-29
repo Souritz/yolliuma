@@ -10,6 +10,7 @@
 
   <!-- 投稿されたイラストをランダム表示 -->
   <div class="random-illust-box">
+    <p>最近の投稿</p>
     <% @illustrations.each do |illustration| %>
     <%= attachment_image_tag illustration, :illust_image, :fill, 100, 100, class: "random-illust" %>
     <% end %>

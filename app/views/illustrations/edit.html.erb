@@ -48,12 +48,12 @@
         <div class="link-button">
           <%= f.submit "イラスト編集完了", class: "btn btn-success submit-button" %>
 
-          <%= link_to "マイページに戻る", users_mypage_path(current_user), class: "btn btn-default cancel-button" %>
+          <%= link_to "イラスト詳細に戻る", illustration_path(@illustration.id), class: "btn btn-default cancel-button" %>
         </div>
 
         <!-- イラスト削除ボタン -->
         <div class="illust-delete">
-          <label class="illust-delete-text">このイラストを削除するには、下のボタンをクリックしてください。</label>
+          <label class="illust-delete-text">このイラストを削除するには、下のボタンをクリックしてください</label>
           <div class="illust-delete-button">
             <%= link_to "このイラストを削除する", illustration_path(@illustration), method: :delete, "data-confirm" => "このイラストを削除しますか？", class: "btn btn-danger danger-button" %>
           </div>

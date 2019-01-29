@@ -30,25 +30,21 @@
 }
 
 .random-illust-box {
+  margin: 20px 0;
+  height: 150px;
   text-align: center;
+}
+.random-illust-box p {
+  margin: 0;
 }
 .random-illust {
   display: inline-block;
-  margin: 10px 20px;
+  margin: 10px;
+  padding: 0;
 }
 
 // マイページ画面の装飾
-/// メニューリストの中身の装飾
-.contents-list {
-  float: left;
-  list-style: none;
-  padding: 10px 15px;
-  margin: 10px 15px;
-  text-align: center;
-}
-.contents-list p {
-  margin-bottom: 3px;
-}
+
 
 // ユーザー編集画面の装飾
 .unsubscribe {

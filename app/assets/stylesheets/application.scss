@@ -25,11 +25,61 @@ body {
   margin: 0;
   background-color: #efefef;
 }
+
+// ヘッダーの装飾
+header.header-bg {
+  color: black;
+  height: 80px;
+  background-color: white;
+  border-bottom: 1px solid #BBB;
+}
+header .container {
+  padding: 0;
+}
+header ul {
+  list-style: none;
+  margin: 0;
+}
+.header-list {
+  width: 200px;
+  padding: 0 10px;
+  height: 50px;
+  text-align: center;
+  float: left;
+  margin-top: 15px;
+  border-left: 1px solid #DDD;
+}
+.header-list:last-child {
+  border-right: 1px solid #DDD;
+}
+.header-link {
+  color: inherit;
+  text-decoration: none;
+  line-height: 50px;
+  font-size: 20px;
+  padding: 20px 10px;
+}
+.header-link:hover {
+  color: royalblue;
+  text-decoration: none;
+}
+
 .container {
   width: 1000px;
   margin: 0 auto;
   padding: 50px 0;
 }
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+ul.sub li {
+  width: 100%;
+}
+
+
+
 // マイページ・一覧ページ等で、要素の外につける枠
 .border-frame {
   border: solid 1px #bbbffa;
@@ -52,6 +102,15 @@ body {
   font-size: 24px;
   font-style: normal;
   margin: 0;
+}
+.h2-text {
+  font-size: 20px;
+  font-style: normal;
+  margin: 0;
+}
+
+.text-position {
+  text-align: left;
 }
 
 // 一覧画面共通の装飾
@@ -142,9 +201,10 @@ body {
 
 // 画面の一番上へ戻るボタン
 .back-button {
+  opacity: 0.3;
 	position: fixed;
-	left: 20px;
-	top: 90px;
+	right: 80px;
+	bottom: 50px;
 	z-index: 10000;
 	background-color: #2D2D2D;
 	color: white;
@@ -155,32 +215,11 @@ body {
 	border-radius: 50%;
 }
 .back-button:hover {
+  opacity: 1.0;
 	background-color: white;
 	color: black;
 	text-decoration: none;
-}
-
-// イラストタグの装飾
-.tag-style {
-  background-color: #AAF;
-  padding: 3px;
-  margin: 1px;
-  border-radius: 16px;
-}
-
-/* 投稿日表示 */
-.post-date {
-  clear: both;
-  float: right;
-  padding: 5px;
-  border-left: 1px solid gray;
-}
-
-/* 閲覧数表示 */
-.view-count {
-  float: right;
-  padding: 5px;
-  border-left: 1px solid gray;
+  transition: .2s;
 }
 
 /* 画像系 */
@@ -225,41 +264,6 @@ body {
   border-radius: 0;
 }
 
-// header
-header {
-  color: black;
-}
-header ul {
-  list-style: none;
-  margin: 0;
-}
-header .container {
-  padding: 0;
-}
-.header-bg {
-  height: 80px;
-  background-color: white;
-  border-bottom: 1px solid #BBB;
-}
-.header-list {
-  width: 200px;
-  padding: 0 10px;
-  /* margin-left: auto; */
-  text-align: center;
-  float: left;
-}
-.header-link {
-  color: inherit;
-  text-decoration: none;
-  line-height: 80px;
-  font-size: 20px;
-  padding: 20px 10px;
-}
-.header-link:hover {
-  color: royalblue;
-  text-decoration: none;
-}
-
 // マイページ、一覧ページ等のheading要素の装飾
 .heading-menu {
   width: 100%;
@@ -300,7 +304,7 @@ li a:hover {
     border-bottom: 2px solid #9C9C9C;
 } */
 
-/* マイページ画面の装飾 */
+// マイページ画面の装飾
 .mypage-tabcontents {
   box-sizing: border-box;
   width: 700px;
@@ -309,6 +313,8 @@ li a:hover {
   float: left;
   margin: 10px 30px 0 0;
 }
+
+/// マイページ画面、私の情報の装飾
 .my-information {
   box-sizing: border-box;
   width: 270px;
@@ -325,7 +331,8 @@ li a:hover {
 ///マイページのタブメニュー
 ////メニューリストを囲む要素の装飾
 .tab-menu {
-  border-bottom: 2px solid royalblue;
+  padding: 25px 0 0 15px;
+  margin-bottom: 0px;
 }
 ////メニューリストの装飾
 .tab-menu li {
@@ -334,7 +341,7 @@ li a:hover {
   padding: 5px 10px;
   border: 1px solid royalblue;
   border-bottom: none;
-  border-radius: 5px 5px 0 0;
+  border-radius: 0;
   background-color: white;
   cursor: pointer;
   list-style: none;
@@ -352,53 +359,56 @@ li a:hover {
 .tab-menu-contents section.tab-menu-show {
   display: block;
 }
+.tab-menu-show ul {
+  padding: 0;
+}
 
-/* イラスト詳細画面の装飾 */
-.illust-definition {
-  width: 700px;
-  background-color: lightgray;
+//// メニューリストの中身の装飾
+.contents-list {
   float: left;
-  margin-right: 30px;
-  margin-bottom: 30px;
+  list-style: none;
+  padding: 10px 15px;
+  margin: 10px 15px;
+  text-align: center;
+  width: 130px;
+}
+.contents-list p {
+  margin-bottom: 2px;
+}
+.contents-list.contents-position-adjust {
   box-sizing: border-box;
-  padding: 10px;
-  border-bottom: 1px solid gray;
-}
-.illust-definition p {
+  padding: 0;
   margin: 0;
-}
-.illustration {
-  margin: 0 auto;
-  min-width: 100px;
-  max-width: 600px;
-  min-height: 100px;
-  max-height: 600px;
-  background-color: black;
-  color: white;
-}
-.illust-description {
-  clear: both;
-  width: 500px;
-  margin: 0 auto;
+  width: 100%;
 }
 
-.correction-contents {
-  width: 700px;
-  float: left;
-}
-.correction-contents p {
-  margin: 0;
-}
-.correction.comment {
-  margin: 5px;
-  padding: 5px;
-  width: 600px;
+//// 表示するものが無い場合に使用
+.no-contents {
+  line-height: 80px;
+  height: 80px;
 }
 
+// ユーザー情報表示
 .user-information {
   width: 270px;
   background-color: lightgray;
   float: left;
   box-sizing: border-box;
   padding: 10px;
+}
+
+// フッターの装飾
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  height: 35px;
+  line-height: 35px;
+  background-color: white;
+  border-top: 1px solid #BBB;
+  font-size: 12px;
+}
+footer p {
+  margin: 0;
 }
