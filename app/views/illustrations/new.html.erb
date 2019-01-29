@@ -1,2 +1,59 @@
-<h1>Illustrations#new</h1>
-<p>Find me in app/views/illustrations/new.html.erb</p>
+<div class="container">
+
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <h1 class="heading-text">イラスト投稿</h1>
+    </div>
+    <!-- イラスト投稿フォーム -->
+    <div class="panel-body">
+
+      <%= form_for(@illustration) do |f| %>
+
+        <!-- 画像選択フォーム -->
+        <div class="form-position">
+          <label class="form-text">投稿するイラストを選択してください</label><br>
+
+          <!-- サムネイル画像 -->
+          <%= attachment_image_tag @llustration, :illust_image, :fill, 300, 300, fallback: "img/no_image.png", class: "illust-thumbnail" %>
+
+          <!-- イラストを選択 -->
+          <%= f.attachment_field :illust_image, class: "file" %>
+
+        </div>
+
+        <!-- テキスト入力フォーム -->
+        <div class="form-position">
+          <label class="form-text">イラストのタイトルを入力してください</label><br>
+          <%= f.text_field :illust_title, class: "form-size", placeholder: "イラストのタイトルを入力" %>
+        </div>
+
+        <div class="form-position">
+          <label class="form-text">イラストのメッセージを入力してください</label><br>
+          <%= f.text_field :illust_introduction, class: "form-size", placeholder: "イラストのキャプションや思いを入力" %>
+        </div>
+
+        <%= fields_for(@tag_list) do |l| %>
+          <div class="form-position">
+            <label class="form-text">イラストタグを入力してください(検索に使用します)</label><br>
+            <%= l.text_area :tag_name, rows: 3, class: "form-area-size", placeholder: "例：人, original(カンマ「,」で区切って、複数入力できます)" %>
+          </div>
+        <% end %>
+
+        <div class="form-position">
+          <label class="form-text">評価してほしいポイントを入力してください</label><br>
+          <%= f.text_area :evaluation_point, rows: 3, class: "form-area-size", placeholder: "例：統一感のとれた彩色になっているかを評価してください！" %>
+        </div>
+
+        <!-- イラスト投稿・マイページに戻るボタン -->
+        <div class="link-button">
+          <%= f.submit "イラスト投稿", class: "btn btn-warning submit-button" %>
+
+          <%= link_to "マイページに戻る", users_mypage_path(current_user), class: "btn btn-default cancel-button" %>
+        </div>
+
+      <% end %>
+
+    </div>
+  </div><!-- panelクラスの終わり -->
+
+</div><!-- containerクラスの終わり -->

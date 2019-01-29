@@ -1,2 +1,262 @@
-<h1>Illustrations#show</h1>
-<p>Find me in app/views/illustrations/show.html.erb</p>
+<div class="container">
+  <div>
+
+    <!-- イラスト情報 -->
+    <article class="illust-area">
+      <div class="illust-definition">
+        <!-- イラスト -->
+        <figure>
+          <div class="illustration">
+            <%= attachment_image_tag @illustration, :illust_image, :fill, 450, 450 %>
+          </div>
+        </figure>
+
+        <!-- 投稿日時等の情報 -->
+        <div class="">
+          <p class="illust-post-date"><%= "投稿日時：" + @illustration.created_at.strftime('%Y年 %m月 %d日 %H:%M') %></p>
+          <span class="illust-view-count">閲覧数：1000</span>
+        </div>
+
+        <!-- 編集ボタン(イラスト投稿者がcurrent_userと同一人物の場合に表示) -->
+        <% if @illustration.user == current_user %>
+          <div class="clearfix">
+            <%= link_to "編集", edit_illustration_path, class: "btn btn-success illust-edit-link" %>
+          </div>
+        <% end %>
+
+        <!-- イラストへのお気に入り機能(イラスト投稿者がcurrent_userでない場合に表示) -->
+        <% if @illustration.user != current_user %>
+          <div class="clearfix">
+            <ul>
+              <% if @illustration.illust_liked_by?(current_user) %>
+              <li>
+                <%= link_to illustration_like_illustrations_path(@illustration), method: :delete, class: "like", remote: true do %>
+                <div class="illust-like">
+                  <i class="fa fa-heart" aria-hidden="true" id='<%= @illustration.id %>'></i>
+                  <%= @illustration.like_illustrations.count.to_s + "お気に入り" %>
+                </div>
+                <% end %>
+              </li>
+              <% else %>
+              <li>
+                <%= link_to illustration_like_illustrations_path(@illustration), method: :post, class: "like", remote: true do %>
+                <div class="illust-like">
+                  <i class="fa fa-heart-o" aria-hidden="true" id='<%= @illustration.id %>'></i>
+                  <%= @illustration.like_illustrations.count.to_s + "お気に入り" %>
+                </div>
+                <% end %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <!-- イラストについての説明 -->
+        <div class="illust-description">
+          <h1 class="illust-title"><%= @illustration.illust_title %></h1>
+
+          <!-- イラストメッセージ -->
+          <p class="illust-introduction"><%= @illustration.illust_introduction %></p>
+
+          <!-- 評価してほしいポイント -->
+          <p class="evaluation-point-text"><strong>評価してほしいポイント</strong></p>
+          <p class="evaluation-point"><%= @illustration.evaluation_point %></p>
+
+          <!-- 入力したタグの表示 -->
+          <div>
+            <p class="illust-tag-list">イラストタグ</p>
+            <ul class="clearfix">
+              <li>
+                <% if @illustration.tag_lists.present? %>
+                  <% @illustration.tag_lists.each do |tag_list| %>
+                    <p class="illust-tag-exist"><span class="illust-tag"><%= "# " + tag_list.tag_name %></span></p>
+                  <% end %>
+                <% else %>
+                  <p class="illust-tag-none">タグが設定されていません</p>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </article>
+
+    <!-- 投稿者情報表示 -->
+    <section class="my-information">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="h2-text">投稿者情報</h2>
+        </div>
+        <div class="panel-body">
+          <div>
+            <div class="my-information-box">
+              <div class="user-icon"><%= attachment_image_tag @user, :user_image, :fill, 100, 100, fallback: "img/no_image.png", size: "100x100", class: "icon" %></div>
+
+              <p><%= "ユーザー名：" + @user.name %></p>
+
+              <p>
+                <!-- アカウント作成から現在までの日数を計算 -->
+                <% today = Time.zone.now %><!-- 本日の日時 -->
+                <% @user.created_at.strftime('%Y%m-%d  %H:%M') %><!-- タイムゾーン通りかの確認用に記述した -->
+                <% duration_seconds = today - @user.created_at %><!-- アカウント登録時からの日数 -->
+                <% day_seconds = 60 * 60 * 24 %><!-- 1日の秒数 -->
+                <% account_duration = duration_seconds / day_seconds %>
+                <% account_duration.ceil %><!-- 小数点以下を切り上げ -->
+                <!-- ユーザーのイラスト年数・月を日数に変換 -->
+                <% year_to_day = (@user.history_year * 365) %><!-- 年数を日数に変換 -->
+                <% month_to_day = (@user.history_month * 30) %><!-- 月を日数に変換 -->
+                <% illust_history = year_to_day + month_to_day %>
+                <%= "イラスト歴：" + (account_duration.ceil + illust_history).to_s + "日" + "(約" + ((account_duration.ceil + illust_history)/365).floor.to_s + "年)" %>
+              </p>
+
+              <% if @user.introduction_text.present? %>
+                <p><%= "自己紹介：" + @user.introduction_text %></p>
+              <% else %>
+                <p><%= "自己紹介： 自己紹介文が設定されていません"  %></p>
+              <% end %>
+            </div>
+
+            <!-- ユーザーへのお気に入り機能 -->
+            <div>
+              <ul>
+                <% if @user.user_liked_by?(current_user) %>
+                  <li>
+                    <%= link_to user_like_users_path(@user), method: :delete do %>
+                      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                      <%= @user.like_users.count.to_s + "お気に入り" %>
+                    <% end %>
+                  </li>
+                <% else %>
+                  <% if @user != current_user %>
+                    <li>
+                      <%= link_to user_like_users_path(@user), method: :post do %>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        <%= @user.like_users.count.to_s + "お気に入り" %>
+                      <% end %>
+                    </li>
+                  <% end %>
+                <% end %>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 添削内容・コメント表示 -->
+    <section class="clearfix">
+      <div class="correction-contents">
+          <h2 class="h2-text">添削・コメント一覧</h2>
+
+          <!-- 添削・コメント数 -->
+          <div class="count-box">
+            <p class="correction-count"><%= "添削数：" + @illustration.corrections.where.not(corrected_illust_id: nil).count.to_s + "件" %></p>
+
+            <p class="comment-count"><%= "コメント数：" + @illustration.corrections.where(corrected_illust_id: nil).count.to_s + "件" %></p>
+          </div>
+
+          <!-- 添削・コメント表示 -->
+          <div class="correction-box">
+            <% @illustration.corrections.each do |correction| %>
+              <% if correction.corrected_illust.present? %>
+                <div class="correction">
+                  <h3 class="correction-comment-title"><%= "添削" + (@correct += 1).to_s %></h3>
+                  <div class="corrected-illust">
+                    <%= attachment_image_tag correction, :corrected_illust, :fill, 200, 200 %>
+                  </div>
+
+                  <div class="correction-information">
+                    <div class="corrected-user">
+                      <div><%= attachment_image_tag correction.user, :user_image, :fill, 50, 50, fallback: "img/no_image.png", class: "corrected-user-icon" %></div>
+                    </div>
+                    <div class="corrected-commented-contents">
+                      <p><%= correction.user.name %></p>
+                      <p><%= correction.comment %></p>
+                      <p><%= correction.created_at.strftime('%Y年 %m月 %d日 %H:%M') %></p>
+                    </div>
+                  </div>
+
+                  <% if correction.user == current_user %>
+                    <div>
+                      <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
+                    </div>
+                  <% end %>
+                </div>
+
+              <% else %>
+                <div class="comment">
+                  <h3 class="correction-comment-title"><%= "コメント" + (@comment += 1).to_s %></h3>
+
+                  <div class="comment-information">
+                    <div class="commented-user">
+                      <div><%= attachment_image_tag correction.user, :user_image, :fill, 50, 50, fallback: "img/no_image.png", class: "commented-user-icon" %></div>
+                    </div>
+                    <div class="corrected-commented-contents">
+                      <p><%= correction.user.name %></p>
+                      <p><%= correction.comment %></p>
+                      <p><%= correction.created_at.strftime('%Y年 %m月 %d日 %H:%M') %></p>
+                    </div>
+                  </div>
+
+                  <% if correction.user == current_user %>
+                    <div>
+                      <%= link_to "この投稿を削除する", illustration_correction_path(@illustration, correction), method: :delete, "data-confirm" => "この投稿を削除しますか？", class: "btn btn-danger danger-button" %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+
+      </div>
+    </section>
+
+    <!-- 添削・コメント投稿フォーム -->
+    <section class="correction-form">
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <% if @illustration.user == current_user %>
+          <h2 class="h2-text">このイラストにコメントする</h2>
+          <% else %>
+          <h2 class="h2-text">このイラストに添削またはコメントする</h2>
+          <% end %>
+        </div>
+        <div class="panel-body">
+          <%= form_for [@illustration, @correction] do |f| %>
+          <!-- , url: corrections_path, html: {method: 'POST'}) -->
+          <% if @illustration.user != current_user %>
+          <!-- 添削したイラストを選択 -->
+          <div class="form-position">
+            <label class="form-text">添削したイラストを選択してください</label><br>
+            <%= f.attachment_field :corrected_illust, class: "file" %>
+          </div>
+          <% end %>
+          <!-- コメント入力フォーム -->
+          <div class="form-position">
+            <label class="form-text">コメントを入力してください</label><br>
+            <%= f.text_field :comment, class: "form-size", placeholder: "コメントを入力" %>
+          </div>
+          <!-- 添削・コメント投稿 -->
+          <div class="link-button">
+            <%= f.submit "投稿", class: "btn btn-warning submit-button" %>
+
+            <%= link_to "マイページに戻る", users_mypage_path(current_user), class: "btn btn-default cancel-button" %>
+          </div>
+
+          <% end %>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 画面の一番上へ戻るボタン -->
+    <div class="to-top">
+      <%= link_to "上へ", "#", class: "back-button" %>
+    </div>
+
+  </div>
+</div>

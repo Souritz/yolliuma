@@ -1,34 +1,55 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- 文字コード指定 -->
+    <meta charset="utf-8">
+    <!-- レスポンシブ対応 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Yolliuma</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <!-- font-awesome(アイコン)に使用 -->
+    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <!-- ヘッダーの表示内容です -->
-    <header>
-      <div">
-        <div class="logo"></div>
+    <!-- ヘッダーの表示内容 -->
+    <header class="header-bg">
+
+      <div class="container">
+        <!-- <div class="logo"></div> -->
         <nav>
-          <ul class="header-nav">
+          <ul class="header-nav clearfix">
 
             <!-- User ログイン状態のヘッダー表示 -->
             <% if user_signed_in? %>
               <li class="header-list">
-                <%= link_to "イラスト投稿", "#", class: "header-link" %>
+                <%= link_to "イラストを投稿", new_illustration_path, class: "header-link" %>
+              </li>
+              <li class="header-list">
+                <%= link_to "イラストを探す", illustrations_path, class: "header-link" %>
+              </li>
+              <li class="header-list">
+                <%= link_to "ユーザーを探す", users_path, class: "header-link" %>
               </li>
               <li class="header-list header-link">
                 <%= current_user.name %>
                 <ul class="sub">
-                  <li><%= link_to "マイページ", "#", class: "header-btn" %></li>
-                  <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-btn" %></li>
-                </ul>
+                  <li>
+                    <%= link_to "マイページ", users_mypage_path(current_user), class: "header-btn" %>
+                  </li>
+                  <li>
+                    <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "header-btn" %>
+                  </li>
+                  <li>
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-btn" %>
+                  </li>
               </li>
+              </ul>
 
             <!-- Admin ログイン状態のヘッダー表示 -->
             <% elsif admin_signed_in? %>
@@ -42,14 +63,17 @@
             <!-- 未ログイン状態のヘッダー表示 -->
             <% else %>
               <li class="header-list">
-                <%= link_to "新規登録", shops_path, class: "header-link" %>
+                <%= link_to "新規登録", new_user_registration_path, class: "header-link" %>
+              </li>
+              <li class="header-list">
+                <%= link_to "ログイン", new_user_session_path, class: "header-link" %>
               </li>
             <% end %>
 
           </ul>
         </nav>
+      </div><!-- containerクラスの終わり -->
 
-      </div>
     </header>
 
     <!-- フラッシュメッセージ -->
@@ -59,10 +83,10 @@
       <% end %>
     </div>
 
-    <!-- フッターの表示内容です -->
-    <footer>
+    <%= yield %>
+    <!-- フッターの表示内容 -->
+    <footer class="footer">
       <p>&copy; 2019 yolliuma.Inc. All Rights Reserved.</p>
     </footer>
-    <%= yield %>
   </body>
 </html>

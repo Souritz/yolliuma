@@ -62,10 +62,16 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # GemFileを追加
+## cssを拡張するgem
 gem "bootstrap-sass"
+## jqueryを使用可能にするgem
 gem "jquery-rails"
+## アカウント機能を提供するgem
 gem 'devise'
+## 画像投稿機能を提供するgem
 gem "refile", require: "refile/rails", github: "manfe/refile"
 gem "refile-mini_magick"
+## ページャ機能を提供するgem
 gem "kaminari"
+## デバッグ機能を提供するgem
 gem "pry-rails"

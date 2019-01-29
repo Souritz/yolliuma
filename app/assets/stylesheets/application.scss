@@ -1,0 +1,414 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+body {
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: Lato, "Noto Sans JP", "游ゴシック Medium", "游ゴシック体",
+   "Yu Gothic Medium", YuGothic, "ヒラギノ角ゴ ProN","Hiragino Kaku Gothic ProN",
+    "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  margin: 0;
+  background-color: #efefef;
+}
+
+// ヘッダーの装飾
+header.header-bg {
+  color: black;
+  height: 80px;
+  background-color: white;
+  border-bottom: 1px solid #BBB;
+}
+header .container {
+  padding: 0;
+}
+header ul {
+  list-style: none;
+  margin: 0;
+}
+.header-list {
+  width: 200px;
+  padding: 0 10px;
+  height: 50px;
+  text-align: center;
+  float: left;
+  margin-top: 15px;
+  border-left: 1px solid #DDD;
+}
+.header-list:last-child {
+  border-right: 1px solid #DDD;
+}
+.header-link {
+  color: inherit;
+  text-decoration: none;
+  line-height: 50px;
+  font-size: 20px;
+  padding: 20px 10px;
+}
+.header-link:hover {
+  color: royalblue;
+  text-decoration: none;
+}
+
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+ul.sub li {
+  width: 100%;
+}
+
+
+
+// マイページ・一覧ページ等で、要素の外につける枠
+.border-frame {
+  border: solid 1px #bbbffa;
+}
+
+// float解除
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+// ヘッダーテキスト
+.heading-position {
+  padding: 10px 15px;
+  color: #3b6d8a;
+  border-bottom: solid 1px #bbbffa;
+}
+.heading-text {
+  font-size: 24px;
+  font-style: normal;
+  margin: 0;
+}
+.h2-text {
+  font-size: 20px;
+  font-style: normal;
+  margin: 0;
+}
+
+.text-position {
+  text-align: left;
+}
+
+// 一覧画面共通の装飾
+.index-box {
+  width: 100%;
+  padding: 25px 15px 35px 15px;
+  background-color: white;
+}
+
+
+// フォーム系
+.form-size {
+  width: 400px;
+  height: 27px;
+}
+.form-area-size {
+  width: 400px;
+}
+.form-size-history {
+  width: 200px;
+  height: 27px;
+}
+.form-position {
+  text-align: center;
+}
+.form-position:not(:last-child) {
+  margin-bottom: 20px;
+}
+.form-text {
+  width: 400px;
+  text-align: left;
+}
+.form-text-history {
+  width: 199px;
+  padding-left: 1px;
+  text-align: left;
+}
+
+// panel(bootstrapのクラス)
+.panel-body {
+  padding-top: 25px;
+  padding-bottom: 35px;
+}
+
+/// ボタン系
+// ボタン(横並びボタンの中央揃え)
+.link-button {
+  text-align: center;
+}
+// ボタン(投稿・編集画面)
+.submit-button {
+  margin-top: 10px;
+  margin-right: 15px;
+  border-radius: 16px;
+}
+.cancel-button {
+  margin-top: 10px;
+  border-radius: 16px;
+}
+// ボタン(マイページからの編集画面遷移用)
+.edit-button {
+  margin-top: 5px;
+  border-radius: 16px;
+}
+// ボタン(削除系)
+.danger-button {
+  margin-top: 10px;
+  border-radius: 0;
+}
+// ファイル選択ボタン
+.file {
+  margin: 0 auto;
+}
+// お気に入りボタン表示
+.like-illust {
+  float: right;
+  padding: 5px;
+}
+.fa-heart {
+  color: red;
+}
+// 新規登録・ログイン画面の幅広ボタン
+.wide-button {
+  margin-top: 10px;
+  border-radius: 16px;
+  width: 400px;
+}
+
+// 画面の一番上へ戻るボタン
+.back-button {
+  opacity: 0.3;
+	position: fixed;
+	right: 80px;
+	bottom: 50px;
+	z-index: 10000;
+	background-color: #2D2D2D;
+	color: white;
+	line-height: 64px;
+	height: 64px;
+	width: 64px;
+	text-align: center;
+	border-radius: 50%;
+}
+.back-button:hover {
+  opacity: 1.0;
+	background-color: white;
+	color: black;
+	text-decoration: none;
+  transition: .2s;
+}
+
+/* 画像系 */
+.illust-thumbnail {
+  max-height: 300px;
+  width: 300px;
+  margin-bottom: 10px;
+}
+.user-thumbnail {
+  max-height: 300px;
+  width: 300px;
+  margin-bottom: 10px;
+}
+.icon {
+  max-height: 100px;
+  width: 100px;
+}
+.user-icon {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+// 検索フォーム
+.search-area {
+  margin: 0 auto;
+}
+.search-text {
+  margin: 25px 0 10px 20px;
+}
+
+.search-form {
+  padding-bottom: 10px;
+}
+.search-box {
+  width: 400px;
+  height: 34px;
+  margin-left: 20px;
+  padding-left: 5px;
+}
+.search-button {
+  margin-left: 5px;
+  border-radius: 0;
+}
+
+// マイページ、一覧ページ等のheading要素の装飾
+.heading-menu {
+  width: 100%;
+  background-color: #DDF;
+}
+
+/* ヘッダーのドロップダウンリスト */
+/* ul {
+    list-style-type: none;
+}
+ul.menu li {
+    float: left;
+    position: relative;
+    display: block;
+}
+ul.sub {
+	width: 100%;
+    display: none;
+    text-align: center;
+    position: absolute;
+    right: 0px;
+	background: white;
+}
+ul.sub li {
+	width: 100%;
+}
+ul.sub li a {
+	font-size: 16px;
+    display: inline;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    color: #1B395B;
+    text-decoration: none;
+}
+li a:hover {
+    z-index: 10000;
+    border-bottom: 2px solid #9C9C9C;
+} */
+
+// マイページ画面の装飾
+.mypage-tabcontents {
+  box-sizing: border-box;
+  width: 700px;
+  padding: 25px 15px 35px 15px;
+  background-color: white;
+  float: left;
+  margin: 10px 30px 0 0;
+}
+
+/// マイページ画面、私の情報の装飾
+.my-information {
+  box-sizing: border-box;
+  width: 270px;
+  float: left;
+  padding: 10px;
+}
+.my-information-box {
+  text-align: left;
+}
+.my-information-box p {
+  margin-bottom: 5px;
+}
+
+///マイページのタブメニュー
+////メニューリストを囲む要素の装飾
+.tab-menu {
+  padding: 25px 0 0 15px;
+  margin-bottom: 0px;
+}
+////メニューリストの装飾
+.tab-menu li {
+  float: left;
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: 1px solid royalblue;
+  border-bottom: none;
+  border-radius: 0;
+  background-color: white;
+  cursor: pointer;
+  list-style: none;
+  transition: .5s;
+}
+//// アクティブなメニューリストの装飾
+.tab-menu li.active {
+  color: white;
+  background-color: royalblue;
+  cursor: auto;
+}
+.tab-menu-contents section {
+  display: none;
+}
+.tab-menu-contents section.tab-menu-show {
+  display: block;
+}
+.tab-menu-show ul {
+  padding: 0;
+}
+
+//// メニューリストの中身の装飾
+.contents-list {
+  float: left;
+  list-style: none;
+  padding: 10px 15px;
+  margin: 10px 15px;
+  text-align: center;
+  width: 130px;
+}
+.contents-list p {
+  margin-bottom: 2px;
+}
+.contents-list.contents-position-adjust {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+//// 表示するものが無い場合に使用
+.no-contents {
+  line-height: 80px;
+  height: 80px;
+}
+
+// ユーザー情報表示
+.user-information {
+  width: 270px;
+  background-color: lightgray;
+  float: left;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+// フッターの装飾
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  height: 35px;
+  line-height: 35px;
+  background-color: white;
+  border-top: 1px solid #BBB;
+  font-size: 12px;
+}
+footer p {
+  margin: 0;
+}
