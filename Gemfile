@@ -6,7 +6,7 @@ ruby '2.5.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
 # Use sqlite3 as the database for Active Record
-# herokuデプロイに合わせて一旦sqlite3を削除
+# herokuデプロイに合わせてsqlite3 gemを削除 下の方にdevelopment, testのみ動作するように記述した
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -38,6 +38,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
+  # herokuデプロイに合わせて記述
+  gem 'sqlite3'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
@@ -78,4 +81,6 @@ gem "kaminari"
 gem "pry-rails"
 
 # herokuデプロイに合わせて記述
-gem 'pg', groups: %w(production), require: false
+group :production do
+  gem 'pg'
+end
