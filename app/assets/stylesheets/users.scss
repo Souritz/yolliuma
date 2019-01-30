@@ -5,7 +5,8 @@
 // トップ(ルート)画面の装飾
 .logo {
   height: 300px;
-  background: url(img/yolliuma-logo.png);
+  // デプロイにあたってurlをimg⇒imagesに変更
+  background: url(/images/yolliuma-logo.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 50% 50%;
