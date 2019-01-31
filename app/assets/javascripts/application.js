@@ -43,6 +43,51 @@ document.addEventListener("turbolinks:load", function(){
       });
   });
 
+  // イラスト詳細画面のイラストをオリジナルサイズで表示
+  $(function() {
+    $('.illust-open').click(function() { // イラストをクリック
+      $('body').append('<div class="modal-overlay"></div>'); // モーダル表示用タグ追加
+      $('modal-overlay').fadeIn('slow'); // モーダルダイアログをフェードイン
+      var modal = '#' + $(this).attr('data-target'); // クリックしたタグのdata-target属性を取得
+      modalResize(); // モーダルダイアログの表示位置設定
+      $(modal).fadeIn('slow'); // モーダルダイアログのコンテンツをフェードイン
+
+      $('.orig-illust, .orig-correction').off().click(function() { // modal-overlayクラスの要素をクリック
+        $(modal).fadeOut('slow');
+        $('.modal-overlay').fadeOut('slow', function() { // モーダルダイアログをフェードアウト
+        $('modal-overlay').remove(); // モーダルダイアログを削除
+        });
+      });
+
+      $(window).on('resize', function() { // windowをリサイズした場合、モーダル位置設定を再度行う
+        modalResize();
+      });
+
+      function modalResize() {
+        // windowの幅・高さを取得
+        var w = $(window).width();
+        var h = $(window).height();
+
+        // モーダルコンテンツの表示位置を取得
+        var x = (w - $(modal).outerWidth(true)) / 2;
+        var y = (h - $(modal).outerHeight(true)) / 2;
+
+        // モーダルコンテンツの表示位置を設定
+        $(modal).css({'left': x + 'px', 'top': y + 'px'});
+      }
+    });
+  });
+
+  // 添削コメントのidに連番設定(モーダルダイアログ用)
+  $(function() {
+    $('.modal-content.correction').each(function(i) {
+      $(this).attr('id', 'correct_' + (i + 1));
+    });
+    $('.corrected-illust a').each(function(c) {
+      $(this).attr('data-target', 'correct_' + (c + 1));
+    });
+  });
+
   // お気に入り機能 Ajaxによる非同期通信(ページ全体ではなくお気に入り機能だけ更新させる)
   $(function() {
     $(document).on("ajax:success", ".like", function(e) {
@@ -51,8 +96,8 @@ document.addEventListener("turbolinks:load", function(){
       } else {
         $('#' + e.detail[0]).removeClass('fa-heart-o').addClass('fa-heart');
       }
-    })
-  })
+    });
+  });
 
   // 上に戻るボタンの挙動を設定
   $(function() {

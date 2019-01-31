@@ -7,12 +7,19 @@
         <!-- イラスト -->
         <figure>
           <div class="illustration">
-            <%= attachment_image_tag @illustration, :illust_image, :fill, 450, 450 %>
+            <a data-target="illust-content" class="illust-open">
+              <%= attachment_image_tag @illustration, :illust_image, :fill, 450, 450 %>
+            </a>
+          </div>
+
+          <!-- モーダルダイアログでのオリジナルサイズ表示 -->
+          <div id="illust-content" class="modal-content">
+              <%= attachment_image_tag @illustration, :illust_image, :fill, 800, 800, class: "orig-illust" %>
           </div>
         </figure>
 
         <!-- 投稿日時等の情報 -->
-        <div class="">
+        <div>
           <p class="illust-post-date"><%= "投稿日時：" + @illustration.created_at.strftime('%Y年 %m月 %d日 %H:%M') %></p>
           <span class="illust-view-count">閲覧数：1000</span>
         </div>
@@ -166,7 +173,14 @@
                 <div class="correction">
                   <h3 class="correction-comment-title"><%= "添削" + (@correct += 1).to_s %></h3>
                   <div class="corrected-illust">
-                    <%= attachment_image_tag correction, :corrected_illust, :fill, 200, 200 %>
+                    <a class="illust-open">
+                      <%= attachment_image_tag correction, :corrected_illust, :fill, 200, 200 %>
+                    </a>
+                  </div>
+
+                  <!-- モーダルダイアログでのオリジナルサイズ表示 -->
+                  <div class="modal-content correction">
+                      <%= attachment_image_tag correction, :corrected_illust, :fill, 800, 800, class: "orig-correction" %>
                   </div>
 
                   <div class="correction-information">
