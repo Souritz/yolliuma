@@ -73,9 +73,13 @@
                 <p class="no-contents">まだユーザーをお気に入りにしていません</p>
               </li>
             <% else %>
+              <li class="contents-list contents-position-adjust">
+                <h2 class="h2-text text-position">お気に入りユーザー</h2>
+              </li>
               <% @like_users.each do |like_user| %>
                 <li class="contents-list">
-                  <p><%= like_user.user_id %></p>
+                  <p><%= attachment_image_tag like_user.user, :user_image, :fill, 100, 100, fallback: "img/no_image.png", size: "100x100" %></p>
+                  <p><%= link_to like_user.user.name, user_path(like_user.user_id) %></p>
                 </li>
               <% end %>
             <% end %>
@@ -86,9 +90,28 @@
                 <p class="no-contents">まだイラストをお気に入りにしていません</p>
               </li>
             <% else %>
+              <li class="contents-list contents-position-adjust">
+                <h2 class="h2-text text-position">お気に入りイラスト</h2>
+              </li>
               <% @like_illustrations.each do |like_illustration| %>
                 <li class="contents-list">
-                  <p><%= like_illustration.illustration.illust_title %></p>
+                  <p><%= attachment_image_tag like_illustration.illustration, :illust_image, :fill, 100, 100, fallback: "img/no_image.png", size: "100x100"%></p>
+                  <p><%= link_to like_illustration.illustration.illust_title, illustration_path(like_illustration.illustration.id) %></p>
+                  <span>
+                    <%= attachment_image_tag like_illustration.illustration.user, :user_image, :fill, 30, 30, fallback: "img/no_image.png", size: "30x30" %>
+                  </span>
+                  <span>
+                    <%= like_illustration.illustration.user.name %>
+                  </span>
+                  <p>
+                    <%= like_illustration.illustration.like_illustrations.count.to_s + "お気に入り" %>
+                  </p>
+                  <p>
+                    <%= "添削数：" + like_illustration.illustration.corrections.where.not(corrected_illust_id: nil).count.to_s %>
+                  </p>
+                  <p>
+                    <%= "コメント数：" + like_illustration.illustration.corrections.where(corrected_illust_id: nil).count.to_s %>
+                  </p>
                 </li>
               <% end %>
             <% end %>
