@@ -21,7 +21,7 @@
     <header class="header-bg">
 
       <div class="container">
-        <!-- <div class="logo"></div> -->
+        <!-- ヘッダーのメニュー表示 -->
         <nav>
           <ul class="header-nav clearfix">
 
@@ -36,40 +36,26 @@
               <li class="header-list">
                 <%= link_to "ユーザーを探す", users_path, class: "header-link" %>
               </li>
-              <li clas="header-list">
-                <%= link_to "マイページ", users_mypage_path(current_user), class: "header-btn" %>
-              </li>
-              <li clas="header-list">
-                <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "header-btn" %>
-              </li>
-              <li clas="header-list">
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-btn" %>
-              </li>
-              <!-- <li class="header-list header-link">
-                <ul class="sub">
-                  <li>
-                    <% link_to "マイページ", users_mypage_path(current_user), class: "header-btn" %>
-                  </li>
-                  <li>
-                    <% link_to "ユーザー情報編集", edit_user_path(current_user), class: "header-btn" %>
-                  </li>
-                  <li>
-                    <% link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-btn" %>
-                  </li>
-              </li> -->
-              </ul>
-
-            <!-- Admin ログイン状態のヘッダー表示 -->
-            <% elsif admin_signed_in? %>
+              <!-- ドロップダウンメニュー -->
               <li class="header-list header-link">
-                管理者
+                <span><%= current_user.name %></span>
+                <div class="glyphicon glyphicon-chevron-down"></div>
                 <ul class="sub">
-                  <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "header-btn" %></li>
+                  <li>
+                    <%= link_to "マイページ", users_mypage_path(current_user), class: "header-btn" %>
+                  </li>
+                  <li>
+                    <%= link_to "ユーザー情報編集", edit_user_path(current_user), class: "header-btn" %>
+                  </li>
+                  <li>
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-btn" %>
+                  </li>
                 </ul>
               </li>
+            <% end %>
 
             <!-- 未ログイン状態のヘッダー表示 -->
-            <% else %>
+            <% unless user_signed_in? %>
               <li class="header-list">
                 <%= link_to "新規登録", new_user_registration_path, class: "header-link" %>
               </li>
@@ -78,7 +64,17 @@
               </li>
             <% end %>
 
-          </ul>
+            <!-- Admin ログイン状態のヘッダー表示(未使用) -->
+            <% if admin_signed_in? %>
+              <li class="header-list header-link">
+                管理者
+                <ul class="sub">
+                  <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "header-btn" %></li>
+                </ul>
+              </li>
+            <% end %>
+
+          </ul><!-- header-navクラスの終わり -->
         </nav>
       </div><!-- containerクラスの終わり -->
 

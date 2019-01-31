@@ -39,18 +39,30 @@ header .container {
 header ul {
   list-style: none;
   margin: 0;
+  padding: 0;
 }
 .header-list {
-  width: 200px;
+  max-width: 300px;
+  min-width: 105px;
   padding: 0 10px;
   height: 50px;
   text-align: center;
   float: left;
   margin-top: 15px;
   border-left: 1px solid #DDD;
+  position: relative;
 }
 .header-list:last-child {
   border-right: 1px solid #DDD;
+}
+.header-list span {
+  color: royalblue;
+}
+.header-list div {
+  margin-left: 2px;
+}
+.header-list.header-link {
+  padding: 0 20px;
 }
 .header-link {
   color: inherit;
@@ -64,21 +76,36 @@ header ul {
   text-decoration: none;
 }
 
+// ヘッダーのドロップダウンリスト
+ul.sub {
+	width: 100%;
+    display: none;
+    text-align: center;
+    position: absolute;
+    right: 0px;
+}
+ul.sub li {
+	width: 100%;
+  background-color: white;
+  border-bottom: 1px solid #DDD;
+}
+ul.sub li a {
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+ul.sub li a:hover {
+    z-index: 100;
+    color: royalblue;
+}
+
+// コンテンツ表示部分の装飾
 .container {
   width: 1000px;
   margin: 0 auto;
   padding: 50px 0;
 }
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-ul.sub li {
-  width: 100%;
-}
-
-
 
 // マイページ・一覧ページ等で、要素の外につける枠
 .border-frame {
@@ -119,7 +146,6 @@ ul.sub li {
   padding: 25px 15px 35px 15px;
   background-color: white;
 }
-
 
 // フォーム系
 .form-size {
@@ -269,40 +295,6 @@ ul.sub li {
   width: 100%;
   background-color: #DDF;
 }
-
-/* ヘッダーのドロップダウンリスト */
-/* ul {
-    list-style-type: none;
-}
-ul.menu li {
-    float: left;
-    position: relative;
-    display: block;
-}
-ul.sub {
-	width: 100%;
-    display: none;
-    text-align: center;
-    position: absolute;
-    right: 0px;
-	background: white;
-}
-ul.sub li {
-	width: 100%;
-}
-ul.sub li a {
-	font-size: 16px;
-    display: inline;
-    text-align: center;
-    width: 80%;
-    margin: 0 auto;
-    color: #1B395B;
-    text-decoration: none;
-}
-li a:hover {
-    z-index: 10000;
-    border-bottom: 2px solid #9C9C9C;
-} */
 
 // マイページ画面の装飾
 .mypage-tabcontents {

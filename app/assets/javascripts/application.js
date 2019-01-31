@@ -17,15 +17,6 @@
 //= require turbolinks
 //= require_tree .
 
-//ヘッダーのドロップダウンリスト
-// $(function(){
-//     $('.menu li').hover(function(){
-//         $("ul:not(:animated)", this).slideDown();
-//     }, function(){
-//         $("ul.sub",this).slideUp();
-//     });
-// });
-
 // turbolinksによりページ遷移時にjavascriptが動作しなくなるのを回避
 document.addEventListener("turbolinks:load", function(){
   // マイページのタブメニュー
@@ -41,6 +32,15 @@ document.addEventListener("turbolinks:load", function(){
       // 以前に選択していた要素を非表示・新しくクリックした要素のコンテンツを表示
       $('.tab-menu-contents section').removeClass('tab-menu-show').eq(index).addClass('tab-menu-show');
     });
+  });
+
+  // ヘッダーのドロップダウンリスト
+  $(function(){
+      $('.header-nav li').hover(function(){
+          $("ul:not(:animated)", this).slideDown();
+      }, function(){
+          $("ul.sub",this).slideUp();
+      });
   });
 
   // お気に入り機能 Ajaxによる非同期通信(ページ全体ではなくお気に入り機能だけ更新させる)
